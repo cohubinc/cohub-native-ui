@@ -92,10 +92,9 @@ export default class Chip extends Component<TChipProps> {
 
           {iconName && (
             <Icon
-              onClick={e => onDelete && onDelete(e as any)}
+              onPress={e => onDelete && onDelete(e as any)}
               size={16}
               name={iconName}
-              className="ml-05"
               color={ContrastColor[setBackgroundColor()] as any}
             />
           )}

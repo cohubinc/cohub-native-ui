@@ -1,31 +1,23 @@
 import React from "react";
 
-import IconWrapper from "../../IconWrapper";
+import IconWrapper from "../../IconWrapper/index";
 import { IIconProps as IProps } from "../../index";
 import Color from "src/definitions/enums/Color";
+import Svg, { Circle as SvgCircle } from "react-native-svg";
 
 const Circle = (props: IProps) => (
-  <IconWrapper {...props} defaultColor={Color.primaryGreen}>
+  <IconWrapper {...props}>
     {({ color, size }) => (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 25 25"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle
+      <Svg width={size} height={size} viewBox="0 0 25 25" fill="none">
+        <SvgCircle
           cx="12.5"
           cy="12.5"
           r="11.5"
           fill="none"
-          style={{
-            stroke: color as any,
-            transition: "stroke 300ms ease-in"
-          }}
+          stroke={color}
           strokeWidth="2"
         />
-      </svg>
+      </Svg>
     )}
   </IconWrapper>
 );

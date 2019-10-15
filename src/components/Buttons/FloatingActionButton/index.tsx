@@ -87,7 +87,12 @@ const FloatingActionButton: React.RefForwardingComponent<
       disabled={disabled}
       {...rest}
     >
-      <Icon name={icon} size={size / 1.5} color={color} className="mx-auto" />
+      <Icon
+        name={icon}
+        size={size / 1.5}
+        color={color}
+        style={{ marginRight: "auto", marginLeft: "auto" }}
+      />
     </Buttons.Blank>
   );
 };

@@ -1,10 +1,6 @@
 // Components
 export { default as Alert, IAlertProps } from "src/components/Alert";
 export {
-  default as AnimatedCheckmark,
-  IAnimatedCheckmarkProps
-} from "src/components/AnimatedCheckmark";
-export {
   default as AttributeList,
   IAttributeListProps
 } from "src/components/AttributeList";

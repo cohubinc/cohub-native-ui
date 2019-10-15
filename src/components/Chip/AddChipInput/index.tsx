@@ -91,7 +91,7 @@ export default class AddChipInput extends React.Component<
 
         <Icon.Add
           size={16.5}
-          onClick={this.toggleState}
+          onPress={this.toggleState}
           style={iconStyles as any}
         />
       </div>

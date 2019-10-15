@@ -218,11 +218,11 @@ export default function FloatingLabelWrapper<T = TValue>(
           <Icon.Asterisk
             size={12}
             color={Color.red300}
+            transform={{ translateX: 50 }}
             style={{
               position: "absolute",
               right: "4px",
               top: "30%",
-              transform: "translateY(-50%)",
               zIndex: 2
             }}
           />
@@ -231,11 +231,11 @@ export default function FloatingLabelWrapper<T = TValue>(
           <Icon.Error
             size={20}
             color={Color.red400}
+            transform={{ translateX: 50 }}
             style={{
               position: "absolute",
               right: "8px",
               top: "50%",
-              transform: "translateY(-50%)",
               zIndex: 2
             }}
           />
@@ -245,12 +245,12 @@ export default function FloatingLabelWrapper<T = TValue>(
             name={icon.name}
             size={20}
             color={icon.color as any}
-            onClick={icon.onClick}
+            onPress={icon.onClick}
+            transform={{ translateX: 50 }}
             style={{
               position: "absolute",
               right: "8px",
               top: "50%",
-              transform: "translateY(-50%)",
               zIndex: 2
             }}
           />

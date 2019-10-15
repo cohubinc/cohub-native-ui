@@ -4,6 +4,7 @@ import ReactResponsiveModal from "react-responsive-modal";
 import Color from "src/definitions/enums/Color";
 
 import "./Backdrop.scss";
+import Svg, { Path } from "react-native-svg";
 
 export interface IBackdropProps {
   open: boolean;
@@ -73,16 +74,10 @@ function addBlurClass() {
 
 const iconSize = 44;
 const CloseIcon = (
-  <svg
-    width={iconSize}
-    height={iconSize}
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
+  <Svg width={iconSize} height={iconSize} viewBox="0 0 24 24">
+    <Path
       d="M12 0.974332L11.025 0L6.00034 5.02532L0.975021 0L0 0.974332L5.02532 5.99966L0 11.025L0.975021 11.9993L6.00034 6.97399L11.025 11.9993L12 11.025L6.97468 5.99966L12 0.974332Z"
       fill={Color.trueWhite as any}
     />
-  </svg>
+  </Svg>
 );

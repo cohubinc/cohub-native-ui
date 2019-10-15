@@ -1,48 +1,48 @@
 import React, { PureComponent } from "react";
+import styled from "styled-components/native";
+
 import Color from "src/definitions/enums/Color";
 
-import { IIconProps as IParentProps } from "../index";
+import { IIconProps } from "..";
 
 interface IProps {
   children: (props: { color: Color; size: number }) => JSX.Element;
-  defaultColor?: Color;
   color?: Color;
 }
 
-export type IWrapperProps = IProps & IParentProps;
+export type IWrapperProps = IProps & IIconProps;
 
 class IconWrapper extends PureComponent<IWrapperProps> {
   render() {
     const {
       children,
-      color,
-      defaultColor = Color.grey500,
+      color = Color.grey500,
       size = 24,
-      className = "",
-      style,
-      onClick,
-      disabled
+      disabled,
+      onPress,
+      style
     } = this.props;
 
-    const clickable = onClick && !disabled ? "cursor-pointer" : "";
+    const IconWrapperContainer = styled.TouchableHighlight`
+      width: ${size};
+      height: ${size};
+      opacity: ${disabled ? 0.3 : 1};
+    `;
+
+    const IconPositioner = styled.View`
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    `;
 
     return (
-      <div
-        className={className}
-        style={{
-          width: size,
-          height: size,
-          transition: "opacity 300ms ease-in 200ms",
-          opacity: disabled ? 0.3 : undefined,
-          cursor: clickable ? "pointer" : undefined,
-          ...style
-        }}
-        onClick={disabled ? undefined : onClick}
+      <IconWrapperContainer
+        style={style}
+        onPress={disabled ? undefined : onPress}
       >
-        <div className="flex justify-center items-center">
-          {children({ color: color || defaultColor, size })}
-        </div>
-      </div>
+        <IconPositioner>{children({ color, size })}</IconPositioner>
+      </IconWrapperContainer>
     );
   }
 }

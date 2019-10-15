@@ -1,7 +1,6 @@
 import React from "react";
 
 import Color from "src/definitions/enums/Color";
-import AnimatedCheckmark from "src/components/AnimatedCheckmark";
 import Typography from "src/components/Typography";
 import Icon from "src/components/Icon";
 import { TIconName } from "src/components/Icon/Icons";
@@ -78,14 +77,14 @@ export default function Base(props: IBaseButtonProps) {
       {...restOfProps}
     >
       <div className="button-text relative flex items-center justify-center">
-        {success && (
+        {/* {success && (
           <div
             className="flex justify-center items-center absolute w-100"
             style={{ zIndex: 2, bottom: -0.5 }}
           >
             <AnimatedCheckmark size="1.25rem" color={color} />
           </div>
-        )}
+        )} */}
 
         <Typography.Small
           uppercase

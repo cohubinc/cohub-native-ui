@@ -1,18 +1,24 @@
-import React, { MouseEvent, PureComponent } from "react";
+import React, { PureComponent } from "react";
 
 import Color from "src/definitions/enums/Color";
 import logError from "src/helpers/logError";
 
 import icons, { TIconName } from "./Icons";
+import {
+  StyleProp,
+  ViewStyle,
+  GestureResponderEvent,
+  TransformsStyle
+} from "react-native";
 
 export interface IIconProps {
   name: TIconName;
   size?: number;
   color?: Color;
-  className?: string;
-  style?: React.CSSProperties;
-  onClick?: (e?: MouseEvent<HTMLElement>) => void;
   disabled?: boolean;
+  style?: StyleProp<ViewStyle>;
+  transform?: TransformsStyle;
+  onPress?: ((event: GestureResponderEvent) => void) | undefined;
 }
 
 const DefaultIcon = (props: IIconProps) => {
