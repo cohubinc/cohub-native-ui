@@ -1,9 +1,9 @@
-[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://cohub-ui.netlify.com/)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/10126ad2-a0d6-44bb-8bbc-8007102b2aa9/deploy-status)](https://app.netlify.com/sites/cohub-ui/deploys)
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://cohub-native-ui.netlify.com/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/10126ad2-a0d6-44bb-8bbc-8007102b2aa9/deploy-status)](https://app.netlify.com/sites/cohub-native-ui/deploys)
 
-# Cohub UI
+# Cohub Native UI
 
-Sharable UI components for react web apps
+Sharable UI components for react native apps
 
 ## Development
 
@@ -12,7 +12,7 @@ Sharable UI components for react web apps
 1. Clone and `cd` into the repo
 
 ```bash
-> git clone https://github.com/cohubinc/cohub-ui.git && cd cohub-ui
+> git clone https://github.com/cohubinc/cohub-native-ui.git && cd cohub-ui
 ```
 
 2. Install the dependencies

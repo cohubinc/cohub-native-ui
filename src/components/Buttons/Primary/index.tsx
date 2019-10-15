@@ -1,11 +1,13 @@
 import React from "react";
 
 import Color from "src/definitions/enums/Color";
-import BaseButton from "src/components/Buttons/Base/index";
-import { TPrimaryButtonProps } from "./TPrimaryButtonProps";
+import { TouchableHighlight, Text } from "react-native";
+export type TPrimaryButtonProps = {};
 
-const Primary = ({ style = {}, ...rest }: TPrimaryButtonProps) => (
-  <BaseButton backgroundColor={Color.primary} style={style} {...rest} />
+const Primary = ({  }: TPrimaryButtonProps) => (
+  <TouchableHighlight>
+    <Text>hi</Text>
+  </TouchableHighlight>
 );
 
 export default Primary;

@@ -12,7 +12,6 @@
   "scripts": {
     "start": "NODE_ENV=development rollup -cw",
     "build": "NODE_ENV=production rollup -c",
-    "build:ios": "NODE_ENV=production rollup -c ./native-rollup.config.js",
     "build:stories": "NODE_ENV=storybook rollup -c",
     "watch:stories": "NODE_ENV=storybook rollup -cw",
     "fresh": "rm -rf node_modules && yarn cache clean && yarn install",
@@ -138,10 +137,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cohubinc/cohub-ui.git"
+    "url": "git+https://github.com/cohubinc/cohub-native-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/cohubinc/cohub-ui/issues"
+    "url": "https://github.com/cohubinc/cohub-native-ui/issues"
   },
-  "homepage": "https://github.com/cohubinc/cohub-ui#readme"
+  "homepage": "https://github.com/cohubinc/cohub-native-ui#readme"
 }

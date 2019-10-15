@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Platform } from "react-native";
 
 import Button, { IBaseButtonProps } from "./Base";
 import Blank from "./Blank";
@@ -16,7 +15,7 @@ import FloatingActionButton from "./FloatingActionButton";
 import Split from "./Split";
 
 export { TBlankButtonProps } from "./Blank";
-export { TPrimaryButtonProps } from "./Primary/TPrimaryButtonProps";
+export { TPrimaryButtonProps } from "./Primary";
 export { TOutlineButtonProps } from "./Outline";
 export { TGhostButtonProps } from "./Ghost";
 export { TTextButtonProps } from "./Text";

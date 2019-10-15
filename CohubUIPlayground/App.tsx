@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {Buttons} from '@cohubinc/cohub-ui/dist/react-native';
+import {Buttons} from '../dist';
 
 const App = () => {
   const usingHermes =
@@ -39,8 +39,7 @@ const App = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <Header />
-          {/* <Typography.Title>Whoa</Typography.Title> */}
-          <Buttons.Primary plaform={'ios'} />
+          <Buttons.Primary />
           {!usingHermes ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
