@@ -13,4 +13,5 @@ CohubUIPlayground/node_modules
 CohubUIPlayground/dist
 CohubUIPlayground/.cache
 CohubUIPlayground/DevSandbox.tsx
+CohubUIPlayground/ios/*
 .vscode
