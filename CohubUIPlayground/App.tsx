@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {Buttons} from '../dist';
+import {Buttons} from '@cohubinc/cohub-native-ui';
 
 const App = () => {
   const usingHermes =

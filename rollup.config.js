@@ -83,6 +83,9 @@ export default {
       autoModules: true
     }),
     commonjs(),
-    execute("cp ./dist/index.d.ts ./dist/index.esm.d.ts")
+    execute("cp ./dist/index.d.ts ./dist/index.esm.d.ts"),
+    execute(
+      "sleep 2 && cp -R ./dist ./CohubUIPlayground/node_modules/@cohubinc/cohub-native-ui"
+    )
   ]
 };
