@@ -88,14 +88,14 @@ export default function Vertical({
     if (titleLink) {
       return (
         <Link to={titleLink}>
-          <Typography.Large block className={centered ? "text-center" : ""}>
+          <Typography.Large block alignment={centered ? "center" : "left"}>
             {title}
           </Typography.Large>
         </Link>
       );
     } else {
       return (
-        <Typography.Large block className={centered ? "text-center" : ""}>
+        <Typography.Large block alignment={centered ? "center" : "left"}>
           {title}
         </Typography.Large>
       );
@@ -116,7 +116,8 @@ export default function Vertical({
         {titleLinkElement()}
         <Typography.Small
           block
-          className={`${centered ? "text-center" : ""} mt-025`}
+          alignment={centered ? "center" : "left"}
+          style={{ marginRight: "0.25rem" }}
         >
           {subtitle}
         </Typography.Small>
@@ -124,7 +125,8 @@ export default function Vertical({
           <Typography.Tiny
             muted
             block
-            className={`${centered ? "text-center" : ""} mt-025`}
+            alignment={centered ? "center" : "left"}
+            style={{ marginRight: "0.25rem" }}
           >
             {meta}
           </Typography.Tiny>
@@ -142,7 +144,7 @@ export default function Vertical({
       className={`${styles.CardVertical} ${className} pb-1`}
       style={{
         ...style,
-        boxShadow: BoxShadow[dpLevel] || BoxShadow.dp1,
+        boxShadow: (BoxShadow as any)[dpLevel as any] || BoxShadow.dp1,
         width: cardWidth
       }}
     >

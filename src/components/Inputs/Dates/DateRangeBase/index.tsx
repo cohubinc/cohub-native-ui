@@ -74,9 +74,13 @@ export default function DateRangeBase({
 
             {startDate && (
               <Typography
-                className="flex items-center mx-025"
+                weight={"600"}
                 style={{
-                  fontWeight: 600,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginRight: "0.25rem",
+                  marginLeft: "0.25rem",
                   paddingTop: appearance === "contrast" ? 7 : undefined
                 }}
               >

@@ -43,7 +43,7 @@ export default function Statistic({
     case "small":
       return (
         <div className="flex flex-column justify-center items-center">
-          <Typography.Small color={color} weight={400}>
+          <Typography.Small color={color} weight={"400"}>
             {formattedValue(value)}
           </Typography.Small>
           <Typography.Tiny uppercase muted>
@@ -54,7 +54,7 @@ export default function Statistic({
     case "regular":
       return (
         <div className="flex flex-column justify-center items-center">
-          <Typography.Large color={color} weight={500}>
+          <Typography.Large color={color} weight={"500"}>
             {formattedValue(value)}
           </Typography.Large>
           <Typography.Small uppercase muted>
@@ -65,7 +65,7 @@ export default function Statistic({
     case "large":
       return (
         <div className="flex flex-column justify-center items-center">
-          <Typography.HeadingTiny color={color} weight={500}>
+          <Typography.HeadingTiny color={color} weight={"500"}>
             {formattedValue(value)}
           </Typography.HeadingTiny>
           <Typography.Small uppercase muted>
@@ -76,7 +76,7 @@ export default function Statistic({
     case "xlarge":
       return (
         <div className="flex flex-column justify-center items-center">
-          <Typography.HeadingLarge weight={600} color={color}>
+          <Typography.HeadingLarge weight={"600"} color={color}>
             {formattedValue(value)}
           </Typography.HeadingLarge>
           <Typography.Small uppercase muted>
@@ -87,7 +87,7 @@ export default function Statistic({
     case "huge":
       return (
         <div className="flex flex-column justify-center items-center">
-          <Typography.Subtitle weight={600} color={color}>
+          <Typography.Subtitle weight={"600"} color={color}>
             {formattedValue(value)}
           </Typography.Subtitle>
           <Typography uppercase muted>
@@ -98,7 +98,7 @@ export default function Statistic({
     default:
       return (
         <div className="flex flex-column justify-center items-center">
-          <Typography.Large color={color} weight={600}>
+          <Typography.Large color={color} weight={"600"}>
             {formattedValue(value)}
           </Typography.Large>
           <Typography.Small uppercase muted>

@@ -78,13 +78,13 @@ export { iconNames } from "src/components/Icon/Icons";
 // export { default as Tooltip, ITooltipProps } from "src/components/Tooltip";
 export { default as Typography } from "src/components/Typography";
 export {
-  ITypographyProps
-} from "src/components/Typography/definitions/ITypographyProps";
-// export {
-//   default as Transition,
-//   ITransitionProps
-// } from "src/components/Transition";
-// export * from "src/components/Transition";
+  INativeTypographyProps
+} from "src/components/Typography/definitions/ITypographyProps.native";
+export {
+  default as Transition,
+  ITransitionProps
+} from "src/components/Transition";
+export * from "src/components/Transition";
 
 // // Helpers
 // export { default as logError } from "src/helpers/logError";
