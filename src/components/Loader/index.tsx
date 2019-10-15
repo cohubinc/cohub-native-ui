@@ -1,7 +1,6 @@
 import React, { CSSProperties } from "react";
 
 import Color from "src/definitions/enums/Color";
-import Backdrop from "src/components/Backdrop";
 import { Fade } from "src/components/Transition";
 
 import "./loader.scss";
@@ -32,14 +31,6 @@ export default function Loader({
   style,
   size = 30
 }: ILoaderProps) {
-  if (fullScreen) {
-    return (
-      <Backdrop style={style} open={show} focusTrapped={false}>
-        <ShrinkGrowLoader dotSize={size} />
-      </Backdrop>
-    );
-  }
-
   if (asOverlay) {
     return (
       <Fade show={show}>

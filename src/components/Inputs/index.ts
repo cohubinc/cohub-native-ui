@@ -1,8 +1,6 @@
 import Base from "./Base";
 import Checkbox from "./Checkbox";
 import Decimal from "./Decimal";
-import Date from "./Dates/Date";
-import DateRange from "./Dates/DateRange";
 import Money from "./Money";
 import MultiSelect from "./MultiSelect";
 import Password from "./Password";
@@ -17,8 +15,6 @@ export { TDecimalInputProps } from "./Decimal";
 export { ICheckboxProps } from "./Checkbox";
 export { IMultiSelectProps } from "./MultiSelect";
 export { ISelectProps } from "./Select";
-export { TDateInputProps } from "./Dates/Date";
-export { TDateRangeInputProps } from "./Dates/DateRange";
 export { IMoneyInputProps } from "./Money";
 export { TPasswordInputProps } from "./Password";
 export { TTextAreaProps } from "./TextArea";
@@ -28,8 +24,6 @@ const Inputs = {
   Base,
   Checkbox,
   Decimal,
-  Date,
-  DateRange,
   Money,
   MultiSelect,
   Password,

@@ -9,28 +9,12 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {SafeAreaView, View, StatusBar} from 'react-native';
+import DevSandbox from './DevSandbox';
 
 import {Buttons, Icon, Color, Typography} from '@cohubinc/cohub-native-ui';
 
-const App = () => {
-  const usingHermes =
-    typeof HermesInternal === 'object' && HermesInternal !== null;
+export default function App() {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -42,12 +26,9 @@ const App = () => {
             justifyContent: 'center',
             height: '100%',
           }}>
-          <Icon.Asterisk color={Color.primaryRed} />
-          <Typography>Test test test</Typography>
+          <DevSandbox />
         </View>
       </SafeAreaView>
     </>
   );
-};
-
-export default App;
+}
