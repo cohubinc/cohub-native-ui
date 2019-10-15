@@ -3,11 +3,12 @@ import Blank from "../Blank";
 import Color from "src/definitions/enums/Color";
 import Typography from "src/components/Typography";
 import { TBlankButtonProps } from "src/components/Buttons/Blank";
+import { TextStyle, StyleProp } from "react-native";
 
 interface IProps {
   color?: Color;
   fontSize?: number | string;
-  textStyle?: CSSProperties;
+  textStyle?: StyleProp<TextStyle>;
   block?: boolean;
 }
 
@@ -27,7 +28,6 @@ export default class Text extends PureComponent<TTextButtonProps> {
       textStyle,
       block,
       style,
-      className = "",
       disabled,
       ...rest
     } = this.props;
@@ -36,17 +36,17 @@ export default class Text extends PureComponent<TTextButtonProps> {
       <Blank
         {...rest}
         disabled={disabled}
-        className={`${className} p-05`}
-        style={{ display: block ? "block" : undefined, ...style }}
+        style={{
+          display: block ? "block" : undefined,
+          padding: "0.5rem",
+          ...style
+        }}
       >
         <Typography
           uppercase
           color={disabled ? Color.grey600 : color}
-          weight={500}
-          style={{
-            fontSize,
-            ...textStyle
-          }}
+          weight={"500"}
+          style={textStyle}
           kerning={0.07}
         >
           {children}

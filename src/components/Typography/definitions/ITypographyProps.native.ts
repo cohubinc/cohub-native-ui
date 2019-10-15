@@ -6,8 +6,6 @@ export interface INativeTypographyProps {
   fontFamily?: "Akkurat-Mono" | "MillerDisplay" | "Inter";
   /** React Children nodes are required */
   children: React.ReactNode;
-  /** Optionally pass className */
-  className?: string;
   /** Optionally pass style object */
   style?: StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
   /** Text can be the muted color */
@@ -36,9 +34,6 @@ export interface INativeTypographyProps {
 
   /** Text can be italic */
   italicize?: boolean;
-
-  /** Text can be a <p /> tag instead of a <span /> */
-  p?: boolean;
 
   /** Easily make the text the default light color */
   light?: boolean;

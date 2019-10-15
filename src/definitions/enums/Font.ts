@@ -1,5 +1,5 @@
 enum Font {
-  defaultFontFamily = "Helvetica",
+  defaultFontFamily = "Inter",
   defaultFontSize = "16px"
 }
 

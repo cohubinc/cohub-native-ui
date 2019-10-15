@@ -62,7 +62,7 @@ export default function AttributeList({
       contrast={contrast}
       padded={contrast ? true : false}
     >
-      <Typography.Small muted weight={500} uppercase className="mb-1">
+      <Typography.Small muted weight={"500"} uppercase>
         {header}
       </Typography.Small>
       {visibleAttributes}

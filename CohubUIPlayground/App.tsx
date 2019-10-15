@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {Buttons, Icon, Color, Divider} from '@cohubinc/cohub-native-ui';
+import {Buttons, Icon, Color, Typography} from '@cohubinc/cohub-native-ui';
 
 const App = () => {
   const usingHermes =
@@ -43,22 +43,7 @@ const App = () => {
             height: '100%',
           }}>
           <Icon.Asterisk color={Color.primaryRed} />
-          <View
-            style={{
-              width: '100%',
-            }}>
-            <Buttons.Primary
-              style={{width: '50%', marginHorizontal: 'auto'}}
-              label="dfasdHI"
-              onPress={() => console.log('hi')}
-            />
-            <Divider />
-            <Buttons.Outline
-              style={{width: '50%', marginHorizontal: 'auto'}}
-              label="dfasdHI"
-              onPress={() => console.log('hi')}
-            />
-          </View>
+          <Typography>Test test test</Typography>
         </View>
       </SafeAreaView>
     </>

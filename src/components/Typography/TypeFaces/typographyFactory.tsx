@@ -1,11 +1,13 @@
-import React, { CSSProperties } from "react";
-import { ITypographyProps } from "../definitions/ITypographyProps";
-import Color from "../../../definitions/enums/Color";
+import React from "react";
+import { INativeTypographyProps } from "../definitions/ITypographyProps.native";
 
-type TFactoryArgs = Omit<ITypographyProps, "children">;
+import Color from "src/definitions/enums/Color";
+import { Text, StyleProp, TextStyle } from "react-native";
 
+type TFactoryArgs = Omit<INativeTypographyProps, "children">;
+// Function that takes some typography props and returns a Typography component
 export function typographyFactory(defaultProps: TFactoryArgs) {
-  return (props: ITypographyProps) => {
+  return (props: INativeTypographyProps) => {
     const { style: factoryStyle } = defaultProps;
     const { children, style } = props;
 
@@ -15,14 +17,11 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
     const mergedProperties = { ...defaultProps, ...props };
     const {
       fontFamily,
-      p,
       muted,
       light,
       block,
       error,
-      className = "",
       inverted,
-      color = Color.text,
       uppercase,
       alignment,
       weight,
@@ -32,47 +31,48 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       "data-qa": dataQa = "text"
     } = mergedProperties;
 
-    const fontFamilyStyle = fontFamily
-      ? { fontFamily }
-      : { fontFamily: "Inter" };
-    const fontWeightStyle = { fontWeight: weight || 400 };
-    const boldStyles = bold ? { fontWeight: 600 } : {};
-    const mutedStyle = muted ? { color: Color.lightText as any } : {};
-    const kerningStyle = kerning ? { letterSpacing: `${kerning}rem` } : {};
-    const blockStyle = block ? { display: "block" } : {};
-    const lightStyle = light ? { color: Color.trueWhite as any } : {};
-    const invertedStyle = inverted ? { color: Color.invertedText as any } : {};
-    const errorStyle = error ? { color: Color.primaryRed as any } : {};
-    const italicStyle = italicize ? { fontStyle: "italic" } : {};
+    const fontWeight = bold ? "600" : weight || "400";
 
-    const styleDefaults = {
-      color: color as any,
-      textTransform: (uppercase ? "uppercase" : "initial") as any,
-      textAlign: (alignment ? alignment : "initial") as any
-    };
-    const mergedStyles = { ...factoryStyle, ...style };
-    const styleProp: CSSProperties = {
-      ...styleDefaults,
-      ...fontFamilyStyle,
-      ...fontWeightStyle,
-      ...boldStyles,
-      ...italicStyle,
-      ...kerningStyle,
-      ...mutedStyle,
-      ...blockStyle,
-      ...lightStyle,
-      ...invertedStyle,
-      ...errorStyle,
-      ...mergedStyles
-    };
+    let color: any = mergedProperties.color || Color.text;
+    if (muted) {
+      color = Color.lightText;
+    } else if (light) {
+      color = Color.trueWhite;
+    } else if (inverted) {
+      color = Color.invertedText;
+    } else if (error) {
+      color = Color.primaryRed;
+    }
 
-    const properties = {
-      children,
-      className,
-      style: styleProp,
-      "data-qa": dataQa
-    };
+    const styleProp: Array<StyleProp<TextStyle>> = [
+      factoryStyle,
+      style,
+      { fontWeight },
+      { color }
+    ];
 
-    return p ? <p {...properties} /> : <span {...properties} />;
+    styleProp.push(fontFamily ? { fontFamily } : { fontFamily: "Inter" });
+
+    if (kerning) {
+      styleProp.push({ letterSpacing: kerning * 16 }); // rems, yo
+    }
+
+    if (italicize) {
+      styleProp.push({ fontStyle: "italic" });
+    }
+
+    if (uppercase) {
+      styleProp.push({ textTransform: "uppercase" });
+    }
+
+    if (alignment) {
+      styleProp.push({ textAlign: alignment });
+    }
+
+    if (block) {
+      styleProp.push({ display: "flex" });
+    }
+
+    return <Text children={children} style={styleProp} />;
   };
 }
