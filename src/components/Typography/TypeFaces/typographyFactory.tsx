@@ -51,7 +51,7 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       { color }
     ];
 
-    styleProp.push(fontFamily ? { fontFamily } : { fontFamily: "Helvetica" });
+    styleProp.push(fontFamily ? { fontFamily } : { fontFamily: "Inter" });
 
     if (kerning) {
       styleProp.push({ letterSpacing: kerning * 16 }); // rems, yo
