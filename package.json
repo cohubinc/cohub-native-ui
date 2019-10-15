@@ -14,7 +14,7 @@
     "build": "NODE_ENV=production rollup -c",
     "build:stories": "NODE_ENV=storybook rollup -c",
     "watch:stories": "NODE_ENV=storybook rollup -cw",
-    "fresh": "rm -rf node_modules && yarn cache clean && yarn install",
+    "fresh": "rm -rf node_modules && yarn cache clean && yarn",
     "storybook": "start-storybook -p 6007",
     "storybook:build": "yarn build:stories && build-storybook -c .storybook -o .storybook/stories-dist",
     "pre-push-msg": "echo 'Pre-push checks...' && exit 0",

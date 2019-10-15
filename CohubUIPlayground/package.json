@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "fresh": "rm -rf node_modules && yarn cache clean && yarn",
     "test": "jest"
   },
   "dependencies": {
