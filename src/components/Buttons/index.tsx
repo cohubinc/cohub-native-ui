@@ -13,7 +13,7 @@ import Primary from "./Primary";
 // import Cancel from "./Cancel";
 // import Dropdown from "./Dropdown";
 // import FloatingActionButton from "./FloatingActionButton";
-// import Split from "./Split";
+import Split from "./Split";
 
 // export { TBlankButtonProps } from "./Blank";
 // export { TPrimaryButtonProps } from "./Primary";
@@ -43,7 +43,7 @@ export default class Buttons extends Component<IButtonProps> {
 
   // static FloatingAction = FloatingActionButton;
 
-  // static Split = Split;
+  static Split = Split;
 
   render() {
     return <Buttons.Primary {...this.props} />;
