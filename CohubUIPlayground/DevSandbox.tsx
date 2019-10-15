@@ -1,22 +1,32 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
-import {SafeAreaView, View, StatusBar} from 'react-native';
+import {Icon, Color, Buttons, Divider} from '@cohubinc/cohub-native-ui';
+import {View} from 'react-native';
 
-import {Buttons, Icon, Color, Typography} from '@cohubinc/cohub-native-ui';
-
-export default function DevSandbox() {
+export default function() {
   return (
     <>
-      <Buttons.Outline label="hi" onPress={() => console.log('hi')} />
+      <Icon.Asterisk color={Color.primaryRed} />
+      <View
+        style={{
+          width: '100%',
+        }}>
+        <Buttons.Primary
+          style={{width: '50%', marginHorizontal: 'auto'}}
+          label="dfasdHI"
+          onPress={() => console.log('hi')}
+        />
+        <Divider />
+        <Buttons.Outline
+          style={{width: '50%', marginHorizontal: 'auto'}}
+          label="Wha?"
+          onPress={() => console.log('hi')}
+        />
+        <Buttons.Split
+          values={['hi', 'bye']}
+          selectedIndex={1}
+          onChange={val => console.log(val)}
+        />
+      </View>
     </>
   );
 }
