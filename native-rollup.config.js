@@ -20,69 +20,15 @@ const __DEV__ = NODE_ENV === "development";
 const dependencies = Object.keys(pkg.dependencies || {});
 const isStoryBuild = NODE_ENV === "storybook";
 
+import baseRollupConfig from "./rollup.config";
+
 export default {
-  input: "src/index.ts",
+  ...baseRollupConfig,
   output: [
     {
       file: pkg.reactNative,
       format: "cjs",
       sourcemap: true
     }
-  ],
-  external: dependencies,
-  plugins: [
-    nodeResolve({ extensions: [".ios.tsx", ".tsx"] }),
-    replace({
-      __DEV__,
-      exclude: "node_modules/**"
-    }),
-    typescriptPlugin({
-      typescript: ttypescript,
-      tsconfig: "./tsconfig.build.ios.json"
-    }),
-    babel({
-      babelrc: false,
-      extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
-      exclude: "node_modules/**",
-      presets: ["@babel/preset-react"]
-      // plugins: [
-      //   isStoryBuild && [
-      //     docGenPlugin,
-      //     {
-      //       docgenCollectionName: "STORYBOOK_REACT_CLASSES",
-      //       // TODO: Look into this -> May be able to speed up the build if we limit the included files
-      //       include: "components.*\\.tsx$",
-      //       exclude: "stories\\.tsx$"
-      //     }
-      //   ]
-      // ].filter(Boolean)
-    }),
-    postcss({
-      preprocessor: (content, id) => {
-        return new Promise((resolve, reject) => {
-          const result = sass.renderSync({ file: id });
-          resolve({ code: result.css.toString() });
-        });
-      },
-      plugins: [
-        autoprefixer,
-        flexbugFixes,
-        presetEnv({
-          autoprefixer: {
-            flexbox: "no-2009"
-          },
-          stage: 3
-        })
-      ],
-      sourceMap: true,
-      // Automatically inject styles into document head at runtime. (Does not output a css bundle)
-      extract: false,
-      autoModules: true
-    }),
-    commonjs(),
-    execute("cp ./dist/index.d.ts ./dist/react-native/index.d.ts"),
-    execute(
-      "sleep 2 && cp -R ./dist ./CohubUIPlayground/node_modules/@cohubinc/cohub-ui"
-    )
   ]
 };
