@@ -1,121 +1,161 @@
 import React from "react";
+import {
+  Text,
+  TouchableOpacity,
+  Animated,
+  LayoutChangeEvent,
+  StyleProp,
+  ViewStyle
+} from "react-native";
+import IButtonProps from "../../../definitions/interfaces/IButtonProps";
+import Colors from "../../../definitions/enums/Color";
+import gs from "../../../definitions/constants/GlobalStyles";
+import Color from "../../../definitions/enums/Color";
 
-import Color from "src/definitions/enums/Color";
-import Typography from "src/components/Typography";
-import Icon from "src/components/Icon";
-import { TIconName } from "src/components/Icon/Icons";
+export { IButtonProps };
 
-import { getInsetColor } from "./getInsetColor";
+export default abstract class Basic<T = {}> extends React.Component<
+  IButtonProps<T>
+> {
+  // Animation to enlarge the container
+  _pulseAnimation: Animated.Value;
+  _pulseStyle: any;
 
-import "./Base.scss";
+  // Animation to draw a loader under the text content
+  _lineAnimation: Animated.Value;
+  _lineStyle: any;
+  _lineContainerStyle: StyleProp<ViewStyle>;
 
-type TRootButtonProps = JSX.IntrinsicElements["button"];
+  static defaultProps = {
+    animated: true,
+    color: Colors.black
+  };
 
-export interface IBaseButtonProps extends TRootButtonProps {
-  /** Shows success checkmark animation */
-  success?: boolean;
-  /** Shows error color */
-  error?: boolean;
-  /**
-   * Shows button in raised state
-   * @defaultValue true
-   */
-  raised?: boolean;
-  /**
-   * Background color of button
-   */
-  backgroundColor?: Color;
-  /**
-   * Name of Icon
-   */
-  icon?: TIconName;
+  constructor(props: IButtonProps<T>) {
+    super(props);
 
-  /**
-   * Position of Icon
-   */
-  iconPosition?: "left" | "right";
+    this._pulseAnimation = new Animated.Value(0);
+    this._pulseStyle = props.animated
+      ? {
+          transform: [
+            {
+              scale: this._pulseAnimation.interpolate({
+                inputRange: [0, 1],
+                outputRange: [1, 1.08]
+              })
+            }
+          ]
+        }
+      : null;
 
-  /**
-   * Size of Icon
-   */
-  iconSize?: number;
-}
+    this._lineAnimation = new Animated.Value(0);
+    this._lineStyle = null;
+    this._lineContainerStyle = {
+      overflow: "hidden",
+      width: "100%",
+      height: 4,
+      bottom: 0,
+      position: "absolute"
+    };
+  }
 
-export default function Base(props: IBaseButtonProps) {
-  let {
-    style,
-    className = "",
-    children,
-    success,
-    raised = true,
-    backgroundColor = Color.grey600,
-    disabled,
-    error,
-    icon,
-    iconPosition = "left",
-    iconSize,
-    ...restOfProps
-  } = props;
+  componentDidMount() {
+    if (this.props.loading) {
+      const loop = Animated.loop(
+        Animated.timing(this._lineAnimation, {
+          toValue: 100,
+          duration: 4000,
+          useNativeDriver: true
+        })
+      );
 
-  backgroundColor = error ? Color.red500 : backgroundColor;
+      loop.start();
+    }
+  }
 
-  const insetColor = raised && getInsetColor(backgroundColor);
-  const color = (style && style.color) || "#EFF7EE";
-  const flexDirection = iconPosition === "right" ? "row-reverse" : "row";
+  componentDidUpdate(prevProps: IButtonProps<T>) {
+    const loop = Animated.loop(
+      Animated.timing(this._lineAnimation, {
+        toValue: 100,
+        duration: 4000,
+        useNativeDriver: true
+      })
+    );
 
-  return (
-    <button
-      className={`CohubButton ${className}`}
-      style={{
-        backgroundColor: backgroundColor as any,
-        boxShadow: raised
-          ? `0 1px 3px hsla(0, 0%, 0%, 0.1), inset 0px 1px 0px ${insetColor}`
-          : undefined,
-        ...style
-      }}
-      disabled={disabled}
-      {...restOfProps}
-    >
-      <div className="button-text relative flex items-center justify-center">
-        {/* {success && (
-          <div
-            className="flex justify-center items-center absolute w-100"
-            style={{ zIndex: 2, bottom: -0.5 }}
-          >
-            <AnimatedCheckmark size="1.25rem" color={color} />
-          </div>
-        )} */}
+    if (!prevProps.loading && this.props.loading) {
+      loop.start();
+    }
 
-        <Typography.Small
-          uppercase
-          color={color as any}
-          style={{
-            opacity: success ? 0 : 1
-            // transition: "opacity 150ms ease-in"
-          }}
-        >
-          <div className="flex items-center" style={{ flexDirection }}>
-            {icon && (
-              <Icon
-                name={icon}
-                color={color as any}
-                size={iconSize}
-                style={{
-                  marginTop: 1
-                }}
-              />
-            )}
-            <span
-              style={{
-                marginLeft: icon && iconPosition === "left" ? "0.5rem" : "",
-                marginRight: icon && iconPosition === "right" ? "0.5rem" : ""
-              }}
-            >
-              {children}
-            </span>
-          </div>
-        </Typography.Small>
-      </div>
-    </button>
-  );
+    if (prevProps.loading && !this.props.loading) {
+      loop.stop();
+    }
+  }
+
+  beginPress = () => {
+    Animated.timing(this._pulseAnimation, {
+      toValue: 1,
+      duration: 100,
+      useNativeDriver: true
+    }).start();
+  };
+
+  endPress = () => {
+    Animated.timing(this._pulseAnimation, {
+      toValue: 0,
+      duration: 100,
+      useNativeDriver: true
+    }).start();
+  };
+
+  onLayout = (event: LayoutChangeEvent) => {
+    const { animated, color } = this.props;
+
+    const width = event.nativeEvent.layout.width;
+
+    this._lineStyle = animated
+      ? {
+          left: 0,
+          width: "50%",
+          height: 4,
+          bottom: 0,
+          position: "absolute",
+          borderRadius: 4,
+          backgroundColor: Color.primary || color,
+          transform: [
+            {
+              translateX: this._lineAnimation.interpolate({
+                inputRange: [0, 10, 30, 40, 60, 100],
+                outputRange: [-0.5, 1.0, 1.5, 1.0, -0.5, -0.5].map(
+                  val => val * width * 0.5
+                )
+              })
+            },
+            {
+              scaleX: this._lineAnimation.interpolate({
+                inputRange: [0, 10, 30, 40, 60, 100],
+                outputRange: [0, 1.0, 0, 1.0, 0, 0]
+              })
+            }
+          ]
+        }
+      : null;
+
+    this.forceUpdate();
+  };
+
+  render() {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPressIn={this.beginPress}
+        onPressOut={this.endPress}
+        onLayout={this.onLayout}
+        {...this.props}
+      >
+        <Animated.View style={[this.props.style, this._pulseStyle]}>
+          <Text style={gs.regularBodyText}>{this.props.label}</Text>
+        </Animated.View>
+      </TouchableOpacity>
+    );
+  }
 }
