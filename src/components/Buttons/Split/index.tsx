@@ -1,54 +1,56 @@
-import React from "react";
-import { StyleSheet, ViewStyle, StyleProp } from "react-native";
-import SegmentedControlTab from "react-native-segmented-control-tab";
+import React, { CSSProperties } from "react";
+import Color from "src/definitions/enums/Color";
+import Segment from "./Segment";
 
-import gs from "../../../definitions/constants/GlobalStyles";
-import Colors from "../../../definitions/enums/Color";
-
-export type Value = string;
-
-export interface IProps {
-  values: Value[];
-  selectedIndex: number;
+export interface ISplitButtonProps {
+  labels: string[];
+  selectedIndex?: number;
   onChange: (index: number) => void;
-  color?: string;
-  style?: StyleProp<ViewStyle>;
+  segmentStyle?: CSSProperties;
+  backgroundColor?: Color;
+  color?: Color;
+  style?: CSSProperties;
+  className?: string;
 }
 
-const SplitButton = ({
-  onChange,
-  values,
-  selectedIndex,
-  style,
-  color = Colors.primaryGreen as any
-}: IProps) => (
-  <SegmentedControlTab
-    tabsContainerStyle={style}
-    tabTextStyle={[
-      gs.akkuratSmallBodyText,
-      {
-        color,
-        borderColor: color,
-        paddingVertical: 12
-      }
-    ]}
-    tabStyle={{
-      paddingVertical: 0,
-      borderColor: color
-    }}
-    activeTabTextStyle={styles.activeTabTextStyle}
-    activeTabStyle={{
-      backgroundColor: color
-    }}
-    onTabPress={onChange}
-    {...{ values, selectedIndex }}
-  />
-);
+export default function SplitButton(props: ISplitButtonProps) {
+  const {
+    labels,
+    style,
+    className,
+    segmentStyle,
+    onChange,
+    selectedIndex,
+    color = Color.grey500,
+    backgroundColor = Color.outlineGrey
+  } = props;
 
-const styles = StyleSheet.create({
-  activeTabTextStyle: {
-    color: Colors.outlineGrey as any
-  }
-});
+  const numBtns = labels.length;
 
-export default SplitButton;
+  return (
+    <div
+      {...{ className }}
+      style={{
+        display: "inline-grid",
+        gridTemplateColumns: `repeat(${numBtns}, 1fr)`,
+        backgroundColor: backgroundColor as any,
+        padding: "0.5rem",
+        borderRadius: "4px",
+        ...style
+      }}
+    >
+      {labels.map((label, index) => (
+        <Segment
+          key={label}
+          color={color}
+          backgroundColor={backgroundColor}
+          style={segmentStyle}
+          onClick={() => onChange(index)}
+          selected={selectedIndex === index}
+        >
+          {label}
+        </Segment>
+      ))}
+    </div>
+  );
+}
