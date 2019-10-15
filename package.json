@@ -1,9 +1,8 @@
 {
-  "name": "@cohubinc/cohub-ui",
-  "version": "1.0.7",
-  "description": "Sharable UI components",
+  "name": "@cohubinc/cohub-native-ui",
+  "version": "1.0.0",
+  "description": "Sharable native UI components",
   "main": "dist/index.js",
-  "reactNative": "dist/react-native/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
