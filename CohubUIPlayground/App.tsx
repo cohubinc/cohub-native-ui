@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {Buttons, Icon, Color} from '@cohubinc/cohub-native-ui';
+import {Buttons, Icon, Color, Divider} from '@cohubinc/cohub-native-ui';
 
 const App = () => {
   const usingHermes =
@@ -52,6 +52,7 @@ const App = () => {
               label="dfasdHI"
               onPress={() => console.log('hi')}
             />
+            <Divider />
             <Buttons.Outline
               style={{width: '50%', marginHorizontal: 'auto'}}
               label="dfasdHI"
