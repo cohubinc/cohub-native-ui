@@ -1,0 +1,93 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "../src/assets/fonts/.DS_Store",
+      "sha1": "1ccbe345b6fab9d6ea56292d8bf774a28bac4dda"
+    },
+    {
+      "path": "../src/assets/fonts/AkkMoE__.ttf",
+      "sha1": "8451810ec3ad1919e533df0e3a791a820538332e"
+    },
+    {
+      "path": "../src/assets/fonts/AkkMo___.ttf",
+      "sha1": "dec34732b7f0aa8d93fbfb4f4aa80742c3469f89"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-Black.otf",
+      "sha1": "ebf9b766a6c44c96e77f06705826f12ad7de80f5"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-BlackItalic.otf",
+      "sha1": "2e88cda86581043675c57721253cafe57ef993a1"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-Bold.otf",
+      "sha1": "4ed33a127896fdf15d9595021e6e9bcbc91d3d1c"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-BoldItalic.otf",
+      "sha1": "a9e3afa5755ec9e8d91c621cdc3aef02b2bc32bd"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-ExtraBold.otf",
+      "sha1": "6439f607976d80df97f5fbc6ec9f69b04fc1a95b"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-ExtraBoldItalic.otf",
+      "sha1": "d1b7d8df327adbf1241e187efe83ec28b7a81047"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-ExtraLight-BETA.otf",
+      "sha1": "5726ba1e0087cdaf7bcef56e584ab5a5fa15e844"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-ExtraLightItalic-BETA.otf",
+      "sha1": "e8b43bff58da368ded27ca6658366d73437be5c6"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-Italic.otf",
+      "sha1": "16feb1466cbe038915d62da3824c9f4cda28b0ed"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-Light-BETA.otf",
+      "sha1": "979ca2917a55b926217ce7f9a151a1f724c9385f"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-LightItalic-BETA.otf",
+      "sha1": "029ee07713689d7c598c0db994d7a6869c9871a0"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-Medium.otf",
+      "sha1": "ebaeac14e9dd5fdd030547f8fde9246e1a8793b8"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-MediumItalic.otf",
+      "sha1": "d36724a2c882ae518c18fd4a9f061e6af489a250"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-Regular.otf",
+      "sha1": "90129ec1a60e5b9385b3213789524c5d90789caf"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-SemiBold.otf",
+      "sha1": "1ff1b08f9f4b0f548cdadcfdd9668b1eeadc0aaa"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-SemiBoldItalic.otf",
+      "sha1": "3dd53398c99003bc2c9ed28bce589f3d04de4ddb"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-Thin-BETA.otf",
+      "sha1": "de92cbcbe2a98cbd6098de53006d7dcb8d69bc1b"
+    },
+    {
+      "path": "../src/assets/fonts/Inter-ThinItalic-BETA.otf",
+      "sha1": "2311b071d3e78b0f6006d76a3df588a6117e59c6"
+    },
+    {
+      "path": "../src/assets/fonts/MillerDisplay-Bold.otf",
+      "sha1": "97d026a72ffb747fc312de9141380b3fe6381f9d"
+    }
+  ]
+}

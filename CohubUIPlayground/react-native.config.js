@@ -1,10 +1,4 @@
 module.exports = {
-  // config for a library is scoped under "dependency" key
-  dependency: {
-    platforms: {
-      ios: {},
-      android: {}, // projects are grouped into "platforms"
-    },
-    assets: ['./src/assets/fonts', './src/assets/images/'],
-  },
+  project: {ios: {}, android: {}},
+  assets: ['../src/assets/fonts/'],
 };

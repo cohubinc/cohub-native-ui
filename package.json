@@ -9,6 +9,11 @@
   ],
   "author": "Cohub",
   "license": "MIT",
+  "rnpm": {
+    "assets": [
+      "./src/assets/fonts"
+    ]
+  },
   "scripts": {
     "start": "NODE_ENV=development rollup -cw",
     "build": "NODE_ENV=production rollup -c",
