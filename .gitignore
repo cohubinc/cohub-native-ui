@@ -9,8 +9,9 @@ yarn-error.log
 src/.DS_Store
 
 .storybook/stories-dist
-development-playground/node_modules
-development-playgroud/dist
-development-playgroud/.cache
-development-playgroud/DevSandbox.tsx
+CohubUIPlayground/node_modules
+CohubUIPlayground/dist
+CohubUIPlayground/.cache
+CohubUIPlayground/DevSandbox.tsx
+CohubUIPlayground/ios/*
 .vscode
