@@ -52,6 +52,11 @@ const App = () => {
               label="dfasdHI"
               onPress={() => console.log('hi')}
             />
+            <Buttons.Outline
+              style={{width: '50%', marginHorizontal: 'auto'}}
+              label="dfasdHI"
+              onPress={() => console.log('hi')}
+            />
           </View>
         </View>
       </SafeAreaView>

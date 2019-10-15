@@ -30,7 +30,7 @@ export default class Buttons extends Component<IButtonProps> {
   // static Secondary = Secondary;
   // static Info = Info;
   // static Cancel = Cancel;
-  // static Outline = OutlineButton;
+  static Outline = OutlineButton;
   // static Ghost = Ghost;
   // static PrimaryGhost = PrimaryGhostButton;
   // static CancelGhost = CancelGhostButton;
