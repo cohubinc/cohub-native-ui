@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cohubinc/cohub-native-ui": "1.0.0",
+    "@cohubinc/cohub-native-ui": "1.0.2",
     "react": "16.9.0",
     "react-native": "0.61.2",
     "react-native-svg": "^9.11.1"

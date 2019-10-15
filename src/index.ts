@@ -20,7 +20,7 @@ export * from "src/components/Buttons";
 //   IHorizontalCardProps
 // } from "src/components/Card";
 // export { default as Chip, TChipProps } from "src/components/Chip";
-// export { default as Color, ContrastColor } from "src/definitions/enums/Color";
+export { default as Color, ContrastColor } from "src/definitions/enums/Color";
 // export { default as CssFramework } from "src/components/CssFramework";
 // export { default as Divider, IDividerProps } from "src/components/Divider";
 // export { default as Expander, IExpanderProps } from "src/components/Expander";
