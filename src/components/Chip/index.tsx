@@ -4,11 +4,18 @@ import Color, { ContrastColor } from "src/definitions/enums/Color";
 import Typography from "src/components/Typography";
 import Icon, { IIconProps } from "src/components/Icon";
 import HtmlElementProps from "src/definitions/types/HtmlElementProps";
+import styled from "styled-components/native";
 
 import AddChipInput from "./AddChipInput";
 import AvatarChip from "./AvatarChip";
 
 import "./Chip.scss";
+import {
+  StyleProp,
+  ViewStyle,
+  GestureResponderEvent,
+  View
+} from "react-native";
 
 interface IChipProps {
   label?: string;
@@ -18,10 +25,11 @@ interface IChipProps {
   backgroundColor?: Color;
   size?: number;
   active?: boolean;
+  style?: StyleProp<ViewStyle>;
+  onPress?: ((event: GestureResponderEvent) => void) | undefined;
 }
 
-export type TChipProps = IChipProps &
-  Pick<HtmlElementProps, "onClick" | "className" | "style">;
+export type TChipProps = IChipProps;
 
 export default class Chip extends Component<TChipProps> {
   static Add = AddChipInput;
@@ -37,10 +45,9 @@ export default class Chip extends Component<TChipProps> {
     const {
       children,
       label,
-      onClick,
+      onPress,
       onDelete,
       checked,
-      className = "",
       backgroundColor,
       style,
       size,
@@ -48,9 +55,6 @@ export default class Chip extends Component<TChipProps> {
     } = this.props;
 
     const name = label || children;
-    const clickable = !!onClick;
-
-    const clickableClass = clickable ? "clickable" : "";
 
     let iconName: IIconProps["name"] | undefined;
     if (checked) {
@@ -69,23 +73,24 @@ export default class Chip extends Component<TChipProps> {
       }
     };
 
+    const CohubChip = styled.TouchableHighlight`
+      background-color: ${setBackgroundColor() as any};
+      border-radius: 361px;
+      padding: ${padding};
+      height: 32px;
+    `;
+
+    const CohubChipInner = styled.View`
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    `;
+
     return (
-      <div
-        className={`CohubChip ${clickableClass} ${className}`}
-        style={{
-          backgroundColor: setBackgroundColor() as any,
-          borderRadius: "361px",
-          display: "inline-block",
-          padding,
-          ...style
-        }}
-        onClick={onClick}
-        tabIndex={clickable ? 0 : undefined}
-      >
-        <div
-          className="flex justify-center items-center h-100"
-          style={{ cursor: clickable ? "pointer" : "inherit" }}
-        >
+      <CohubChip style={style} onPress={onPress}>
+        <CohubChipInner>
           <Typography.Small color={ContrastColor[setBackgroundColor()] as any}>
             {name}
           </Typography.Small>
@@ -98,8 +103,8 @@ export default class Chip extends Component<TChipProps> {
               color={ContrastColor[setBackgroundColor()] as any}
             />
           )}
-        </div>
-      </div>
+        </CohubChipInner>
+      </CohubChip>
     );
   }
 }
