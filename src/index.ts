@@ -45,7 +45,7 @@ export { iconNames } from "src/components/Icon/Icons";
 //   default as RenderBoolean,
 //   IRenderBooleanProps
 // } from "src/components/RenderBoolean";
-// export { default as Segment, ISegmentProps } from "src/components/Segment";
+export { default as Segment, ISegmentProps } from "src/components/Segment";
 // export {
 //   default as Statistic,
 //   IStatisticProps

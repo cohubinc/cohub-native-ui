@@ -1,13 +1,13 @@
-import React, { CSSProperties, PureComponent } from "react";
+import React, { PureComponent, ReactNode } from "react";
 
 import BoxShadow, { ElevationLevel } from "src/definitions/enums/BoxShadow";
-import Color from "src/definitions/enums/Color";
 
-import styles from "./Segment.module.scss";
+import { ViewStyle, StyleProp } from "react-native";
+import styled from "styled-components/native";
+import { Color } from "src";
 
 export interface ISegmentProps {
-  style?: CSSProperties;
-  className?: string;
+  style?: StyleProp<ViewStyle>;
   /**
    * If true, the Segment will get 1rem of padding on all sides
    */
@@ -19,56 +19,26 @@ export interface ISegmentProps {
   /**
    * If true, the Segment will use the contrast background and have no elevation
    */
-  contrast?: boolean;
-  /**
-   * If true, the Segment will show a border
-   */
-  bordered?: boolean;
+  children: ReactNode;
 }
 
-class Segment extends PureComponent<ISegmentProps> {
-  static defaultProps: ISegmentProps = {
-    elevation: 1,
-    padded: true,
-    className: "",
-    bordered: false
-  };
+export default function Segment(props: ISegmentProps) {
+  const { elevation = 1, padded = true, style, children, ...rest } = props;
 
-  render() {
-    const {
-      className,
-      elevation,
-      style,
-      children,
-      padded,
-      contrast,
-      bordered,
-      ...rest
-    } = this.props;
+  const dpLevel = `dp${elevation}`;
 
-    const dpLevel = contrast || bordered ? "dp0" : `dp${elevation}`;
-    const classes = `${styles.CohubSegment} ${
-      padded ? styles.padded : ""
-    } ${className}`;
+  const StyledSegment = styled.View`
+    box-shadow: ${(BoxShadow as any)[dpLevel]};
+    background-color: ${Color.trueWhite};
+    padding: ${padded ? "16px" : 0};
+    border-radius: 4;
+    margin-left: 8;
+    margin-right: 8;
+  `;
 
-    return (
-      <div
-        // apply any data attributes being passed through
-        {...rest}
-        className={classes}
-        style={{
-          boxShadow: BoxShadow[dpLevel as any],
-          border: bordered ? "1px solid var(--border)" : "",
-          backgroundColor: contrast
-            ? (Color.grey200 as any)
-            : (Color.trueWhite as any),
-          ...style
-        }}
-      >
-        {children}
-      </div>
-    );
-  }
+  return (
+    <StyledSegment style={style} {...rest}>
+      {children}
+    </StyledSegment>
+  );
 }
-
-export default Segment;
