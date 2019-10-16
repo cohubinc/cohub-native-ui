@@ -1,7 +1,7 @@
-import Colors from "../../../definitions/enums/Color";
+import Color from "../../../definitions/enums/Color";
 
 const getStyles = (
-  incomingColor?: string,
+  incomingColor?: Color,
   highContrast?: boolean,
   insetShadow?: boolean
 ) => {
@@ -10,7 +10,7 @@ const getStyles = (
   const color = incomingColor || defaultColor;
 
   const inset = insetShadow
-    ? { borderWidth: 0.5, borderColor: Colors.dividerGrey }
+    ? { borderWidth: 0.5, borderColor: Color.dividerGrey }
     : {};
 
   return {
@@ -55,7 +55,7 @@ export const generateBoxShadow = (
   if (!raised) return {};
 
   const styles = getStyles(
-    opts.matchColor ? color : undefined,
+    opts.matchColor ? (color as any) : undefined,
     opts.highContrast,
     opts.insetShadow
   );

@@ -11,6 +11,7 @@ import BasicButton from "../Base";
 import gs from "../../../definitions/constants/GlobalStyles";
 import Colors from "../../../definitions/enums/Color";
 import TButtonProps from "../../../definitions/interfaces/IButtonProps";
+import Color from "../../../definitions/enums/Color";
 
 const defaultHeight = 40;
 
@@ -18,6 +19,8 @@ export interface IProps extends TButtonProps {
   bordered?: boolean;
   dark?: boolean;
   raised?: boolean;
+  textColor?: Color;
+  outlineColor?: Color;
 }
 
 export default class Outline extends BasicButton<IProps> {
@@ -73,8 +76,7 @@ export default class Outline extends BasicButton<IProps> {
 }
 
 const makeStyles = (props: IProps) => {
-  const { bordered, dark, color } = props;
-
+  const { bordered, dark, color, outlineColor, textColor } = props;
   const backgroundColor = dark ? Colors.black : props.backgroundColor;
 
   return StyleSheet.create({
@@ -86,7 +88,7 @@ const makeStyles = (props: IProps) => {
       alignItems: "center",
       opacity: props.disabled ? 0.3 : 1.0,
       backgroundColor: backgroundColor as any,
-      borderColor: color as any,
+      borderColor: (outlineColor || color) as any,
       height: "100%"
     },
     label: {
@@ -94,7 +96,7 @@ const makeStyles = (props: IProps) => {
       // fontFamily: "Akkurat-Mono",
       lineHeight: 14,
       textAlign: "center",
-      color: color as any
+      color: (textColor || color) as any
     }
   });
 };

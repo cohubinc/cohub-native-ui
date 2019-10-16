@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, ViewStyle, StyleProp } from "react-native";
 import SegmentedControlTab from "react-native-segmented-control-tab";
-
 import gs from "../../../definitions/constants/GlobalStyles";
 import Colors from "../../../definitions/enums/Color";
 
