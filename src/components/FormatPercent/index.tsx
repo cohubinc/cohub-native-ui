@@ -28,7 +28,7 @@ export default function FormatPercent({
       thousandSeparator={true}
       decimalScale={2}
       suffix="%"
-      renderText={() => <Text>{value}</Text>}
+      renderText={value => <Text>{value}</Text>}
     />
   );
 }

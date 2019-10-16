@@ -655,10 +655,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cohubinc/cohub-native-ui@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-native-ui/-/cohub-native-ui-1.0.5.tgz#90081fd5c6c858c696006d6fdc1ab8d0b2268614"
-  integrity sha512-dKqm91N/LEMFPMIVmIseEVT6OgM2uHJS6ZHRCzBFCY+AiskDQA2/iqht5rjTTC4Q+Zxk2XmnWeVYAEWQTpmfZQ==
+"@cohubinc/cohub-native-ui@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-native-ui/-/cohub-native-ui-1.0.6.tgz#017e57599ff2a19f0215e0b18f150e8496104bc7"
+  integrity sha512-hg8xANTvWsP6kJHDMCxSpUioIU+Yx6fQ92wDvi2LpCV7zJLrGFdboM8RmAoYl5VEzxQQsg5jlFjePadP4HEyuA==
   dependencies:
     "@cohubinc/react-select" "1.0.3"
     "@sentry/browser" "5.6.1"

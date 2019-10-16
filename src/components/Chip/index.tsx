@@ -66,7 +66,7 @@ export default class Chip extends Component<TChipProps> {
       }
     };
 
-    const CohubChip = styled.TouchableHighlight`
+    const CohubChip = styled.TouchableOpacity`
       background-color: ${setBackgroundColor() as any};
       border-radius: 361px;
       padding: ${padding};

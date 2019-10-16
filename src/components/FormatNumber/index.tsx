@@ -21,7 +21,7 @@ export default function FormatNumber({
       value={value || 0}
       thousandSeparator={thousandSeparator}
       displayType={"text"}
-      renderText={() => <Text>{value}</Text>}
+      renderText={value => <Text>{value}</Text>}
       {...rest}
     />
   );

@@ -28,7 +28,7 @@ export default function FormatMoney({
           ? decimals.length
           : 2
       }
-      renderText={() => <Text>{value}</Text>}
+      renderText={value => <Text>{value}</Text>}
     />
   );
 }
