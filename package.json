@@ -23,7 +23,14 @@
     "lint-fix": "tslint --fix --project tsconfig.build.json",
     "test:coverage": "yarn test --coverage",
     "checkTypes": "yarn tsc --noEmit",
-    "release": "yarn build && yarn publish"
+    "release": "yarn build && yarn publish",
+    "test": "NODE_ENV=testing yarn checkTypes && yarn jest",
+    "test-build": "NODE_ENV=testing yarn build && yarn test",
+    "test:watch": "NODE_ENV=testing yarn test --watch ",
+    "test:coverage": "yarn test --coverage"
+  },
+  "jest": {
+    "preset": "@testing-library/react-native"
   },
   "lint-staged": {
     "./src/*.{ts,tsx}": [
@@ -43,8 +50,6 @@
     "@storybook/addon-a11y": "^5.2.1",
     "@storybook/addon-console": "^1.2.1",
     "@storybook/addon-storysource": "^5.2.1",
-    "@testing-library/react": "^9.1.4",
-    "@testing-library/user-event": "^7.0.0",
     "@tippy.js/react": "^2.2.2",
     "@types/enzyme": "^3.10.3",
     "@types/react-redux": "^7.1.1",
@@ -66,6 +71,7 @@
     "react-responsive-modal": "^4.0.1",
     "react-router-dom": "^5.0.1",
     "react-select": "^3.0.4",
+    "react-test-renderer": "^16.10.2",
     "react-transition-group": "^4.2.1",
     "styled-components": "^4.4.0"
   },
@@ -84,7 +90,7 @@
     "@storybook/addon-docs": "^5.2.1",
     "@storybook/preset-typescript": "1.1.0",
     "@storybook/react": "5.2.1",
-    "@testing-library/jest-dom": "^4.1.0",
+    "@testing-library/react-native": "^4.0.14",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.17",
     "@types/lodash": "4.14.136",
