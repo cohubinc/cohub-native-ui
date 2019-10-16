@@ -9,6 +9,7 @@ import AddChipInput from "./AddChipInput";
 import AvatarChip from "./AvatarChip";
 
 import { StyleProp, ViewStyle, GestureResponderEvent } from "react-native";
+import BoxShadow, { ElevationLevel } from "src/definitions/enums/BoxShadow";
 
 interface IChipProps {
   label?: string;
@@ -20,6 +21,7 @@ interface IChipProps {
   active?: boolean;
   style?: StyleProp<ViewStyle>;
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
+  elevation?: ElevationLevel;
 }
 
 export type TChipProps = IChipProps;
@@ -44,7 +46,8 @@ export default class Chip extends Component<TChipProps> {
       backgroundColor,
       style,
       size,
-      active
+      active,
+      elevation
     } = this.props;
 
     const name = label || children;
@@ -66,6 +69,8 @@ export default class Chip extends Component<TChipProps> {
       }
     };
 
+    const dpLevel = `dp${elevation}`;
+
     const CohubChip = styled.TouchableOpacity`
       background-color: ${setBackgroundColor() as any};
       border-radius: 361px;
@@ -85,6 +90,7 @@ export default class Chip extends Component<TChipProps> {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      box-shadow: ${(BoxShadow as any)[dpLevel]};
     `;
 
     return (
