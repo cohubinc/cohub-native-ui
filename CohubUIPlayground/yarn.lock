@@ -655,10 +655,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cohubinc/cohub-native-ui@^1.0.2":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-native-ui/-/cohub-native-ui-1.0.3.tgz#534e46a440a68b01d2e204c719a5dcf6a7d78948"
-  integrity sha512-0502lNzFq+zM35/s9NtwaunomqmhRbOf3iojNOyGZt5/oGxQfTouMzEwnbrahVvfpwUHsG9fkWJWPzr1UNCk8A==
+"@cohubinc/cohub-native-ui@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-native-ui/-/cohub-native-ui-1.0.5.tgz#90081fd5c6c858c696006d6fdc1ab8d0b2268614"
+  integrity sha512-dKqm91N/LEMFPMIVmIseEVT6OgM2uHJS6ZHRCzBFCY+AiskDQA2/iqht5rjTTC4Q+Zxk2XmnWeVYAEWQTpmfZQ==
   dependencies:
     "@cohubinc/react-select" "1.0.3"
     "@sentry/browser" "5.6.1"
@@ -679,6 +679,7 @@
     react-animate-height "^2.0.0"
     react-dom ">=16.5.1"
     react-final-form "^6.3.0"
+    react-native-segmented-control-tab "^3.4.1"
     react-native-svg "^9.11.1"
     react-native-web "^0.11.7"
     react-number-format "^4.1.1"

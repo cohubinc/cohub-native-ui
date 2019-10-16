@@ -3,19 +3,12 @@ import React, { MouseEventHandler, Component } from "react";
 import Color, { ContrastColor } from "src/definitions/enums/Color";
 import Typography from "src/components/Typography";
 import Icon, { IIconProps } from "src/components/Icon";
-import HtmlElementProps from "src/definitions/types/HtmlElementProps";
 import styled from "styled-components/native";
 
 import AddChipInput from "./AddChipInput";
 import AvatarChip from "./AvatarChip";
 
-import "./Chip.scss";
-import {
-  StyleProp,
-  ViewStyle,
-  GestureResponderEvent,
-  View
-} from "react-native";
+import { StyleProp, ViewStyle, GestureResponderEvent } from "react-native";
 
 interface IChipProps {
   label?: string;
