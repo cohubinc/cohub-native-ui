@@ -4,7 +4,12 @@ export { default as BoxShadow } from "src/definitions/enums/BoxShadow";
 export { default as Buttons } from "src/components/Buttons";
 // export { IFabRefObject } from "src/components/Buttons/FloatingActionButton";
 export * from "src/components/Buttons";
-// export { default as Chip, TChipProps } from "src/components/Chip";
+// export {
+//   default as Card,
+//   IVerticalCardProps,
+//   IHorizontalCardProps
+// } from "src/components/Card";
+export { default as Chip, TChipProps } from "src/components/Chip";
 export { default as Color, ContrastColor } from "src/definitions/enums/Color";
 export { default as Divider } from "src/components/Divider";
 export {

@@ -3,6 +3,7 @@ import Avatar from "src/components/Avatar";
 import Chip from "../";
 import Typography from "src/components/Typography";
 import { TChipProps } from "../";
+import { View } from "react-native";
 
 interface IAvatarChipProps extends TChipProps {
   name: string;
@@ -17,16 +18,16 @@ export default function AvatarChip(props: IAvatarChipProps) {
       style={{
         paddingTop: "4px",
         paddingBottom: "4px",
-        marginRight: "4px"
+        marginRight: "4px",
+        marginBottom: "1rem"
       }}
       dark
-      className="mb-1"
       {...rest}
     >
-      <div className="flex items-center">
+      <View style={{ display: "flex", alignItems: "center" }}>
         <Avatar size={20} src={avatarUrl} className="mr-05" />
         <Typography.Small>{name}</Typography.Small>
-      </div>
+      </View>
     </Chip>
   );
 }
