@@ -81,23 +81,33 @@ export default class Chip extends Component<TChipProps> {
       height: 100%;
     `;
 
-    return (
-      <CohubChip style={style} onPress={onPress}>
-        <CohubChipInner>
-          <Typography.Small color={ContrastColor[setBackgroundColor()] as any}>
-            {name}
-          </Typography.Small>
+    const Wrapper = styled.View`
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    `;
 
-          {iconName && (
-            <Icon
-              onPress={e => onDelete && onDelete(e as any)}
-              size={16}
-              name={iconName}
+    return (
+      <Wrapper>
+        <CohubChip style={style} onPress={onPress}>
+          <CohubChipInner>
+            <Typography.Small
               color={ContrastColor[setBackgroundColor()] as any}
-            />
-          )}
-        </CohubChipInner>
-      </CohubChip>
+            >
+              {name}
+            </Typography.Small>
+
+            {iconName && (
+              <Icon
+                onPress={e => onDelete && onDelete(e as any)}
+                size={16}
+                name={iconName}
+                color={ContrastColor[setBackgroundColor()] as any}
+              />
+            )}
+          </CohubChipInner>
+        </CohubChip>
+      </Wrapper>
     );
   }
 }
