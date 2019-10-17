@@ -63,14 +63,14 @@ const gs = StyleSheet.create({
     lineHeight: 16,
     textAlign: "left"
   },
-  akkuratRegularBodyText: {
-    fontFamily: Font.defaultFontFamily,
+  monoRegularBodyText: {
+    fontFamily: Font.monoFontFamily,
     fontSize: 14,
     lineHeight: 16,
     textAlign: "left"
   },
-  akkuratSmallBodyText: {
-    fontFamily: Font.defaultFontFamily,
+  monoSmallBodyText: {
+    fontFamily: Font.monoFontFamily,
     fontSize: 12,
     lineHeight: 14,
     textAlign: "left"

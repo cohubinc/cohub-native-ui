@@ -88,6 +88,46 @@
     {
       "path": "../src/assets/fonts/MillerDisplay-Bold.otf",
       "sha1": "97d026a72ffb747fc312de9141380b3fe6381f9d"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-Bold.ttf",
+      "sha1": "fe961419f07925a6157fc9336465ffc9733559f8"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-BoldItalic.ttf",
+      "sha1": "0616f8fbbcea1445bbf6d3785dc1fecc4be0f5fc"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-Italic.ttf",
+      "sha1": "b2863e22d4491bd1866a7ab4f1d6f52db07166a6"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-Light.ttf",
+      "sha1": "497e1b333f3f42db8d8c6a00c1a815f9736a91f6"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-LightItalic.ttf",
+      "sha1": "7532e32aeb53d6884145355b69da58a270a2c404"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-Medium.ttf",
+      "sha1": "62588869e64852b9d23cca301fbd5daf184b30e6"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-MediumItalic.ttf",
+      "sha1": "2f4f28ead310cb7ffd6a32bac42c5fa9b9d6b359"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-Regular.ttf",
+      "sha1": "5d9f74e520201742179c673e33e19d8633fd4b46"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-Thin.ttf",
+      "sha1": "15b8cc20c1453d864e5119c578458e5774a1d27b"
+    },
+    {
+      "path": "../src/assets/fonts/RobotoMono-ThinItalic.ttf",
+      "sha1": "8cafc2ea52afe0ae6fc62d4610a84691b71f72b3"
     }
   ]
 }

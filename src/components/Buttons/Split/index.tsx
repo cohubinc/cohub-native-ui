@@ -24,7 +24,7 @@ const SplitButton = ({
   <SegmentedControlTab
     tabsContainerStyle={style}
     tabTextStyle={[
-      gs.akkuratSmallBodyText,
+      gs.monoSmallBodyText,
       {
         color,
         borderColor: color,
