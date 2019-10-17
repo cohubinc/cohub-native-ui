@@ -10,8 +10,12 @@ import {
   GestureResponderEvent,
   TransformsStyle
 } from "react-native";
-
-export interface IIconProps {
+import { TouchableWithoutFeedbackProps } from "react-native";
+type ITouchableProps = Pick<
+  TouchableWithoutFeedbackProps,
+  "onPress" | "onLongPress" | "onPressOut"
+>;
+export interface IIconProps extends ITouchableProps {
   name: TIconName;
   size?: number;
   color?: Color;

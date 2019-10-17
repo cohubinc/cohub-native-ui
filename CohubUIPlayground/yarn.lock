@@ -655,10 +655,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cohubinc/cohub-native-ui@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-native-ui/-/cohub-native-ui-1.0.6.tgz#017e57599ff2a19f0215e0b18f150e8496104bc7"
-  integrity sha512-hg8xANTvWsP6kJHDMCxSpUioIU+Yx6fQ92wDvi2LpCV7zJLrGFdboM8RmAoYl5VEzxQQsg5jlFjePadP4HEyuA==
+"@cohubinc/cohub-native-ui@1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-native-ui/-/cohub-native-ui-1.0.10.tgz#3c89ede19d167812d6d292e733926cd56ec1ec48"
+  integrity sha512-SWgAYyh+6DZjQVuMtA6RF5A93dwkMKywkLr3zmBoEgFTs0V8s0foTWqo0h6TTaZKXceiJXOmObworLoAMLu4Nw==
   dependencies:
     "@cohubinc/react-select" "1.0.3"
     "@sentry/browser" "5.6.1"
@@ -6168,16 +6168,6 @@ react-devtools-core@^3.6.3:
     shell-quote "^1.6.1"
     ws "^3.3.1"
 
-react-dom@16.9.0:
-  version "16.9.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.9.0.tgz#5e65527a5e26f22ae3701131bcccaee9fb0d3962"
-  integrity sha512-YFT2rxO9hM70ewk9jq0y6sQk8cL02xm4+IzYBz75CQGlClQQ1Bxq0nhHF6OtSbit+AIahujJgb/CPRibFkMNJQ==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.15.0"
-
 react-dom@>=16.5.1, react-dom@^16.8.3:
   version "16.10.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.10.2.tgz#4840bce5409176bc3a1f2bd8cb10b92db452fda6"
@@ -6472,16 +6462,7 @@ react-transition-group@^4.0.0, react-transition-group@^4.2.1:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@16.9.0:
-  version "16.9.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.9.0.tgz#40ba2f9af13bc1a38d75dbf2f4359a5185c4f7aa"
-  integrity sha512-+7LQnFBwkiw+BobzOF6N//BdoNw0ouwmSJTEm9cglOOmsg/TMiFHZLe2sEoN5M7LgJTj9oHH0gxklfnQe66S1w==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-
-react@>=16.5.1, react@^16.8.3:
+react@>=16.5.1, react@>=16.9.0, react@^16.8.3:
   version "16.10.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.10.2.tgz#a5ede5cdd5c536f745173c8da47bda64797a4cf0"
   integrity sha512-MFVIq0DpIhrHFyqLU0S3+4dIcBhhOvBE8bJ/5kHPVOVaGdo0KuiQzpcjCPsf585WvhypqtrMILyoE2th6dT+Lw==

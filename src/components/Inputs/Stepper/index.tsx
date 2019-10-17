@@ -1,16 +1,11 @@
-import React from "react";
-import {
-  ViewStyle,
-  StyleProp,
-  TouchableWithoutFeedbackProps
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { ViewStyle, StyleProp } from "react-native";
 import { Color } from "src";
 import { FieldRenderProps } from "react-final-form";
+import styled from "styled-components/native";
 import { isInt } from "@cohubinc/cohub-utils";
 
-import Icon from "src/components/Icon";
-import { TIconName } from "src/components/Icon/Icons";
-import styled from "styled-components/native";
+import StepBtn from "./StepBtn";
 
 type FieldProps = FieldRenderProps<number, IFixMe>;
 type TInput = Partial<FieldProps["input"]>;
@@ -46,13 +41,17 @@ export default function Stepper({
   step = 1,
   allowNegative
 }: IStepperInputProps) {
-  const { onBlur, onFocus, onChange } = input;
-  // value might come in as an empty string
+  const { onBlur, onFocus } = input;
   const value = input.value || 0;
+  const [tmpVal, setTmpVal] = useState(value);
+
+  useEffect(() => {
+    input.onChange && input.onChange(tmpVal);
+  }, [tmpVal]);
 
   function handleChange(val: string) {
     if (val === "") {
-      onChange && onChange(0);
+      setTmpVal(0);
       return;
     }
     if (!isInt(val)) return;
@@ -61,17 +60,26 @@ export default function Stepper({
     // numVal could be NaN, if so return early
     if (!numVal && numVal !== 0) return;
 
-    onChange && onChange(numVal);
+    setTmpVal(numVal);
   }
+
+  const disabled = allowNegative ? false : value <= 0;
 
   return (
     <Container style={style}>
       <StepBtn
         borderSide="Right"
         iconName="subtract"
-        disabled={!allowNegative && value < 1}
+        disabled={disabled}
         onPress={() => {
-          onChange && onChange(value - step);
+          setTmpVal(val => {
+            let nextDecrement = val - step;
+            if (nextDecrement <= 0 && !allowNegative) {
+              nextDecrement = 0;
+            }
+
+            return nextDecrement;
+          });
         }}
       />
 
@@ -79,7 +87,8 @@ export default function Stepper({
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={handleChange}
-        value={value ? value.toString() : "0"}
+        value={tmpVal ? tmpVal.toString() : "0"}
+        selectTextOnFocus={true}
         onFocus={e => {
           onFocus && onFocus(e as IFixMe);
         }}
@@ -90,46 +99,9 @@ export default function Stepper({
         borderSide="Left"
         iconName="add"
         onPress={() => {
-          onChange && onChange(value + step);
+          setTmpVal(v => v + step);
         }}
       />
     </Container>
   );
 }
-
-interface IStepBtnProps extends Pick<TouchableWithoutFeedbackProps, "onPress"> {
-  iconName: TIconName;
-  borderSide: "Left" | "Right";
-  disabled?: boolean;
-}
-const StepBtnContainer = styled.View`
-  flex: 1;
-  border-color: ${Color.lightGrey};
-  margin: 5px 0;
-`;
-const Btn = styled.TouchableOpacity`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-const StepBtn = (props: IStepBtnProps) => {
-  const { onPress, iconName, borderSide, disabled } = props;
-  const borderStyle = { [`border${borderSide}Width`]: 1 };
-
-  return (
-    <StepBtnContainer style={borderStyle}>
-      <Btn
-        onPress={onPress}
-        style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}
-        disabled={disabled}
-      >
-        <Icon
-          name={iconName}
-          color={Color.black}
-          disabled={disabled}
-          onPress={onPress}
-        />
-      </Btn>
-    </StepBtnContainer>
-  );
-};
