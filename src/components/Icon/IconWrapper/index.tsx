@@ -23,10 +23,12 @@ class IconWrapper extends PureComponent<IWrapperProps> {
       style
     } = this.props;
 
-    const IconWrapperContainer = styled.TouchableHighlight`
+    const IconWrapperContainer = styled.TouchableOpacity`
       width: ${size};
       height: ${size};
       opacity: ${disabled ? 0.3 : 1};
+      justify-content: center;
+      align-items: center;
     `;
 
     const IconPositioner = styled.View`
@@ -38,8 +40,9 @@ class IconWrapper extends PureComponent<IWrapperProps> {
 
     return (
       <IconWrapperContainer
-        style={style}
-        onPress={disabled ? undefined : onPress}
+        style={[style]}
+        disabled={disabled}
+        onPress={onPress}
       >
         <IconPositioner>{children({ color, size })}</IconPositioner>
       </IconWrapperContainer>

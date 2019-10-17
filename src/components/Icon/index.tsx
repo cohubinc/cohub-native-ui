@@ -81,6 +81,7 @@ export default class Icon extends PureComponent<IIconProps> {
   static TripleDotsVertical = buildIcon("tripleDotsVertical");
   static UserGroup = buildIcon("userGroup");
   static User = buildIcon("user");
+  static Subtract = buildIcon("subtract");
 
   render() {
     return <DefaultIcon {...this.props} />;

@@ -26,19 +26,11 @@ export default function Basic({
     <View style={style}>
       <Typography.Small color={Color.primary}>{label}</Typography.Small>
       <TextInput
-        placeholder={placeholder}
+        {...{ onBlur, onFocus, placeholder }}
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={onChange}
         value={value ? value.toString() : undefined}
-        onBlur={(e: any) => {
-          onBlur && onBlur(e);
-          onBlur && onBlur(e);
-        }}
-        onFocus={(e: any) => {
-          onFocus && onFocus(e);
-          onFocus && onFocus(e);
-        }}
         style={{
           width: "100%",
           borderBottomWidth: 1.5,
