@@ -46,10 +46,10 @@ export { iconNames } from "src/components/Icon/Icons";
 //   IRenderBooleanProps
 // } from "src/components/RenderBoolean";
 export { default as Segment, ISegmentProps } from "src/components/Segment";
-// export {
-//   default as Statistic,
-//   IStatisticProps
-// } from "src/components/Statistic";
+export {
+  default as Statistic,
+  IStatisticProps
+} from "src/components/Statistic";
 // export { default as Tabs, ITabsProps } from "src/components/Tabs";
 export { default as Typography } from "src/components/Typography";
 export {

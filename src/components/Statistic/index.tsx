@@ -4,6 +4,7 @@ import FormatMoney from "../FormatMoney";
 import FormatNumber from "../FormatNumber";
 import FormatPercent from "../FormatPercent";
 import Color from "../../definitions/enums/Color";
+import styled from "styled-components/native";
 
 type Value = number | string | undefined | null;
 export interface IStatisticProps {
@@ -15,14 +16,23 @@ export interface IStatisticProps {
   label: string;
   value: Value;
   color?: Color;
+  parsePercentage?: boolean;
 }
+
+const Container = styled.View`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default function Statistic({
   size = "regular",
   format,
   label,
   value,
-  color = Color.black500
+  color = Color.black500,
+  parsePercentage = false
 }: IStatisticProps) {
   const formattedValue = (val: Value) => {
     switch (format) {
@@ -31,7 +41,7 @@ export default function Statistic({
       case "number":
         return <FormatNumber value={val} />;
       case "percentage":
-        return <FormatPercent value={val} />;
+        return <FormatPercent value={val} shouldParse={parsePercentage} />;
       case "text":
         return value;
       default:
@@ -42,69 +52,69 @@ export default function Statistic({
   switch (size) {
     case "small":
       return (
-        <div className="flex flex-column justify-center items-center">
+        <Container>
           <Typography.Small color={color} weight={"400"}>
             {formattedValue(value)}
           </Typography.Small>
           <Typography.Tiny uppercase muted>
             {label}
           </Typography.Tiny>
-        </div>
+        </Container>
       );
     case "regular":
       return (
-        <div className="flex flex-column justify-center items-center">
+        <Container>
           <Typography.Large color={color} weight={"500"}>
             {formattedValue(value)}
           </Typography.Large>
           <Typography.Small uppercase muted>
             {label}
           </Typography.Small>
-        </div>
+        </Container>
       );
     case "large":
       return (
-        <div className="flex flex-column justify-center items-center">
+        <Container>
           <Typography.HeadingTiny color={color} weight={"500"}>
             {formattedValue(value)}
           </Typography.HeadingTiny>
           <Typography.Small uppercase muted>
             {label}
           </Typography.Small>
-        </div>
+        </Container>
       );
     case "xlarge":
       return (
-        <div className="flex flex-column justify-center items-center">
+        <Container>
           <Typography.HeadingLarge weight={"600"} color={color}>
             {formattedValue(value)}
           </Typography.HeadingLarge>
           <Typography.Small uppercase muted>
             {label}
           </Typography.Small>
-        </div>
+        </Container>
       );
     case "huge":
       return (
-        <div className="flex flex-column justify-center items-center">
+        <Container>
           <Typography.Subtitle weight={"600"} color={color}>
             {formattedValue(value)}
           </Typography.Subtitle>
           <Typography uppercase muted>
             {label}
           </Typography>
-        </div>
+        </Container>
       );
     default:
       return (
-        <div className="flex flex-column justify-center items-center">
+        <Container>
           <Typography.Large color={color} weight={"600"}>
             {formattedValue(value)}
           </Typography.Large>
           <Typography.Small uppercase muted>
             {label}
           </Typography.Small>
-        </div>
+        </Container>
       );
   }
 }
