@@ -1,39 +1,7 @@
-import Base from "./Base";
-import Checkbox from "./Checkbox";
-import Decimal from "./Decimal";
-import Money from "./Money";
-import MultiSelect from "./MultiSelect";
-import Password from "./Password";
-import Select from "./Select";
-import Text from "./Text";
-import TextArea from "./TextArea";
-import Toggle from "./Toggle";
-import Search from "./Search";
+import Basic from "./Basic";
+import Stepper from "./Stepper";
 
-export { TBaseInputProps } from "./Base";
-export { TTextInputProps } from "./Text";
-export { TDecimalInputProps } from "./Decimal";
-export { ICheckboxProps } from "./Checkbox";
-export { IMultiSelectProps } from "./MultiSelect";
-export { ISelectProps } from "./Select";
-export { IMoneyInputProps } from "./Money";
-export { TPasswordInputProps } from "./Password";
-export { TTextAreaProps } from "./TextArea";
-export { IToggleProps } from "./Toggle";
-export { ISearchInputProps } from "./Search";
-
-const Inputs = {
-  Base,
-  Checkbox,
-  Decimal,
-  Money,
-  MultiSelect,
-  Password,
-  Select,
-  Text,
-  TextArea,
-  Toggle,
-  Search
+export default {
+  Basic,
+  Stepper
 };
-
-export default Inputs;
