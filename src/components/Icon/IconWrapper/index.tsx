@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import styled from "styled-components/native";
 
 import Color from "src/definitions/enums/Color";
@@ -12,39 +12,52 @@ interface IProps {
 
 export type IWrapperProps = IProps & IIconProps;
 
-class IconWrapper extends PureComponent<IWrapperProps> {
-  render() {
-    const {
-      children,
-      color = Color.grey500,
-      size = 24,
-      disabled,
-      onPress,
-      style
-    } = this.props;
+export default function IconWrapper(props: IWrapperProps) {
+  const {
+    children,
+    color = Color.grey500,
+    size = 24,
+    disabled,
+    style,
+    onPress,
+    onLongPress,
+    onPressOut
+  } = props;
 
-    const IconWrapperContainer = styled.TouchableHighlight`
-      width: ${size};
-      height: ${size};
-      opacity: ${disabled ? 0.3 : 1};
-    `;
+  const pressable = !!(onPress || onLongPress || onPressOut);
 
-    const IconPositioner = styled.View`
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    `;
+  const styledEl = (pressable
+    ? styled.TouchableOpacity
+    : styled.View) as typeof styled.TouchableOpacity;
 
-    return (
-      <IconWrapperContainer
-        style={style}
-        onPress={disabled ? undefined : onPress}
-      >
-        <IconPositioner>{children({ color, size })}</IconPositioner>
-      </IconWrapperContainer>
-    );
-  }
+  const IconWrapperContainer = styledEl`
+    width: ${size};
+    height: ${size};
+    opacity: ${disabled ? 0.3 : 1};
+    justify-content: center;
+    align-items: center;
+    opacity: ${disabled ? 0.3 : 1};
+  `;
+
+  const IconPositioner = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  `;
+
+  const btnProps = pressable
+    ? {
+        onPress,
+        onLongPress,
+        onPressOut,
+        disabled
+      }
+    : {};
+
+  return (
+    <IconWrapperContainer style={[style]} {...btnProps}>
+      <IconPositioner>{children({ color, size })}</IconPositioner>
+    </IconWrapperContainer>
+  );
 }
-
-export default IconWrapper;

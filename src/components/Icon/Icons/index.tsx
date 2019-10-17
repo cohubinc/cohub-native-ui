@@ -37,6 +37,7 @@ import save from "./Save";
 import scales from "./Scales";
 import search from "./Search";
 import shipping from "./Shipping";
+import subtract from "./Subtract";
 import tagDollar from "./TagDollar";
 import trash from "./Trash";
 import triangle from "./Triangle";
@@ -44,6 +45,7 @@ import tripleDotsVertical from "./TripleDotsVertical";
 import userGroup from "./UserGroup";
 import user from "./User";
 import { IIconProps } from "../index";
+
 export type TIconName =
   | "add"
   | "archive"
@@ -84,6 +86,7 @@ export type TIconName =
   | "scales"
   | "search"
   | "shipping"
+  | "subtract"
   | "tagDollar"
   | "trash"
   | "triangle"
@@ -132,6 +135,7 @@ const icons: TIconMap = {
   scales,
   search,
   shipping,
+  subtract,
   tagDollar,
   trash,
   triangle,

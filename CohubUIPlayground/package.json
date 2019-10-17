@@ -10,9 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cohubinc/cohub-native-ui": "^1.0.6",
-    "react": "16.9.0",
-    "react-final-form": "^6.3.0",
+    "@cohubinc/cohub-native-ui": "1.0.10",
+    "@cohubinc/cohub-utils": "1.0.3",
+    "final-form": "4.18.5",
+    "react": ">=16.9.0",
+    "react-final-form": "6.3.0",
     "react-native": "0.61.2",
     "react-native-svg": "^9.11.1"
   },

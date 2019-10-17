@@ -10,8 +10,12 @@ import {
   GestureResponderEvent,
   TransformsStyle
 } from "react-native";
-
-export interface IIconProps {
+import { TouchableWithoutFeedbackProps } from "react-native";
+type ITouchableProps = Pick<
+  TouchableWithoutFeedbackProps,
+  "onPress" | "onLongPress" | "onPressOut"
+>;
+export interface IIconProps extends ITouchableProps {
   name: TIconName;
   size?: number;
   color?: Color;
@@ -81,6 +85,7 @@ export default class Icon extends PureComponent<IIconProps> {
   static TripleDotsVertical = buildIcon("tripleDotsVertical");
   static UserGroup = buildIcon("userGroup");
   static User = buildIcon("user");
+  static Subtract = buildIcon("subtract");
 
   render() {
     return <DefaultIcon {...this.props} />;
