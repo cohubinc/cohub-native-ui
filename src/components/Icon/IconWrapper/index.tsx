@@ -26,8 +26,6 @@ export default function IconWrapper(props: IWrapperProps) {
 
   const pressable = !!(onPress || onLongPress || onPressOut);
 
-  console.log({ disabledIcon: disabled });
-
   const styledEl = (pressable
     ? styled.TouchableOpacity
     : styled.View) as typeof styled.TouchableOpacity;
