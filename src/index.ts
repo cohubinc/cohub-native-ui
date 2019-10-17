@@ -34,7 +34,7 @@ export {
 } from "src/components/Form/FormGroup";
 export { default as Icon, IIconProps } from "src/components/Icon";
 export { iconNames } from "src/components/Icon/Icons";
-// export { default as Inputs } from "src/components/Inputs";
+export { default as Inputs } from "src/components/Inputs";
 // export * from "src/components/Inputs";
 // export { default as Loader, ILoaderProps } from "src/components/Loader";
 // export { default as Modal, IModalProps } from "src/components/Modal";

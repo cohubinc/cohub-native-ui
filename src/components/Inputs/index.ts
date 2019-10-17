@@ -8,6 +8,7 @@ import Select from "./Select";
 import Text from "./Text";
 import TextArea from "./TextArea";
 import Toggle from "./Toggle";
+import Search from "./Search";
 
 export { TBaseInputProps } from "./Base";
 export { TTextInputProps } from "./Text";
@@ -19,6 +20,7 @@ export { IMoneyInputProps } from "./Money";
 export { TPasswordInputProps } from "./Password";
 export { TTextAreaProps } from "./TextArea";
 export { IToggleProps } from "./Toggle";
+export { ISearchInputProps } from "./Search";
 
 const Inputs = {
   Base,
@@ -30,7 +32,8 @@ const Inputs = {
   Select,
   Text,
   TextArea,
-  Toggle
+  Toggle,
+  Search
 };
 
 export default Inputs;

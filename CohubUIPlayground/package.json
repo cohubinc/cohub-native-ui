@@ -12,9 +12,9 @@
   "dependencies": {
     "@cohubinc/cohub-native-ui": "^1.0.6",
     "react": "16.9.0",
+    "react-final-form": "^6.3.0",
     "react-native": "0.61.2",
-    "react-native-svg": "^9.11.1",
-    "react-native-segmented-control-tab": "^3.4.1"
+    "react-native-svg": "^9.11.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
