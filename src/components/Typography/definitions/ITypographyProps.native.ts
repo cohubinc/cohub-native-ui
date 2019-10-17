@@ -32,6 +32,9 @@ export interface INativeTypographyProps {
   /** Text can be bold */
   bold?: boolean;
 
+  /** Text can be monospaced */
+  mono?: boolean;
+
   /** Text can be italic */
   italicize?: boolean;
 

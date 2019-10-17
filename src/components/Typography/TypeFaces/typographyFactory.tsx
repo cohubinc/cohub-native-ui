@@ -27,6 +27,7 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       weight,
       kerning,
       bold,
+      mono,
       italicize,
       "data-qa": dataQa = "text"
     } = mergedProperties;
@@ -52,6 +53,8 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
     ];
 
     styleProp.push(fontFamily ? { fontFamily } : { fontFamily: "Inter" });
+
+    styleProp.push(mono && { fontFamily: "Roboto Mono" });
 
     if (kerning) {
       styleProp.push({ letterSpacing: kerning * 16 }); // rems, yo
