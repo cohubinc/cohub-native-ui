@@ -8,10 +8,7 @@ module.exports = async ({ config }) => {
   });
 
   config.resolve = {
-    ...config.resolve,
-    alias: {
-      "react-native": "react-native-web"
-    }
+    ...config.resolve
   };
   return config;
 };

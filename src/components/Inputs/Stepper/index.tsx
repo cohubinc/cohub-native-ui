@@ -84,6 +84,7 @@ export default function Stepper({
       />
 
       <Input
+        testID="stepper-input"
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={handleChange}

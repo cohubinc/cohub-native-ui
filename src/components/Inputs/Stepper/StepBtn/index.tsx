@@ -24,13 +24,6 @@ const Btn = styled.TouchableOpacity`
 `;
 export default function StepBtn(props: IStepBtnProps) {
   const { onPress, iconName, borderSide, disabled } = props;
-  const borderStyle = { [`border${borderSide}Width`]: 1 };
-  const sharedProps = {
-    onPress,
-    disabled,
-    onLongPress: () => setPressing(true),
-    onPressOut: () => setPressing(false)
-  };
 
   const [pressing, setPressing] = useState(false);
   useEffect(() => {
@@ -43,14 +36,22 @@ export default function StepBtn(props: IStepBtnProps) {
     };
   }, [pressing]);
 
+  const borderStyle = { [`border${borderSide}Width`]: 1 };
+
   return (
     <StepBtnContainer style={borderStyle}>
       <Btn
+        {...{ onPress, disabled }}
+        testID={getTestID(borderSide)}
         style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}
-        {...sharedProps}
+        onLongPress={() => setPressing(true)}
+        onPressOut={() => setPressing(false)}
       >
         <Icon name={iconName} color={Color.black} disabled={disabled} />
       </Btn>
     </StepBtnContainer>
   );
 }
+
+const getTestID = (borderSide: IBorderSide) =>
+  `${borderSide === "Left" ? "right" : "left"}-stepper-button`;
