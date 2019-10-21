@@ -15,6 +15,7 @@ interface IStepperInputProps {
   style?: StyleProp<ViewStyle>;
   step?: number;
   allowNegative?: boolean;
+  accessibilityLabel: string;
 }
 
 const Container = styled.View`
@@ -39,7 +40,8 @@ export default function Stepper({
   meta,
   style,
   step = 1,
-  allowNegative
+  allowNegative,
+  accessibilityLabel
 }: IStepperInputProps) {
   const { onBlur, onFocus } = input;
   const value = input.value || 0;
@@ -66,10 +68,14 @@ export default function Stepper({
   const disabled = allowNegative ? false : value <= 0;
 
   return (
-    <Container style={style}>
+    <Container
+      style={style}
+      accessibilityLabel={`${accessibilityLabel} count adjuster control`}
+    >
       <StepBtn
         borderSide="Right"
         iconName="subtract"
+        accessibilityLabel={`adjust count down by ${step}`}
         disabled={disabled}
         onPress={() => {
           setTmpVal(val => {
@@ -84,7 +90,7 @@ export default function Stepper({
       />
 
       <Input
-        testID="stepper-input"
+        accessibilityLabel={`${accessibilityLabel} count`}
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={handleChange}
@@ -99,6 +105,7 @@ export default function Stepper({
       <StepBtn
         borderSide="Left"
         iconName="add"
+        accessibilityLabel={`adjust count up by ${step}`}
         onPress={() => {
           setTmpVal(v => v + step);
         }}

@@ -9,7 +9,6 @@ import {
 
 import Colors from "../../../definitions/enums/Color";
 import gs from "../../../definitions/constants/GlobalStyles";
-import { generateBoxShadow } from "../shared-styles";
 import BasicButton from "../Base";
 import IButtonProps from "../../../definitions/interfaces/IButtonProps";
 
@@ -21,13 +20,7 @@ export default class Primary extends BasicButton {
   };
 
   render() {
-    const {
-      color,
-      labelStyle,
-      label,
-      loading,
-      highShadowContrast
-    } = this.props;
+    const { labelStyle, label, loading } = this.props;
     const styles = makeStyles(this.props);
 
     const { style, ...restOfProps } = this.props;

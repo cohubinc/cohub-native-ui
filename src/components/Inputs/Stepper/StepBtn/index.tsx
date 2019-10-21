@@ -11,6 +11,7 @@ interface IStepBtnProps {
   borderSide: IBorderSide;
   disabled?: boolean;
   onPress: () => void;
+  accessibilityLabel: string;
 }
 const StepBtnContainer = styled.View`
   flex: 1;
@@ -23,7 +24,7 @@ const Btn = styled.TouchableOpacity`
   align-items: center;
 `;
 export default function StepBtn(props: IStepBtnProps) {
-  const { onPress, iconName, borderSide, disabled } = props;
+  const { onPress, iconName, borderSide, disabled, accessibilityLabel } = props;
 
   const [pressing, setPressing] = useState(false);
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function StepBtn(props: IStepBtnProps) {
   return (
     <StepBtnContainer style={borderStyle}>
       <Btn
-        {...{ onPress, disabled }}
+        {...{ onPress, disabled, accessibilityLabel }}
         testID={getTestID(borderSide)}
         style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}
         onLongPress={() => setPressing(true)}
