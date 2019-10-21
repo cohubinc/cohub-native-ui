@@ -51,6 +51,12 @@ export default function Stepper({
     input.onChange && input.onChange(tmpVal);
   }, [tmpVal]);
 
+  // Track incoming value prop and keep the
+  // tmpVal state in sync with any changes
+  useEffect(() => {
+    setTmpVal(value);
+  }, [value]);
+
   function handleChange(val: string) {
     if (val === "") {
       setTmpVal(0);

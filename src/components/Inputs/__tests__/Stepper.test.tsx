@@ -161,9 +161,7 @@ describe("Input.Stepper", () => {
   });
 
   it("When changing the value from outside the stepper button the UI stays in sync", () => {
-    const { getByLabelText, getByText } = render(
-      <ChangStepperValueExternallyDemo />
-    );
+    const { getByLabelText, getByText } = render(<StepperTestDemo />);
 
     times(5, () => fireEvent.press(getByText("increase value")));
 
@@ -171,9 +169,29 @@ describe("Input.Stepper", () => {
 
     expect(val).toEqual("5");
   });
+
+  it("When changing the value from outside the stepper button and internally the UI stays in sync", () => {
+    const { getByLabelText, getByText } = render(<StepperTestDemo />);
+
+    // Add 5 externally
+    times(5, () => fireEvent.press(getByText("increase value")));
+
+    // Remove 2 internally
+    times(2, () => fireEvent.press(getByLabelText(getStepBackLabel())));
+
+    // Add 3 externally
+    times(3, () => fireEvent.press(getByText("increase value")));
+
+    // Add 4 internally
+    times(4, () => fireEvent.press(getByLabelText(getStepForwardLabel())));
+
+    const val = getByLabelText(txtInputLabel).getProp("value");
+
+    expect(val).toEqual("10");
+  });
 });
 
-function ChangStepperValueExternallyDemo() {
+function StepperTestDemo() {
   const [value, setValue] = useState(0);
 
   return (
