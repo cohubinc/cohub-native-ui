@@ -1,7 +1,7 @@
 import React from "react";
 import { FieldRenderProps } from "react-final-form";
 import { TextInput, StyleProp, ViewStyle, View } from "react-native";
-import { Color, Typography, Icon } from "src";
+import { Color, Icon } from "src";
 
 type FieldProps = FieldRenderProps<string, any>;
 

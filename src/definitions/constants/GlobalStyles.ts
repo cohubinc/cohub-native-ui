@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import Font from "./../enums/Font";
-import Colors from "./../enums/Color";
 
 const gs = StyleSheet.create({
   titleText: {

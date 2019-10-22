@@ -1,4 +1,4 @@
-import React, { PureComponent, ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 import BoxShadow, { ElevationLevel } from "src/definitions/enums/BoxShadow";
 
