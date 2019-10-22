@@ -10,13 +10,15 @@ export interface ISearchInputProps {
   input?: Partial<FieldProps["input"]>;
   meta?: Partial<FieldProps["meta"]>;
   style?: StyleProp<ViewStyle>;
+  accessibilityLabel?: string;
 }
 
 function Search({
   input,
   meta,
   placeholder = "Search",
-  style
+  style,
+  accessibilityLabel = placeholder
 }: ISearchInputProps) {
   const { onChange, onBlur, onFocus, value } = input || ({} as any);
 
@@ -36,7 +38,7 @@ function Search({
     >
       <Icon.Search color={Color.black} size={16} style={{ marginRight: 12 }} />
       <TextInput
-        {...{ onBlur, onFocus, placeholder }}
+        {...{ onBlur, onFocus, placeholder, accessibilityLabel }}
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={onChange}

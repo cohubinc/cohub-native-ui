@@ -11,6 +11,7 @@ interface IBasicInputProps {
   input?: Partial<FieldProps["input"]>;
   meta?: Partial<FieldProps["meta"]>;
   style?: StyleProp<ViewStyle>;
+  accessibilityLabel?: string;
 }
 
 export default function Basic({
@@ -18,15 +19,25 @@ export default function Basic({
   meta,
   placeholder,
   style,
-  label
+  label,
+  accessibilityLabel
 }: IBasicInputProps) {
   const { onChange, onBlur, onFocus, value } = input || ({} as any);
+
+  const accessibilityLabelText = accessibilityLabel || label || placeholder;
+
+  if (!accessibilityLabelText) {
+    console.warn(
+      "You should be passing an accessibilityLabel prop if your not going to define label or placeholder"
+    );
+  }
 
   return (
     <View style={style}>
       <Typography.Small color={Color.primary}>{label}</Typography.Small>
       <TextInput
         {...{ onBlur, onFocus, placeholder }}
+        accessibilityLabel={accessibilityLabelText}
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={onChange}
