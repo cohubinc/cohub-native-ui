@@ -35,7 +35,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push-msg": "echo 'Building dist. You will likely need to amend your previous commit and force push the changes to dist.' && exit 0",
+      "pre-push": "yarn checkTypes && yarn test --no-watch && yarn build"
     }
   },
   "peerDependencies": {
