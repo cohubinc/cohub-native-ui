@@ -28,7 +28,7 @@ declare global {
 expect.extend({
   toHaveAStaticMethodNamed(IconCmpt, methodName) {
     const staticMethod = IconCmpt[methodName];
-    // Is received a react component?
+    // Check to see if staticMethod is a component
     if (typeof staticMethod === "function") {
       return {
         pass: true,

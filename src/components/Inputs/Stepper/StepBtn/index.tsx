@@ -43,7 +43,6 @@ export default function StepBtn(props: IStepBtnProps) {
     <StepBtnContainer style={borderStyle}>
       <Btn
         {...{ onPress, disabled, accessibilityLabel }}
-        testID={getTestID(borderSide)}
         style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}
         onLongPress={() => setPressing(true)}
         onPressOut={() => setPressing(false)}
@@ -53,6 +52,3 @@ export default function StepBtn(props: IStepBtnProps) {
     </StepBtnContainer>
   );
 }
-
-const getTestID = (borderSide: IBorderSide) =>
-  `${borderSide === "Left" ? "right" : "left"}-stepper-button`;
