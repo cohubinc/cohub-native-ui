@@ -7,10 +7,7 @@
     "^.+\\.[t|j]sx?$": "<rootDir>/testTransform.js"
   },
   "transformIgnorePatterns": ["node_modules/(?!(jest-)?react-native)"],
-  "testMatch": [
-    "<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)",
-    "<rootDir>/src/**/?(*.)(spec|test).(j|t)s?(x)"
-  ],
+  "testMatch": ["<rootDir>/**/__tests__/?(*.)(spec|test).(j|t)s?(x)"],
   "testPathIgnorePatterns": ["\\.snap$", "<rootDir>/node_modules/"],
   "cacheDirectory": ".jest/cache",
   "setupFilesAfterEnv": [

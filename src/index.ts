@@ -23,8 +23,7 @@ export {
   default as FormatWeight,
   IFormatWeightProps
 } from "src/components/FormatWeight";
-export { default as Icon, IIconProps } from "src/components/Icon";
-export { iconNames } from "src/components/Icon/Icons";
+export { default as Icon, IIconProps, iconNames } from "src/components/Icon";
 export { default as Inputs } from "src/components/Inputs";
 // export { default as Loader, ILoaderProps } from "src/components/Loader";
 // export { default as Modal, IModalProps } from "src/components/Modal";

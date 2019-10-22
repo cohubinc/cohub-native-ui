@@ -24,6 +24,8 @@ export default function IconWrapper(props: IWrapperProps) {
     onPressOut
   } = props;
 
+  let { accessibilityLabel } = props;
+
   const pressable = !!(onPress || onLongPress || onPressOut);
 
   const styledEl = (pressable
@@ -46,6 +48,10 @@ export default function IconWrapper(props: IWrapperProps) {
     align-items: center;
   `;
 
+  if (onPress || (onLongPress && !accessibilityLabel)) {
+    accessibilityLabel = `${props.name} button`;
+  }
+
   const btnProps = pressable
     ? {
         onPress,
@@ -56,7 +62,11 @@ export default function IconWrapper(props: IWrapperProps) {
     : {};
 
   return (
-    <IconWrapperContainer style={[style]} {...btnProps}>
+    <IconWrapperContainer
+      style={[style]}
+      accessibilityLabel={accessibilityLabel}
+      {...btnProps}
+    >
       <IconPositioner>{children({ color, size })}</IconPositioner>
     </IconWrapperContainer>
   );
