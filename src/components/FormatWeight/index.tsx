@@ -17,11 +17,11 @@ export default class FormatWeight extends React.Component<IFormatWeightProps> {
     return (
       <NumberFormat
         value={value}
-        displayType={"text"}
+        displayType="text"
         thousandSeparator={true}
         decimalScale={2}
-        suffix={" lbs."}
-        renderText={value => <Text>{value}</Text>}
+        suffix=" lbs."
+        renderText={val => <Text>{val}</Text>}
       />
     );
   }
