@@ -23,6 +23,7 @@ import columns from "./Columns";
 import controlPanel from "./ControlPanel";
 import dashboard from "./Dashboard";
 import edit from "./Edit";
+import ellipsis from "./Ellipsis";
 import error from "./Error";
 import eye from "./Eye";
 import filter from "./Filter";
@@ -73,8 +74,9 @@ export type TIconName =
   | "columns"
   | "controlPanel"
   | "dashboard"
-  | "error"
   | "edit"
+  | "ellipsis"
+  | "error"
   | "eye"
   | "filter"
   | "forward"
@@ -126,6 +128,7 @@ const icons: TIconMap = {
   controlPanel,
   dashboard,
   edit,
+  ellipsis,
   error,
   eye,
   filter,

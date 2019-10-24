@@ -78,6 +78,7 @@ Icon.Columns = buildIcon("columns");
 Icon.ControlPanel = buildIcon("controlPanel");
 Icon.Dashboard = buildIcon("dashboard");
 Icon.Edit = buildIcon("edit");
+Icon.Ellipsis = buildIcon("ellipsis");
 Icon.Error = buildIcon("error");
 Icon.Eye = buildIcon("eye");
 Icon.Filter = buildIcon("filter");
