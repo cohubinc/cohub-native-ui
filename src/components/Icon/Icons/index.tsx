@@ -50,6 +50,8 @@ export type TIconName =
   | "add"
   | "archive"
   | "arrowDown"
+  | "arrowLeft"
+  | "arrowRight"
   | "arrowUp"
   | "asterisk"
   | "back"
@@ -78,6 +80,7 @@ export type TIconName =
   | "forward"
   | "laptop"
   | "list"
+  | "menu"
   | "print"
   | "report"
   | "rows"
@@ -99,6 +102,8 @@ const icons: TIconMap = {
   add,
   archive,
   arrowDown,
+  arrowLeft: back,
+  arrowRight: forward,
   arrowUp,
   asterisk,
   bell,
@@ -127,6 +132,7 @@ const icons: TIconMap = {
   forward,
   laptop,
   list,
+  menu: rows,
   print,
   report,
   rows,

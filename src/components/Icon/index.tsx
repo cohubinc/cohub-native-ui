@@ -49,11 +49,13 @@ export default function Icon(props: IIconProps) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // You might think we should define the properties below programmatically.                           //
-// I agree but as far as I can tell there isn't a way to do it without losing the type information. //
+// I agree but as far as I can tell there isn't a way to do it without losing the type information.  //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 Icon.Add = buildIcon("add");
 Icon.Archive = buildIcon("archive");
 Icon.ArrowDown = buildIcon("arrowDown");
+Icon.ArrowLeft = buildIcon("arrowLeft");
+Icon.ArrowRight = buildIcon("arrowRight");
 Icon.ArrowUp = buildIcon("arrowUp");
 Icon.Asterisk = buildIcon("asterisk");
 Icon.Back = buildIcon("back");
@@ -82,6 +84,7 @@ Icon.Filter = buildIcon("filter");
 Icon.Forward = buildIcon("forward");
 Icon.Laptop = buildIcon("laptop");
 Icon.List = buildIcon("list");
+Icon.Menu = buildIcon("menu");
 Icon.Print = buildIcon("print");
 Icon.Report = buildIcon("report");
 Icon.Rows = buildIcon("rows");
