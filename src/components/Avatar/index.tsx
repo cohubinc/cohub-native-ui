@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import Icon from "../Icon";
-import styles from "./Avatar.module.scss";
 
 export interface IAvatarProps {
   src: string | null | undefined;
@@ -29,7 +28,7 @@ export default class Avatar extends PureComponent<IAvatarProps> {
     if (src) {
       return (
         <div
-          className={`${styles.Avatar} ${className}`}
+          // className={`${styles.Avatar} ${className}`}
           style={{ width: size, height: size }}
         >
           <img src={src} style={avatarStyle} />

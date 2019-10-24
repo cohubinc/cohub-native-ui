@@ -1,16 +1,18 @@
-import React, { PureComponent } from "react";
+import React from "react";
+import {
+  StyleProp,
+  ViewStyle,
+  GestureResponderEvent,
+  TransformsStyle,
+  TouchableWithoutFeedbackProps
+} from "react-native";
 
 import Color from "src/definitions/enums/Color";
 import logError from "src/helpers/logError";
 
 import icons, { TIconName } from "./Icons";
-import {
-  StyleProp,
-  ViewStyle,
-  GestureResponderEvent,
-  TransformsStyle
-} from "react-native";
-import { TouchableWithoutFeedbackProps } from "react-native";
+export { iconNames } from "./Icons";
+
 type ITouchableProps = Pick<
   TouchableWithoutFeedbackProps,
   "onPress" | "onLongPress" | "onPressOut"
@@ -23,6 +25,7 @@ export interface IIconProps extends ITouchableProps {
   style?: StyleProp<ViewStyle>;
   transform?: TransformsStyle;
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
+  accessibilityLabel?: string;
 }
 
 const DefaultIcon = (props: IIconProps) => {
@@ -40,54 +43,57 @@ const buildIcon = (name: TIconName) => (props: Omit<IIconProps, "name">) => (
   <DefaultIcon name={name} {...props} />
 );
 
-export default class Icon extends PureComponent<IIconProps> {
-  static Add = buildIcon("add");
-  static Archive = buildIcon("archive");
-  static ArrowDown = buildIcon("arrowDown");
-  static ArrowUp = buildIcon("arrowUp");
-  static Asterisk = buildIcon("asterisk");
-  static Back = buildIcon("back");
-  static Bell = buildIcon("bell");
-  static BoxAdd = buildIcon("boxAdd");
-  static Calculator = buildIcon("calculator");
-  static Calendar = buildIcon("calendar");
-  static CaretDown = buildIcon("caretDown");
-  static Checkmark = buildIcon("checkmark");
-  static ChevronDown = buildIcon("chevronDown");
-  static ChevronLeft = buildIcon("chevronLeft");
-  static ChevronRight = buildIcon("chevronRight");
-  static Circle = buildIcon("circle");
-  static CircleCheck = buildIcon("circleCheck");
-  static CirclePlus = buildIcon("circlePlus");
-  static CirclePlusInverted = buildIcon("circlePlusInverted");
-  static CircleRemove = buildIcon("circleRemove");
-  static Close = buildIcon("close");
-  static Columns = buildIcon("columns");
-  static ControlPanel = buildIcon("controlPanel");
-  static Dashboard = buildIcon("dashboard");
-  static Edit = buildIcon("edit");
-  static Error = buildIcon("error");
-  static Eye = buildIcon("eye");
-  static Filter = buildIcon("filter");
-  static Laptop = buildIcon("laptop");
-  static List = buildIcon("list");
-  static Print = buildIcon("print");
-  static Report = buildIcon("report");
-  static Rows = buildIcon("rows");
-  static Sales = buildIcon("sales");
-  static Save = buildIcon("save");
-  static Scales = buildIcon("scales");
-  static Search = buildIcon("search");
-  static Shipping = buildIcon("shipping");
-  static TagDollar = buildIcon("tagDollar");
-  static Trash = buildIcon("trash");
-  static Triangle = buildIcon("triangle");
-  static TripleDotsVertical = buildIcon("tripleDotsVertical");
-  static UserGroup = buildIcon("userGroup");
-  static User = buildIcon("user");
-  static Subtract = buildIcon("subtract");
-
-  render() {
-    return <DefaultIcon {...this.props} />;
-  }
+export default function Icon(props: IIconProps) {
+  return <DefaultIcon {...props} />;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// You might think we should define the properties below programmatically.                           //
+// I agree but as far as I can tell there isn't a way to do it without losing the type information. //
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+Icon.Add = buildIcon("add");
+Icon.Archive = buildIcon("archive");
+Icon.ArrowDown = buildIcon("arrowDown");
+Icon.ArrowUp = buildIcon("arrowUp");
+Icon.Asterisk = buildIcon("asterisk");
+Icon.Back = buildIcon("back");
+Icon.Bell = buildIcon("bell");
+Icon.BoxAdd = buildIcon("boxAdd");
+Icon.Calculator = buildIcon("calculator");
+Icon.Calendar = buildIcon("calendar");
+Icon.CaretDown = buildIcon("caretDown");
+Icon.Checkmark = buildIcon("checkmark");
+Icon.ChevronDown = buildIcon("chevronDown");
+Icon.ChevronLeft = buildIcon("chevronLeft");
+Icon.ChevronRight = buildIcon("chevronRight");
+Icon.Circle = buildIcon("circle");
+Icon.CircleCheck = buildIcon("circleCheck");
+Icon.CirclePlus = buildIcon("circlePlus");
+Icon.CirclePlusInverted = buildIcon("circlePlusInverted");
+Icon.CircleRemove = buildIcon("circleRemove");
+Icon.Close = buildIcon("close");
+Icon.Columns = buildIcon("columns");
+Icon.ControlPanel = buildIcon("controlPanel");
+Icon.Dashboard = buildIcon("dashboard");
+Icon.Edit = buildIcon("edit");
+Icon.Error = buildIcon("error");
+Icon.Eye = buildIcon("eye");
+Icon.Filter = buildIcon("filter");
+Icon.Forward = buildIcon("forward");
+Icon.Laptop = buildIcon("laptop");
+Icon.List = buildIcon("list");
+Icon.Print = buildIcon("print");
+Icon.Report = buildIcon("report");
+Icon.Rows = buildIcon("rows");
+Icon.Sales = buildIcon("sales");
+Icon.Save = buildIcon("save");
+Icon.Scales = buildIcon("scales");
+Icon.Search = buildIcon("search");
+Icon.Shipping = buildIcon("shipping");
+Icon.TagDollar = buildIcon("tagDollar");
+Icon.Trash = buildIcon("trash");
+Icon.Triangle = buildIcon("triangle");
+Icon.TripleDotsVertical = buildIcon("tripleDotsVertical");
+Icon.UserGroup = buildIcon("userGroup");
+Icon.User = buildIcon("user");
+Icon.Subtract = buildIcon("subtract");

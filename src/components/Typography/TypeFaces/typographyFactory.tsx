@@ -28,8 +28,7 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       kerning,
       bold,
       mono,
-      italicize,
-      "data-qa": dataQa = "text"
+      italicize
     } = mergedProperties;
 
     const fontWeight = bold ? "600" : weight || "400";

@@ -5,9 +5,6 @@ import Typography from "src/components/Typography";
 import Icon, { IIconProps } from "src/components/Icon";
 import styled from "styled-components/native";
 
-import AddChipInput from "./AddChipInput";
-import AvatarChip from "./AvatarChip";
-
 import { StyleProp, ViewStyle, GestureResponderEvent } from "react-native";
 import BoxShadow, { ElevationLevel } from "src/definitions/enums/BoxShadow";
 
@@ -27,9 +24,6 @@ interface IChipProps {
 export type TChipProps = IChipProps;
 
 export default class Chip extends Component<TChipProps> {
-  static Add = AddChipInput;
-  static Avatar = AvatarChip;
-
   static defaultProps: Partial<TChipProps> = {
     size: 12,
     backgroundColor: Color.grey300,

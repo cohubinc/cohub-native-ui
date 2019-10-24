@@ -15,10 +15,11 @@ interface IStepperInputProps {
   style?: StyleProp<ViewStyle>;
   step?: number;
   allowNegative?: boolean;
+  accessibilityLabel: string;
 }
 
 const Container = styled.View`
-  border-radius: 68px;
+  border-radius: 361px;
   background-color: ${Color.grey300};
   flex-direction: row;
   height: 72px;
@@ -39,7 +40,8 @@ export default function Stepper({
   meta,
   style,
   step = 1,
-  allowNegative
+  allowNegative,
+  accessibilityLabel
 }: IStepperInputProps) {
   const { onBlur, onFocus } = input;
   const value = input.value || 0;
@@ -48,6 +50,12 @@ export default function Stepper({
   useEffect(() => {
     input.onChange && input.onChange(tmpVal);
   }, [tmpVal]);
+
+  // Track incoming value prop and keep the
+  // tmpVal state in sync with any changes
+  useEffect(() => {
+    setTmpVal(value);
+  }, [value]);
 
   function handleChange(val: string) {
     if (val === "") {
@@ -66,10 +74,14 @@ export default function Stepper({
   const disabled = allowNegative ? false : value <= 0;
 
   return (
-    <Container style={style}>
+    <Container
+      style={style}
+      accessibilityLabel={`${accessibilityLabel} count adjuster control`}
+    >
       <StepBtn
         borderSide="Right"
         iconName="subtract"
+        accessibilityLabel={`adjust count down by ${step}`}
         disabled={disabled}
         onPress={() => {
           setTmpVal(val => {
@@ -84,6 +96,7 @@ export default function Stepper({
       />
 
       <Input
+        accessibilityLabel={`${accessibilityLabel} count`}
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={handleChange}
@@ -98,6 +111,7 @@ export default function Stepper({
       <StepBtn
         borderSide="Left"
         iconName="add"
+        accessibilityLabel={`adjust count up by ${step}`}
         onPress={() => {
           setTmpVal(v => v + step);
         }}

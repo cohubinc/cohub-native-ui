@@ -1,9 +1,4 @@
 import typescriptPlugin from "rollup-plugin-typescript2";
-import sass from "node-sass";
-import postcss from "rollup-plugin-postcss";
-import autoprefixer from "autoprefixer";
-import presetEnv from "postcss-preset-env";
-import flexbugFixes from "postcss-flexbugs-fixes";
 import { DEFAULT_EXTENSIONS } from "@babel/core";
 import babel from "rollup-plugin-babel";
 import replace from "rollup-plugin-replace";
@@ -50,28 +45,6 @@ export default {
       extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
       exclude: "node_modules/**",
       presets: ["@babel/preset-react"]
-    }),
-    postcss({
-      preprocessor: (content, id) => {
-        return new Promise((resolve, reject) => {
-          const result = sass.renderSync({ file: id });
-          resolve({ code: result.css.toString() });
-        });
-      },
-      plugins: [
-        autoprefixer,
-        flexbugFixes,
-        presetEnv({
-          autoprefixer: {
-            flexbox: "no-2009"
-          },
-          stage: 3
-        })
-      ],
-      sourceMap: true,
-      // Automatically inject styles into document head at runtime. (Does not output a css bundle)
-      extract: false,
-      autoModules: true
     }),
     commonjs(),
     execute("cp ./dist/index.d.ts ./dist/index.esm.d.ts"),

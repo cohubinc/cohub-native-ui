@@ -1,17 +1,12 @@
 {
-  "presets": [
-    ["@babel/preset-env", { "targets": "> 0.25%, not dead" }],
-    "@babel/preset-react",
-    "@babel/preset-typescript"
-  ],
+  "presets": ["@babel/preset-react", "@babel/preset-typescript"],
   "plugins": [
     [
       "babel-plugin-module-resolver",
       {
         "root": ["./src/", "./dist/"],
         "alias": {
-          "dist": "./dist",
-          "^react-native$": "react-native-web"
+          "dist": "./dist"
         }
       }
     ],

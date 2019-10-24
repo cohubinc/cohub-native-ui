@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 
 import Button from "./Base";
-import Blank from "./Blank";
 import OutlineButton from "./Outline";
-import { Ghost, PrimaryGhostButton, CancelGhostButton } from "./Ghost";
-import Text from "./Text";
 import IButtonProps from "../../definitions/interfaces/IButtonProps";
 
 import Primary from "./Primary";
