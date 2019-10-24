@@ -19,7 +19,7 @@ interface IStepperInputProps {
 }
 
 const Container = styled.View`
-  border-radius: 68px;
+  border-radius: 361px;
   background-color: ${Color.grey300};
   flex-direction: row;
   height: 72px;

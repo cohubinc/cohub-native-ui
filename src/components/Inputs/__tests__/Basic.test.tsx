@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { View } from "react-native";
 import { fireEvent, render } from "@testing-library/react-native";
-import times from "lodash/times";
-import random from "lodash/random";
 
 import Inputs from "../index";
 import { Buttons } from "src";
@@ -75,7 +73,7 @@ describe("Inputs.Basic component", () => {
 
   it("When changing the value from outside the component the UI stays in sync", () => {
     const { getByLabelText, getByText } = render(
-      <StepperTestDemo initialValue="Apple Bottom Jeans" />
+      <BasicTestDemo initialValue="Apple Bottom Jeans" />
     );
     const getVal = () => getByLabelText(accessibilityLabel).getProp("value");
 
@@ -87,7 +85,7 @@ describe("Inputs.Basic component", () => {
   });
 
   it("When changing the value from outside the component and internally the UI stays in sync", () => {
-    const { getByLabelText, getByText } = render(<StepperTestDemo />);
+    const { getByLabelText, getByText } = render(<BasicTestDemo />);
 
     fireEvent.changeText(
       getByLabelText(accessibilityLabel),
@@ -104,7 +102,7 @@ describe("Inputs.Basic component", () => {
   });
 });
 
-function StepperTestDemo({ initialValue = "" }: { initialValue?: string }) {
+function BasicTestDemo({ initialValue = "" }: { initialValue?: string }) {
   const [value, setValue] = useState(initialValue);
 
   return (

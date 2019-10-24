@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { View } from "react-native";
 import { fireEvent, render } from "@testing-library/react-native";
-import times from "lodash/times";
-import random from "lodash/random";
 
 import Inputs from "../index";
 import { Buttons } from "src";
 
 const accessibilityLabel = "Search Products";
 
-function BasicInput({ initVal = "" }: { initVal?: string }) {
+function SearchInput({ initVal = "" }: { initVal?: string }) {
   const [value, setValue] = useState(initVal);
   return (
     <View>
@@ -42,7 +40,7 @@ describe("Inputs.Search component", () => {
   });
 
   it("Typing into the input works", () => {
-    const { getByLabelText } = render(<BasicInput initVal="" />);
+    const { getByLabelText } = render(<SearchInput initVal="" />);
 
     fireEvent.changeText(getByLabelText(accessibilityLabel), "Skinny jeans");
 
@@ -53,7 +51,7 @@ describe("Inputs.Search component", () => {
 
   it("When changing the value from outside the component the UI stays in sync", () => {
     const { getByLabelText, getByText } = render(
-      <StepperTestDemo initialValue="Apple Bottom Jeans" />
+      <SearchTestDemo initialValue="Apple Bottom Jeans" />
     );
     const getVal = () => getByLabelText(accessibilityLabel).getProp("value");
 
@@ -65,7 +63,7 @@ describe("Inputs.Search component", () => {
   });
 
   it("When changing the value from outside the component and internally the UI stays in sync", () => {
-    const { getByLabelText, getByText } = render(<StepperTestDemo />);
+    const { getByLabelText, getByText } = render(<SearchTestDemo />);
 
     fireEvent.changeText(
       getByLabelText(accessibilityLabel),
@@ -82,7 +80,7 @@ describe("Inputs.Search component", () => {
   });
 });
 
-function StepperTestDemo({ initialValue = "" }: { initialValue?: string }) {
+function SearchTestDemo({ initialValue = "" }: { initialValue?: string }) {
   const [value, setValue] = useState(initialValue);
 
   return (

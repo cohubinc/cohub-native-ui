@@ -49,7 +49,7 @@ export default function Icon(props: IIconProps) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // You might think we should define the properties below programmatically.                           //
-// I agree but as far as I can tell there isn't a way to do it without loosing the type information. //
+// I agree but as far as I can tell there isn't a way to do it without losing the type information. //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 Icon.Add = buildIcon("add");
 Icon.Archive = buildIcon("archive");

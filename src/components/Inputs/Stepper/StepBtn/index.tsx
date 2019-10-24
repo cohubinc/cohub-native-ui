@@ -43,7 +43,6 @@ export default function StepBtn(props: IStepBtnProps) {
     <StepBtnContainer style={borderStyle}>
       <Btn
         {...{ onPress, disabled, accessibilityLabel }}
-        style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}
         onLongPress={() => setPressing(true)}
         onPressOut={() => setPressing(false)}
       >
