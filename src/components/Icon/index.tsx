@@ -4,7 +4,8 @@ import {
   ViewStyle,
   GestureResponderEvent,
   TransformsStyle,
-  TouchableWithoutFeedbackProps
+  TouchableWithoutFeedbackProps,
+  Insets
 } from "react-native";
 
 import Color from "src/definitions/enums/Color";
@@ -26,6 +27,7 @@ export interface IIconProps extends ITouchableProps {
   transform?: TransformsStyle;
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
   accessibilityLabel?: string;
+  hitSlop?: Insets | number;
 }
 
 const DefaultIcon = (props: IIconProps) => {
@@ -52,6 +54,8 @@ export default function Icon(props: IIconProps) {
 // I agree but as far as I can tell there isn't a way to do it without losing the type information.  //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 Icon.Add = buildIcon("add");
+Icon.AddUser = buildIcon("addUser");
+Icon.AddUsers = buildIcon("addUsers");
 Icon.Archive = buildIcon("archive");
 Icon.ArrowDown = buildIcon("arrowDown");
 Icon.ArrowLeft = buildIcon("arrowLeft");
