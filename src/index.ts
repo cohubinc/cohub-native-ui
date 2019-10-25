@@ -1,3 +1,5 @@
+export { default as DropdownMenu } from "src/components/DropdownMenu";
+
 // Components
 // export { default as Avatar, IAvatarProps } from "src/components/Avatar";
 export { default as BoxShadow } from "src/definitions/enums/BoxShadow";
