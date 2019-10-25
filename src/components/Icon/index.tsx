@@ -49,11 +49,13 @@ export default function Icon(props: IIconProps) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // You might think we should define the properties below programmatically.                           //
-// I agree but as far as I can tell there isn't a way to do it without losing the type information. //
+// I agree but as far as I can tell there isn't a way to do it without losing the type information.  //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 Icon.Add = buildIcon("add");
 Icon.Archive = buildIcon("archive");
 Icon.ArrowDown = buildIcon("arrowDown");
+Icon.ArrowLeft = buildIcon("arrowLeft");
+Icon.ArrowRight = buildIcon("arrowRight");
 Icon.ArrowUp = buildIcon("arrowUp");
 Icon.Asterisk = buildIcon("asterisk");
 Icon.Back = buildIcon("back");
@@ -76,12 +78,14 @@ Icon.Columns = buildIcon("columns");
 Icon.ControlPanel = buildIcon("controlPanel");
 Icon.Dashboard = buildIcon("dashboard");
 Icon.Edit = buildIcon("edit");
+Icon.Ellipsis = buildIcon("ellipsis");
 Icon.Error = buildIcon("error");
 Icon.Eye = buildIcon("eye");
 Icon.Filter = buildIcon("filter");
 Icon.Forward = buildIcon("forward");
 Icon.Laptop = buildIcon("laptop");
 Icon.List = buildIcon("list");
+Icon.Menu = buildIcon("menu");
 Icon.Print = buildIcon("print");
 Icon.Report = buildIcon("report");
 Icon.Rows = buildIcon("rows");
@@ -93,6 +97,7 @@ Icon.Shipping = buildIcon("shipping");
 Icon.TagDollar = buildIcon("tagDollar");
 Icon.Trash = buildIcon("trash");
 Icon.Triangle = buildIcon("triangle");
+Icon.TriangleDown = buildIcon("triangleDown");
 Icon.TripleDotsVertical = buildIcon("tripleDotsVertical");
 Icon.UserGroup = buildIcon("userGroup");
 Icon.User = buildIcon("user");

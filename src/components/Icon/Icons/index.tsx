@@ -23,6 +23,7 @@ import columns from "./Columns";
 import controlPanel from "./ControlPanel";
 import dashboard from "./Dashboard";
 import edit from "./Edit";
+import ellipsis from "./Ellipsis";
 import error from "./Error";
 import eye from "./Eye";
 import filter from "./Filter";
@@ -41,6 +42,7 @@ import subtract from "./Subtract";
 import tagDollar from "./TagDollar";
 import trash from "./Trash";
 import triangle from "./Triangle";
+import triangleDown from "./TriangleDown";
 import tripleDotsVertical from "./TripleDotsVertical";
 import userGroup from "./UserGroup";
 import user from "./User";
@@ -50,6 +52,8 @@ export type TIconName =
   | "add"
   | "archive"
   | "arrowDown"
+  | "arrowLeft"
+  | "arrowRight"
   | "arrowUp"
   | "asterisk"
   | "back"
@@ -71,13 +75,15 @@ export type TIconName =
   | "columns"
   | "controlPanel"
   | "dashboard"
-  | "error"
   | "edit"
+  | "ellipsis"
+  | "error"
   | "eye"
   | "filter"
   | "forward"
   | "laptop"
   | "list"
+  | "menu"
   | "print"
   | "report"
   | "rows"
@@ -90,6 +96,7 @@ export type TIconName =
   | "tagDollar"
   | "trash"
   | "triangle"
+  | "triangleDown"
   | "tripleDotsVertical"
   | "userGroup"
   | "user";
@@ -99,6 +106,8 @@ const icons: TIconMap = {
   add,
   archive,
   arrowDown,
+  arrowLeft: back,
+  arrowRight: forward,
   arrowUp,
   asterisk,
   bell,
@@ -121,12 +130,14 @@ const icons: TIconMap = {
   controlPanel,
   dashboard,
   edit,
+  ellipsis,
   error,
   eye,
   filter,
   forward,
   laptop,
   list,
+  menu: rows,
   print,
   report,
   rows,
@@ -139,6 +150,7 @@ const icons: TIconMap = {
   tagDollar,
   trash,
   triangle,
+  triangleDown,
   tripleDotsVertical,
   userGroup,
   user
