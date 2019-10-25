@@ -41,7 +41,8 @@
     }
   },
   "peerDependencies": {
-    "react": "16.9.X"
+    "react": "16.9.X",
+    "react-native-svg": "^9.13.x"
   },
   "dependencies": {
     "@cohubinc/cohub-utils": "1.0.3",
@@ -56,7 +57,6 @@
     "moment": "^2.23.0",
     "react-final-form": "^6.3.0",
     "react-native": "0.61.2",
-    "react-native-svg": "^9.11.1",
     "react-number-format": "^4.1.1",
     "react-redux": "^7.1.0",
     "react-select": "^3.0.4",
@@ -105,6 +105,7 @@
     "metro-react-native-babel-preset": "0.56.0",
     "prettier": "^1.18.2",
     "react-docgen-typescript-loader": "3.1.0",
+    "react-native-svg": "^9.13.3",
     "regenerator-runtime": "^0.13.3",
     "rollup": "1.18.0",
     "rollup-plugin-babel": "4.3.3",
