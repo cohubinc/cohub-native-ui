@@ -42,6 +42,7 @@ import subtract from "./Subtract";
 import tagDollar from "./TagDollar";
 import trash from "./Trash";
 import triangle from "./Triangle";
+import triangleDown from "./TriangleDown";
 import tripleDotsVertical from "./TripleDotsVertical";
 import userGroup from "./UserGroup";
 import user from "./User";
@@ -95,6 +96,7 @@ export type TIconName =
   | "tagDollar"
   | "trash"
   | "triangle"
+  | "triangleDown"
   | "tripleDotsVertical"
   | "userGroup"
   | "user";
@@ -148,6 +150,7 @@ const icons: TIconMap = {
   tagDollar,
   trash,
   triangle,
+  triangleDown,
   tripleDotsVertical,
   userGroup,
   user

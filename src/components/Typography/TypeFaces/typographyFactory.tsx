@@ -75,6 +75,6 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       styleProp.push({ display: "flex" });
     }
 
-    return <Text children={children} style={styleProp} />;
+    return <Text style={styleProp}>{children}</Text>;
   };
 }

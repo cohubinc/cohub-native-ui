@@ -97,6 +97,7 @@ Icon.Shipping = buildIcon("shipping");
 Icon.TagDollar = buildIcon("tagDollar");
 Icon.Trash = buildIcon("trash");
 Icon.Triangle = buildIcon("triangle");
+Icon.TriangleDown = buildIcon("triangleDown");
 Icon.TripleDotsVertical = buildIcon("tripleDotsVertical");
 Icon.UserGroup = buildIcon("userGroup");
 Icon.User = buildIcon("user");
