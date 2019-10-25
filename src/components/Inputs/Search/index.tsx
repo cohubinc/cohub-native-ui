@@ -1,11 +1,20 @@
 import React from "react";
 import { FieldRenderProps } from "react-final-form";
-import { TextInput, StyleProp, ViewStyle, View } from "react-native";
+import {
+  TextInput,
+  StyleProp,
+  ViewStyle,
+  View,
+  TextInputProps
+} from "react-native";
 import { Color, Icon } from "src";
 
 type FieldProps = FieldRenderProps<string, any>;
-
-export interface ISearchInputProps {
+type INativeProps = Omit<
+  TextInputProps,
+  "value" | "onChange" | "onBlur" | "onFocus" | "onChangeText" | "style"
+>;
+export interface ISearchInputProps extends INativeProps {
   placeholder?: string;
   input?: Partial<FieldProps["input"]>;
   meta?: Partial<FieldProps["meta"]>;
@@ -18,7 +27,8 @@ function Search({
   meta,
   placeholder = "Search",
   style,
-  accessibilityLabel = placeholder
+  accessibilityLabel = placeholder,
+  ...nativeProps
 }: ISearchInputProps) {
   const { onChange, onBlur, onFocus, value } = input || ({} as any);
 
@@ -38,7 +48,13 @@ function Search({
     >
       <Icon.Search color={Color.black} size={16} style={{ marginRight: 12 }} />
       <TextInput
-        {...{ onBlur, onFocus, placeholder, accessibilityLabel }}
+        {...{
+          onBlur,
+          onFocus,
+          placeholder,
+          accessibilityLabel,
+          ...nativeProps
+        }}
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={onChange}
@@ -46,7 +62,8 @@ function Search({
         style={{
           width: "100%",
           fontSize: 16,
-          fontFamily: "Inter"
+          fontFamily: "Inter",
+          color: Color.black as any
         }}
       />
     </View>
