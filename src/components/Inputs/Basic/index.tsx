@@ -1,17 +1,27 @@
 import React from "react";
 import { FieldRenderProps } from "react-final-form";
-import { TextInput, StyleProp, ViewStyle, View } from "react-native";
+import {
+  TextInput,
+  StyleProp,
+  ViewStyle,
+  View,
+  TextInputProps
+} from "react-native";
 import { Color, Typography } from "src";
 
-type FieldProps = FieldRenderProps<string, any>;
-
-interface IBasicInputProps {
+type INativeProps = Omit<
+  TextInputProps,
+  "value" | "onChange" | "onBlur" | "onFocus" | "onChangeText" | "style"
+>;
+type IFieldProps = FieldRenderProps<string, any>;
+interface IBasicInputProps extends INativeProps {
   placeholder?: string;
   label?: string;
-  input?: Partial<FieldProps["input"]>;
-  meta?: Partial<FieldProps["meta"]>;
+  input?: Partial<IFieldProps["input"]>;
+  meta?: Partial<IFieldProps["meta"]>;
   style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
+  textColor?: Color;
 }
 
 export default function Basic({
@@ -20,7 +30,8 @@ export default function Basic({
   placeholder,
   style,
   label,
-  accessibilityLabel
+  accessibilityLabel,
+  ...nativeProps
 }: IBasicInputProps) {
   const { onChange, onBlur, onFocus, value } = input || ({} as any);
 
@@ -36,7 +47,7 @@ export default function Basic({
     <View style={style}>
       <Typography.Small color={Color.primary}>{label}</Typography.Small>
       <TextInput
-        {...{ onBlur, onFocus, placeholder }}
+        {...{ onBlur, onFocus, placeholder, ...nativeProps }}
         accessibilityLabel={accessibilityLabelText}
         autoCapitalize="none"
         autoCorrect={false}
@@ -48,7 +59,8 @@ export default function Basic({
           borderBottomColor: Color.lightGrey as any,
           fontSize: 16,
           fontFamily: "Inter",
-          paddingVertical: 6
+          paddingVertical: 6,
+          color: Color.black as any
         }}
       />
     </View>

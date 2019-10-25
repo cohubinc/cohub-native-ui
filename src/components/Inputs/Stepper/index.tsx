@@ -97,6 +97,7 @@ export default function Stepper({
 
       <Input
         accessibilityLabel={`${accessibilityLabel} count`}
+        keyboardType="decimal-pad"
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={handleChange}
