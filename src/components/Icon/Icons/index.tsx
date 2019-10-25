@@ -1,4 +1,6 @@
 import add from "./Add";
+import addUser from "./AddUser";
+import addUsers from "./AddUsers";
 import arrowDown from "./ArrowDown";
 import archive from "./Archive";
 import arrowUp from "./ArrowUp";
@@ -50,6 +52,8 @@ import { IIconProps } from "../index";
 
 export type TIconName =
   | "add"
+  | "addUser"
+  | "addUsers"
   | "archive"
   | "arrowDown"
   | "arrowLeft"
@@ -104,6 +108,8 @@ export type TIconName =
 type TIconMap = { [key in TIconName]: (props: IIconProps) => JSX.Element };
 const icons: TIconMap = {
   add,
+  addUser,
+  addUsers,
   archive,
   arrowDown,
   arrowLeft: back,
@@ -156,5 +162,5 @@ const icons: TIconMap = {
   user
 };
 export default icons;
-// For generating examples in Docz
+// For generating tests
 export const iconNames = Object.keys(icons) as TIconName[];

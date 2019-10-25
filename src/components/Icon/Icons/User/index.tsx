@@ -10,7 +10,7 @@ const User = (props: IProps) => {
 
   return (
     <IconWrapper {...props}>
-      {({ color, size }) => (
+      {({ size }) => (
         <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
           <Mask
             id={uniqueId}
