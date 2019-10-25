@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import Color from "src/definitions/enums/Color";
 
 import { IIconProps } from "..";
+import { TouchableOpacity, View } from "react-native";
 
 interface IProps {
   children: (props: { color: Color; size: number }) => JSX.Element;
@@ -28,11 +29,9 @@ export default function IconWrapper(props: IWrapperProps) {
 
   const pressable = !!(onPress || onLongPress || onPressOut);
 
-  const styledEl = (pressable
-    ? styled.TouchableOpacity
-    : styled.View) as typeof styled.TouchableOpacity;
+  const Container = pressable ? TouchableOpacity : View;
 
-  const IconWrapperContainer = styledEl`
+  const IconWrapperContainer = styled(Container)`
     width: ${size};
     height: ${size};
     opacity: ${disabled ? 0.3 : 1};
@@ -61,11 +60,14 @@ export default function IconWrapper(props: IWrapperProps) {
       }
     : {};
 
+  let hitSlop = props.hitSlop || 20;
+  if (typeof hitSlop === "number") {
+    hitSlop = { top: hitSlop, left: hitSlop, bottom: hitSlop, right: hitSlop };
+  }
+
   return (
     <IconWrapperContainer
-      style={[style]}
-      accessibilityLabel={accessibilityLabel}
-      {...btnProps}
+      {...{ style, accessibilityLabel, hitSlop, ...btnProps }}
     >
       <IconPositioner>{children({ color, size })}</IconPositioner>
     </IconWrapperContainer>

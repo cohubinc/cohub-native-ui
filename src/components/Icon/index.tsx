@@ -4,7 +4,8 @@ import {
   ViewStyle,
   GestureResponderEvent,
   TransformsStyle,
-  TouchableWithoutFeedbackProps
+  TouchableWithoutFeedbackProps,
+  Insets
 } from "react-native";
 
 import Color from "src/definitions/enums/Color";
@@ -26,6 +27,7 @@ export interface IIconProps extends ITouchableProps {
   transform?: TransformsStyle;
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
   accessibilityLabel?: string;
+  hitSlop?: Insets | number;
 }
 
 const DefaultIcon = (props: IIconProps) => {
