@@ -8,27 +8,32 @@ interface IUseToggleAnimationOpts {
 }
 export function useToggleAnimation(
   opts: IUseToggleAnimationOpts
-): [Animated.AnimatedInterpolation, () => void] {
+): [Animated.AnimatedInterpolation, (state?: boolean) => void] {
   const { outputRange = ["0deg", "-90deg"], duration = 300, delay } = opts;
 
-  const [expanded, setExpanded] = useState(false);
-  const rotateAnimation = useRef(new Animated.Value(0)).current;
+  const [atStepTwo, setAtStepTwo] = useState(false);
+  const stepAnimation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    Animated.timing(rotateAnimation, {
-      toValue: expanded ? 1 : 0,
+    Animated.timing(stepAnimation, {
+      toValue: atStepTwo ? 1 : 0,
       useNativeDriver: true,
       duration,
       delay
     }).start();
-  }, [expanded]);
+  }, [atStepTwo]);
 
-  const animation = rotateAnimation.interpolate({
+  const animation = stepAnimation.interpolate({
     inputRange: [0, 1],
     outputRange
   });
 
-  const toggle = () => setExpanded(prev => !prev);
+  const toggleOrSet = (nextState?: boolean) => {
+    // toggle
+    if (nextState === undefined) return setAtStepTwo(lastSate => !lastSate);
 
-  return [animation, toggle];
+    setAtStepTwo(nextState);
+  };
+
+  return [animation, toggleOrSet];
 }

@@ -1,10 +1,17 @@
-import React, { ReactElement, useState, ReactNode, useEffect } from "react";
+import React, {
+  ReactElement,
+  useState,
+  ReactNode,
+  useEffect,
+  useRef
+} from "react";
 import {
   View,
   StyleProp,
   ViewStyle,
   Animated,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ScrollView
 } from "react-native";
 
 import Color from "src/definitions/enums/Color";
@@ -36,22 +43,15 @@ interface IProps<Val> {
    * @default Color.primary
    */
   backgroundColor?: Color;
-  shrink?: true;
+  shrink?: boolean;
 }
-const Container = styled.View<{ backgroundColor: Color }>`
-  padding: 0 5px;
-  background-color: ${p => p.backgroundColor};
-`;
-const LabelRow = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
 
 export default function DropdownMenu<Val>(props: IProps<Val>) {
   const {
     style,
     value,
     label,
+    options,
     color = Color.trueWhite,
     backgroundColor = Color.primary,
     shrink = false
@@ -59,37 +59,92 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
   const [localValue, setLocalValue] = useState(value);
 
   const [rotateAnimation, toggleRotateAnimation] = useToggleAnimation({
-    outputRange: ["0deg", "-90deg"]
+    outputRange: ["-90deg", "0deg"]
   });
 
-  const [textScaleAnimation, toggleTextScaleAnimation] = useToggleAnimation({
-    outputRange: [0.8, 1]
+  const [shrinkAnimation, toggleShrinkAnimation] = useToggleAnimation({
+    outputRange: [1, 0.9]
   });
+
+  const [menuHeight, setMenuHeight] = useState(0);
+  const expandedAnimation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    toggleTextScaleAnimation();
+    toggleShrinkAnimation(shrink);
   }, [shrink]);
 
-  return (
-    <Animated.View
-      backgroundColor={backgroundColor}
-      style={[{ transform: [{ scale: textScaleAnimation }] }, style]}
-    >
-      <TouchableWithoutFeedback
-        onPress={() => {
-          toggleRotateAnimation();
-        }}
-      >
-        <LabelRow>
-          <Typography.HeadingSmall color={color} style={{ marginRight: 8 }}>
-            {label}
-          </Typography.HeadingSmall>
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    console.log("use effect fire");
+    Animated.spring(expandedAnimation, {
+      toValue: open ? 0 : menuHeight
+    }).start();
+  }, [open]);
 
-          <Animated.View style={{ transform: [{ rotate: rotateAnimation }] }}>
-            <Icon.TriangleDown size={12} color={color} />
-          </Animated.View>
-        </LabelRow>
-      </TouchableWithoutFeedback>
-    </Animated.View>
+  const borderRadius = 4;
+
+  return (
+    <View style={[style]}>
+      <Animated.View
+        backgroundColor={backgroundColor}
+        style={{ transform: [{ scale: shrinkAnimation }] }}
+      >
+        <TouchableWithoutFeedback
+          onPress={() => {
+            setOpen(isOpen => !isOpen);
+            toggleRotateAnimation();
+          }}
+        >
+          <LabelRow>
+            <Typography.HeadingSmall color={color} style={{ marginRight: 8 }}>
+              {label}
+            </Typography.HeadingSmall>
+
+            <Animated.View style={{ transform: [{ rotate: rotateAnimation }] }}>
+              <Icon.TriangleDown size={8} color={color} />
+            </Animated.View>
+          </LabelRow>
+        </TouchableWithoutFeedback>
+      </Animated.View>
+      <Animated.View
+        style={[
+          { height: expandedAnimation },
+          {
+            paddingTop: 5,
+            backgroundColor,
+            borderColor: "black",
+            borderBottomLeftRadius: borderRadius,
+            borderBottomRightRadius: borderRadius
+          }
+        ]}
+      >
+        <ScrollView>
+          <View
+            onLayout={({ nativeEvent }) =>
+              setMenuHeight(nativeEvent.layout.height)
+            }
+          >
+            {options.map(opt => (
+              <ListItem key={opt.value as any}>
+                <Typography.Large color={color}>
+                  {opt.label || opt.value}
+                </Typography.Large>
+              </ListItem>
+            ))}
+          </View>
+        </ScrollView>
+      </Animated.View>
+    </View>
   );
 }
+
+const LabelRow = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding: 0 2px;
+`;
+
+const ListItem = styled.View`
+  padding: 5px 2px;
+  /* border: 1px solid blue; */
+`;
