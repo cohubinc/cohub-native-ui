@@ -144,6 +144,8 @@ export default abstract class Basic<T = {}> extends React.Component<
   };
 
   render() {
+    const { labelStyle, label } = this.props;
+
     return (
       <TouchableOpacity
         activeOpacity={0.7}
@@ -153,7 +155,7 @@ export default abstract class Basic<T = {}> extends React.Component<
         {...this.props}
       >
         <Animated.View style={[this.props.style, this._pulseStyle]}>
-          <Text style={gs.regularBodyText}>{this.props.label}</Text>
+          <Text style={[gs.regularBodyText, labelStyle]}>{label}</Text>
         </Animated.View>
       </TouchableOpacity>
     );
