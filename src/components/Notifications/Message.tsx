@@ -6,9 +6,10 @@ import {
   TouchableOpacity,
   Easing
 } from "react-native";
-import { INotification, INotificationType, removeNotification } from ".";
+import { INotification, INotificationType } from ".";
 import gs from "../../definitions/constants/GlobalStyles";
 import Color, { ContrastColor } from "../../definitions/enums/Color";
+import { guid } from "@cohubinc/cohub-utils";
 interface IProps {
   notification: INotification;
   dismiss: (notification_id: INotification["id"]) => void;
@@ -20,7 +21,7 @@ export default function Message({ notification, dismiss }: IProps) {
     render,
     position = "top",
     isActionRequired = false,
-    id,
+    id = guid(),
     title,
     message,
     duration = notification.type &&
@@ -72,8 +73,8 @@ export default function Message({ notification, dismiss }: IProps) {
     return (
       <Animated.View
         style={[
-          // gs.boxShadow,
-          // { shadowOpacity: 0.9 },
+          gs.boxShadow,
+          { shadowOpacity: 0.9 },
           styles.customContainer,
           position === "top" ? styles.top : styles.bottom,
           animated

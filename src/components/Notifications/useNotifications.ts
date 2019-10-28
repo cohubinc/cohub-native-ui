@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useRef } from "react";
+import { useReducer, useEffect } from "react";
 import {
   INotification,
   IAddNotificationPayload,
@@ -33,8 +33,6 @@ function reducer(state: INotification[], action: IAction) {
   switch (action.type) {
     case "ADD": {
       const payload: IAddNotificationPayload = action.payload;
-
-      // if (state.length > 0) return state;
 
       return [...state, payload.notification];
     }
