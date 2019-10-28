@@ -1,38 +1,51 @@
 import { Animated } from "react-native";
 import { useEffect, useRef, useState } from "react";
 
+type IPosition = number | string;
 interface IUseToggleAnimationOpts {
-  outputRange?: number[] | string[];
+  /**
+   * Position one length. (`from` and `to` must use the same length units)
+   * ex: "0deg"
+   */
+  from: IPosition;
+  /**
+   * Position two length. (`from` and `to` must use the same length units)
+   * ex: "180deg"
+   */
+  to: IPosition;
   duration?: number;
   delay?: number;
 }
 export function useToggleAnimation(
   opts: IUseToggleAnimationOpts
 ): [Animated.AnimatedInterpolation, (state?: boolean) => void] {
-  const { outputRange = ["0deg", "-90deg"], duration = 300, delay } = opts;
+  const { from, to, duration = 300, delay } = opts;
 
-  const [atStepTwo, setAtStepTwo] = useState(false);
+  const [atSecondPosition, setAtSecondPosition] = useState(false);
   const stepAnimation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.timing(stepAnimation, {
-      toValue: atStepTwo ? 1 : 0,
+      toValue: atSecondPosition ? 1 : 0,
       useNativeDriver: true,
       duration,
       delay
     }).start();
-  }, [atStepTwo]);
+  }, [atSecondPosition, from, to]);
 
   const animation = stepAnimation.interpolate({
     inputRange: [0, 1],
-    outputRange
+    // from and to need to be the same type but could be either a number or string
+    // not sure how to express that in typescript
+    outputRange: [from, to] as IInexpressible
   });
 
   const toggleOrSet = (nextState?: boolean) => {
     // toggle
-    if (nextState === undefined) return setAtStepTwo(lastSate => !lastSate);
+    if (nextState === undefined)
+      return setAtSecondPosition(lastSate => !lastSate);
 
-    setAtStepTwo(nextState);
+    setAtSecondPosition(nextState);
   };
 
   return [animation, toggleOrSet];

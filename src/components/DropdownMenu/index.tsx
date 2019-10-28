@@ -1,17 +1,10 @@
-import React, {
-  ReactElement,
-  useState,
-  ReactNode,
-  useEffect,
-  useRef
-} from "react";
+import React, { ReactElement, useState, ReactNode, useEffect } from "react";
 import {
   View,
   StyleProp,
   ViewStyle,
   Animated,
-  TouchableWithoutFeedback,
-  ScrollView
+  TouchableWithoutFeedback
 } from "react-native";
 
 import Color from "src/definitions/enums/Color";
@@ -20,6 +13,8 @@ import Typography from "src/components/Typography";
 import Icon from "src/components/Icon";
 import styled from "styled-components/native";
 import { useToggleAnimation } from "src/hooks/useToggleAnimation";
+import BoxShadow from "src/definitions/enums/BoxShadow";
+import AnimateHeight from "src/components/AnimateHeight";
 
 interface IOption<V> {
   /**
@@ -29,7 +24,7 @@ interface IOption<V> {
   value: V;
 }
 interface IProps<Val> {
-  label: ReactNode;
+  placeHolderLabel: ReactNode;
   options: Array<IOption<Val>>;
   onSelect: (val: Val) => void;
   value?: Val;
@@ -50,38 +45,40 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
   const {
     style,
     value,
-    label,
+    placeHolderLabel,
     options,
+    onSelect,
     color = Color.trueWhite,
     backgroundColor = Color.primary,
     shrink = false
   } = props;
-  const [localValue, setLocalValue] = useState(value);
 
-  const [rotateAnimation, toggleRotateAnimation] = useToggleAnimation({
-    outputRange: ["-90deg", "0deg"]
+  const [expanded, setExpanded] = useState(false);
+
+  const [rotateAnimation, setRotateAnimation] = useToggleAnimation({
+    from: "-90deg",
+    to: "0deg"
   });
 
-  const [shrinkAnimation, toggleShrinkAnimation] = useToggleAnimation({
-    outputRange: [1, 0.9]
+  const [shrinkAnimation, setShrinkAnimation] = useToggleAnimation({
+    from: 1,
+    to: 0.9
   });
-
-  const [menuHeight, setMenuHeight] = useState(0);
-  const expandedAnimation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    toggleShrinkAnimation(shrink);
+    setShrinkAnimation(shrink);
   }, [shrink]);
 
-  const [open, setOpen] = useState(false);
   useEffect(() => {
-    console.log("use effect fire");
-    Animated.spring(expandedAnimation, {
-      toValue: open ? 0 : menuHeight
-    }).start();
-  }, [open]);
+    setRotateAnimation(expanded);
+  }, [expanded]);
 
-  const borderRadius = 4;
+  const selected = options.find(opt => opt.value === value);
+
+  const label = selected ? selected.label || selected.value : placeHolderLabel;
+
+  // Remove selected item
+  const filteredOpts = options.filter(opt => opt.value !== value);
 
   return (
     <View style={[style]}>
@@ -91,11 +88,10 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
       >
         <TouchableWithoutFeedback
           onPress={() => {
-            setOpen(isOpen => !isOpen);
-            toggleRotateAnimation();
+            setExpanded(!expanded);
           }}
         >
-          <LabelRow>
+          <LabelRow backgroundColor={backgroundColor}>
             <Typography.HeadingSmall color={color} style={{ marginRight: 8 }}>
               {label}
             </Typography.HeadingSmall>
@@ -106,45 +102,40 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
           </LabelRow>
         </TouchableWithoutFeedback>
       </Animated.View>
-      <Animated.View
-        style={[
-          { height: expandedAnimation },
-          {
-            paddingTop: 5,
-            backgroundColor,
-            borderColor: "black",
-            borderBottomLeftRadius: borderRadius,
-            borderBottomRightRadius: borderRadius
-          }
-        ]}
-      >
-        <ScrollView>
-          <View
-            onLayout={({ nativeEvent }) =>
-              setMenuHeight(nativeEvent.layout.height)
-            }
-          >
-            {options.map(opt => (
-              <ListItem key={opt.value as any}>
-                <Typography.Large color={color}>
-                  {opt.label || opt.value}
-                </Typography.Large>
-              </ListItem>
-            ))}
-          </View>
-        </ScrollView>
-      </Animated.View>
+
+      <AnimateHeight expanded={expanded}>
+        <List backgroundColor={backgroundColor}>
+          {filteredOpts.map(opt => (
+            <ListItem
+              key={opt.value as any}
+              onPress={() => onSelect(opt.value)}
+            >
+              <Typography.Large color={color}>
+                {opt.label || opt.value}
+              </Typography.Large>
+            </ListItem>
+          ))}
+        </List>
+      </AnimateHeight>
     </View>
   );
 }
 
-const LabelRow = styled.View`
+const borderRadius = "4px";
+const List = styled.View<{ backgroundColor: Color }>`
+  border-bottom-left-radius: ${borderRadius};
+  border-bottom-right-radius: ${borderRadius};
+  background-color: ${p => p.backgroundColor};
+  box-shadow: ${BoxShadow.dp3};
+`;
+
+const LabelRow = styled.View<{ backgroundColor: Color }>`
   flex-direction: row;
   align-items: center;
   padding: 0 2px;
+  background-color: ${p => p.backgroundColor};
 `;
 
-const ListItem = styled.View`
+const ListItem = styled.TouchableOpacity`
   padding: 5px 2px;
-  /* border: 1px solid blue; */
 `;
