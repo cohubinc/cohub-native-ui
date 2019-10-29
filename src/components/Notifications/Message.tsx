@@ -26,8 +26,8 @@ export default function Message({ notification, dismiss }: IProps) {
     message,
     duration = notification.type &&
     notification.type !== INotificationType.success
-      ? 5_000
-      : 2_000
+      ? 5000
+      : 2000
   } = notification;
 
   const transition = useRef<Animated.Value>(new Animated.Value(0));
