@@ -21,6 +21,7 @@ import circlePlus from "./CirclePlus";
 import circlePlusInverted from "./CirclePlusInverted";
 import circleRemove from "./CircleRemove";
 import close from "./Close";
+import collectionDots from "./CollectionDots";
 import columns from "./Columns";
 import controlPanel from "./ControlPanel";
 import dashboard from "./Dashboard";
@@ -29,9 +30,11 @@ import ellipsis from "./Ellipsis";
 import error from "./Error";
 import eye from "./Eye";
 import filter from "./Filter";
+import flashlight from "./Flashlight";
 import forward from "./Forward";
 import laptop from "./Laptop";
 import list from "./List";
+import menu from "./Menu";
 import print from "./Print";
 import report from "./Report";
 import rows from "./Rows";
@@ -76,6 +79,7 @@ export type TIconName =
   | "circlePlusInverted"
   | "circleRemove"
   | "close"
+  | "collectionDots"
   | "columns"
   | "controlPanel"
   | "dashboard"
@@ -84,6 +88,7 @@ export type TIconName =
   | "error"
   | "eye"
   | "filter"
+  | "flashlight"
   | "forward"
   | "laptop"
   | "list"
@@ -132,6 +137,7 @@ const icons: TIconMap = {
   circlePlusInverted,
   circleRemove,
   close,
+  collectionDots,
   columns,
   controlPanel,
   dashboard,
@@ -140,10 +146,11 @@ const icons: TIconMap = {
   error,
   eye,
   filter,
+  flashlight,
   forward,
   laptop,
   list,
-  menu: rows,
+  menu,
   print,
   report,
   rows,

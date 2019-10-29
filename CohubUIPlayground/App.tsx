@@ -18,7 +18,6 @@ import {
   Color,
   Typography,
   Chip,
-  Notifications,
 } from '@cohubinc/cohub-native-ui';
 
 export default function App() {
@@ -26,7 +25,6 @@ export default function App() {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <Notifications />
         <View
           style={{
             display: 'flex',
