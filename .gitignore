@@ -14,3 +14,4 @@ CohubUIPlayground/dist
 CohubUIPlayground/.cache
 CohubUIPlayground/DevSandbox.tsx
 .vscode
+.jest
