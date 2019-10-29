@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
-import { ITypographyProps } from "./definitions/ITypographyProps";
+import { ITypographyProps as IProps } from "./definitions/ITypographyProps";
+
+export type ITypographyProps = IProps;
 
 import {
   SuperTitle,
