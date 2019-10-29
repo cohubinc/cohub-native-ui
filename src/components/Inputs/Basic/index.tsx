@@ -7,7 +7,8 @@ import {
   View,
   TextInputProps
 } from "react-native";
-import { Color, Typography } from "src";
+import Color from "src/definitions/enums/Color";
+import Typography from "src/components/Typography";
 
 type INativeProps = Omit<
   TextInputProps,

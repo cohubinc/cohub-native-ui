@@ -1,10 +1,9 @@
 import React, { ReactNode } from "react";
-
-import BoxShadow, { ElevationLevel } from "src/definitions/enums/BoxShadow";
-
 import { ViewStyle, StyleProp } from "react-native";
 import styled from "styled-components/native";
-import { Color } from "src";
+
+import BoxShadow, { ElevationLevel } from "src/definitions/enums/BoxShadow";
+import Color from "src/definitions/enums/Color";
 
 export interface ISegmentProps {
   style?: StyleProp<ViewStyle>;
