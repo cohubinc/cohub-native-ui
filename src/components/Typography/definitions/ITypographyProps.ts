@@ -1,7 +1,7 @@
 import Color from "../../../definitions/enums/Color";
 import { StyleProp, TextStyle } from "react-native";
 
-export interface INativeTypographyProps {
+export interface ITypographyProps {
   fontFamily?: "Roboto Mono" | "MillerDisplay" | "Inter";
   /** React Children nodes are required */
   children: React.ReactNode;

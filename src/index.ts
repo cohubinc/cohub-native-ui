@@ -25,7 +25,7 @@ export {
 } from "src/components/FormatWeight";
 export { default as Icon, IIconProps, iconNames } from "src/components/Icon";
 export { default as Inputs } from "src/components/Inputs";
-
+export { default as Link } from "src/components/Link";
 export {
   showNotification,
   showSuccessNotification,
@@ -52,5 +52,5 @@ export {
 // export { default as Tabs, ITabsProps } from "src/components/Tabs";
 export { default as Typography } from "src/components/Typography";
 export {
-  INativeTypographyProps
-} from "src/components/Typography/definitions/ITypographyProps.native";
+  ITypographyProps
+} from "src/components/Typography/definitions/ITypographyProps";

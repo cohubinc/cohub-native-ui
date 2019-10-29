@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { INativeTypographyProps } from "./definitions/ITypographyProps.native";
+import { ITypographyProps } from "./definitions/ITypographyProps";
 
 import {
   SuperTitle,
@@ -15,7 +15,7 @@ import {
   Regular
 } from "./TypeFaces";
 
-export default class Typography extends Component<INativeTypographyProps> {
+export default class Typography extends Component<ITypographyProps> {
   static SuperTitle = SuperTitle;
   static Title = Title;
   static Subtitle = Subtitle;

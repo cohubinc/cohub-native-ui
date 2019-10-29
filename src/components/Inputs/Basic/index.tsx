@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Color from "src/definitions/enums/Color";
 import Typography from "src/components/Typography";
+import Icon, { IIconProps } from "src/components/Icon";
 
 type INativeProps = Omit<
   TextInputProps,
@@ -23,6 +24,8 @@ interface IBasicInputProps extends INativeProps {
   style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
   textColor?: Color;
+  icon?: IIconProps;
+  iconPosition?: "left" | "right";
 }
 
 export default function Basic({
@@ -32,6 +35,8 @@ export default function Basic({
   style,
   label,
   accessibilityLabel,
+  icon,
+  iconPosition = "left",
   ...nativeProps
 }: IBasicInputProps) {
   const { onChange, onBlur, onFocus, value } = input || ({} as any);
@@ -47,23 +52,48 @@ export default function Basic({
   return (
     <View style={style}>
       <Typography.Small color={Color.primary}>{label}</Typography.Small>
-      <TextInput
-        {...{ onBlur, onFocus, placeholder, ...nativeProps }}
-        accessibilityLabel={accessibilityLabelText}
-        autoCapitalize="none"
-        autoCorrect={false}
-        onChangeText={onChange}
-        value={value ? value.toString() : undefined}
+      <View
         style={{
           width: "100%",
           borderBottomWidth: 1.5,
           borderBottomColor: Color.lightGrey as any,
-          fontSize: 16,
-          fontFamily: "Inter",
           paddingVertical: 6,
-          color: Color.black as any
+          flexDirection: "row"
         }}
-      />
+      >
+        {icon && iconPosition === "left" && (
+          <Icon
+            name={icon.name}
+            size={20}
+            color={icon.color}
+            onPress={icon.onPress}
+            style={{ marginRight: 13 }}
+          />
+        )}
+        <TextInput
+          {...{ onBlur, onFocus, placeholder, ...nativeProps }}
+          accessibilityLabel={accessibilityLabelText}
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={onChange}
+          value={value ? value.toString() : undefined}
+          style={{
+            flex: 1,
+            fontSize: 16,
+            fontFamily: "Inter",
+            color: Color.black as any
+          }}
+        />
+        {icon && iconPosition === "right" && (
+          <Icon
+            name={icon.name}
+            size={20}
+            color={icon.color}
+            onPress={icon.onPress}
+            style={{ marginLeft: 13 }}
+          />
+        )}
+      </View>
     </View>
   );
 }

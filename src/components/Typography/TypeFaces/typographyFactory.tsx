@@ -1,13 +1,13 @@
 import React from "react";
-import { INativeTypographyProps } from "../definitions/ITypographyProps.native";
+import { ITypographyProps } from "../definitions/ITypographyProps";
 
 import Color from "src/definitions/enums/Color";
 import { Text, StyleProp, TextStyle } from "react-native";
 
-type TFactoryArgs = Omit<INativeTypographyProps, "children">;
+type TFactoryArgs = Omit<ITypographyProps, "children">;
 // Function that takes some typography props and returns a Typography component
 export function typographyFactory(defaultProps: TFactoryArgs) {
-  return (props: INativeTypographyProps) => {
+  return (props: ITypographyProps) => {
     const { style: factoryStyle } = defaultProps;
     const { children, style } = props;
 
