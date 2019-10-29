@@ -99,7 +99,11 @@ export default function Message({ notification, dismiss }: IProps) {
         {title && (
           <Text style={[gs.smallHeadingText, styles.text]}>{title}</Text>
         )}
-        {typeof message === "string" ? <Text>{message}</Text> : message}
+        {typeof message === "string" ? (
+          <Text style={[styles.text]}>{message}</Text>
+        ) : (
+          message
+        )}
       </TouchableOpacity>
     </Animated.View>
   );
