@@ -27,7 +27,6 @@ export interface INotification {
   position?: "top" | "bottom";
   duration?: number;
   isActionRequired?: boolean;
-  modal?: boolean;
   render?: (
     notification: INotification,
     onDismiss: () => void
@@ -58,14 +57,18 @@ export function removeNotification(notification_id: INotification["id"]) {
   }
 }
 
-export function showSuccessNotification(notification: INotification) {
+export function showSuccessNotification(
+  notification: Omit<INotification, "type">
+) {
   emitter.emit("showNotification", {
     ...notification,
     type: INotificationType.success
   });
 }
 
-export function showErrorNotification(notification: INotification) {
+export function showErrorNotification(
+  notification: Omit<INotification, "type">
+) {
   emitter.emit("showNotification", {
     ...notification,
     type: INotificationType.error
@@ -73,7 +76,7 @@ export function showErrorNotification(notification: INotification) {
 }
 
 export function showCustomNotification(
-  notification: INotification,
+  notification: Omit<INotification, "type" | "render">,
   render: INotification["render"]
 ) {
   emitter.emit("showNotification", {
