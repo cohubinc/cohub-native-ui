@@ -63,7 +63,7 @@ export default function Message({ notification, dismiss }: IProps) {
       {
         translateY: transition.current.interpolate({
           inputRange: [0, 1],
-          outputRange: position === "top" ? [-180, 0] : [100, -80]
+          outputRange: position === "top" ? [-180, 0] : [40, -80]
         })
       }
     ]
@@ -100,7 +100,9 @@ export default function Message({ notification, dismiss }: IProps) {
           <Text style={[gs.smallHeadingText, styles.text]}>{title}</Text>
         )}
         {typeof message === "string" ? (
-          <Text style={[styles.text]}>{message}</Text>
+          <Text style={[styles.text]} numberOfLines={5}>
+            {message}
+          </Text>
         ) : (
           message
         )}
@@ -141,13 +143,15 @@ const makeStyles = (type: INotificationType) =>
       color:
         type === INotificationType.success
           ? ContrastColor[Color.primaryGreen]
-          : ContrastColor[Color.primaryRed]
+          : ContrastColor[Color.primaryRed],
+      maxHeight: 100
     },
     button: {
       justifyContent: "center",
       alignItems: "center",
       flex: 1,
-      paddingHorizontal: 18
+      paddingHorizontal: 18,
+      paddingVertical: 10
     },
     actionLabel: {
       paddingHorizontal: 10
