@@ -691,10 +691,10 @@
     react-transition-group "^4.2.1"
     styled-components "^4.4.0"
 
-"@cohubinc/cohub-utils@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-utils/-/cohub-utils-1.0.3.tgz#cef9641f06372680b96995037aca5302204a6ba3"
-  integrity sha512-H6dM7m4VFLfEHORHi7MR+agz7PE4AW4MUbHMlBP5gVsQr7lV02nT0OLclQwZwI1xfXJwegclqOdbS65xKrvMqQ==
+"@cohubinc/cohub-utils@1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-utils/-/cohub-utils-1.0.11.tgz#a4c1d6908dc1cd73314b1cc0addba6b25c1e45d4"
+  integrity sha512-U0+x1UzD8VpCdpZDsQvH6XpZb4Y37xffNZBzqj+YUPrxY8pqVpC4uN7nlT911Xc34SvGQy9ukNDS0yJchzTbMw==
   dependencies:
     decimal.js-light "2.5.0"
     lodash "4.17.15"
@@ -1432,6 +1432,13 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
   integrity sha512-OCutwjDZ4aFS6PB1UZ988C4YgwlBHJd6wCeQqaLdmadZ/7e+w79+hbMUFC1QXDNCmdyoRfAFdm0RypzwR+Qpag==
+
+"@types/eventemitter3@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/eventemitter3/-/eventemitter3-2.0.2.tgz#94b57c2568c4f09479d64812f625317b12a6edd0"
+  integrity sha1-lLV8JWjE8JR51kgS9iUxexKm7dA=
+  dependencies:
+    eventemitter3 "*"
 
 "@types/history@*":
   version "4.7.3"
@@ -3157,6 +3164,11 @@ event-target-shim@^5.0.0, event-target-shim@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
+
+eventemitter3@*, eventemitter3@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.0.tgz#d65176163887ee59f386d64c82610b696a4a74eb"
+  integrity sha512-qerSRB0p+UDEssxTtm6EDKcE7W4OaoisfIMl4CngyEhjpYglocpNg6UEqCvemdGhosAsg4sO2dXJOdyBifPGCg==
 
 eventemitter3@^3.0.0:
   version "3.1.2"

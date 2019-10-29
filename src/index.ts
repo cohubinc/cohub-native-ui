@@ -25,6 +25,16 @@ export {
 } from "src/components/FormatWeight";
 export { default as Icon, IIconProps, iconNames } from "src/components/Icon";
 export { default as Inputs } from "src/components/Inputs";
+
+export {
+  showNotification,
+  showSuccessNotification,
+  showErrorNotification,
+  showCustomNotification,
+  INotification,
+  Notifications
+} from "src/components/Notifications";
+
 // export { default as Loader, ILoaderProps } from "src/components/Loader";
 // export { default as Modal, IModalProps } from "src/components/Modal";
 
