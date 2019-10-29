@@ -7,7 +7,8 @@ import {
   View,
   TextInputProps
 } from "react-native";
-import { Color, Icon } from "src";
+import { Color } from "@cohubinc/cohub-utils";
+import Icon from "src/components/Icon";
 
 type FieldProps = FieldRenderProps<string, any>;
 type INativeProps = Omit<
