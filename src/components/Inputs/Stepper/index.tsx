@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ViewStyle, StyleProp } from "react-native";
-import { Color } from "src";
 import { FieldRenderProps } from "react-final-form";
 import styled from "styled-components/native";
 import { isInt } from "@cohubinc/cohub-utils";
 
+import Color from "src/definitions/enums/Color";
 import StepBtn from "./StepBtn";
 
 type FieldProps = FieldRenderProps<number, IFixMe>;

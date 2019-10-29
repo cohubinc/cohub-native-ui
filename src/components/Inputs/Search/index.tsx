@@ -1,5 +1,4 @@
 import React from "react";
-import { FieldRenderProps } from "react-final-form";
 import {
   TextInput,
   StyleProp,
@@ -7,7 +6,10 @@ import {
   View,
   TextInputProps
 } from "react-native";
-import { Color, Icon } from "src";
+import { FieldRenderProps } from "react-final-form";
+
+import Icon from "src/components/Icon";
+import Color from "src/definitions/enums/Color";
 
 type FieldProps = FieldRenderProps<string, any>;
 type INativeProps = Omit<

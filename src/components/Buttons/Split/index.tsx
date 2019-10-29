@@ -1,7 +1,7 @@
 import React from "react";
 import { ViewStyle, StyleProp, TextStyle } from "react-native";
 import styled from "styled-components/native";
-import { Color } from "src";
+import Color from "src/definitions/enums/Color";
 
 export type Value = string;
 
