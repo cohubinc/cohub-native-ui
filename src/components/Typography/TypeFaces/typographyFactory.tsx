@@ -28,7 +28,8 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       kerning,
       bold,
       mono,
-      italicize
+      italicize,
+      ...nativeProps
     } = mergedProperties;
 
     const fontWeight = bold ? "600" : weight || "400";
@@ -75,6 +76,10 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       styleProp.push({ display: "flex" });
     }
 
-    return <Text style={styleProp}>{children}</Text>;
+    return (
+      <Text {...nativeProps} style={styleProp}>
+        {children}
+      </Text>
+    );
   };
 }
