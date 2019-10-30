@@ -8,9 +8,10 @@ import {
   TextInputProps,
   TextStyle
 } from "react-native";
-import Color from "src/definitions/enums/Color";
+import Color, { ContrastColor } from "src/definitions/enums/Color";
 import Typography, { ITypographyProps } from "src/components/Typography";
 import Icon, { IIconProps } from "src/components/Icon";
+import Divider from "src/components/Divider";
 
 type INativeProps = Omit<
   TextInputProps,
@@ -34,9 +35,9 @@ interface IBasicInputProps extends INativeProps {
    */
   size?: ISize;
   /**
-   * @default Color.black
+   * Is this input being used over a colored or black background?
    */
-  color?: Color;
+  inverted?: boolean;
   fontFamily?: ITypographyProps["fontFamily"];
   inputStyle?: StyleProp<TextStyle>;
   /**
@@ -56,7 +57,7 @@ export default function Basic(props: IBasicInputProps) {
     icon,
     iconPosition = "left",
     size = 1,
-    color,
+    inverted,
     fontFamily = "Inter",
     inputStyle,
     textAlign = "left",
@@ -86,8 +87,10 @@ export default function Basic(props: IBasicInputProps) {
         }}
       >
         <Typography
-          color={color || Color.primary}
-          style={{ fontSize: size ? fontSize - 4 : 12 }}
+          color={inverted ? Color.trueWhite : Color.primary}
+          style={{
+            fontSize: size ? fontSize - 4 : 12
+          }}
           fontFamily={fontFamily}
         >
           {label}
@@ -96,8 +99,6 @@ export default function Basic(props: IBasicInputProps) {
       <View
         style={{
           width: "100%",
-          borderBottomWidth: 1.5,
-          borderBottomColor: Color.lightGrey as any,
           paddingVertical: 6,
           flexDirection: iconRight ? "row-reverse" : "row"
         }}
@@ -106,13 +107,13 @@ export default function Basic(props: IBasicInputProps) {
           <Icon
             name={icon.name}
             size={iconSize}
-            color={icon.color}
+            color={icon.color || inverted ? Color.trueWhite : undefined}
             onPress={icon.onPress}
-            style={
+            style={[
               iconRight
                 ? { marginLeft: iconMargin }
                 : { marginRight: iconMargin }
-            }
+            ]}
           />
         )}
         <TextInput
@@ -126,14 +127,23 @@ export default function Basic(props: IBasicInputProps) {
             {
               flex: 1,
               fontSize,
+              textAlign,
               fontFamily,
-              color: (color || Color.black) as any,
-              textAlign
+              color: inverted ? Color.trueWhite : Color.black,
+              opacity: inverted ? 0.8 : 1
             },
             inputStyle
           ]}
         />
       </View>
+      <Divider
+        style={{
+          marginVertical: 0,
+          marginTop: dividerMarginTopMap[size],
+          borderColor: inverted ? Color.trueWhite : Color.lightGrey,
+          opacity: inverted ? 0.4 : 1
+        }}
+      />
     </View>
   );
 }
@@ -149,4 +159,10 @@ const iconSizeMap: ISizeMap = {
   "1": 20,
   "2": 28,
   "3": 36
+};
+
+const dividerMarginTopMap: ISizeMap = {
+  "1": 2,
+  "2": 3,
+  "3": 5
 };

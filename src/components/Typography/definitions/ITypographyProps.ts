@@ -1,5 +1,5 @@
-import Color from "../../../definitions/enums/Color";
 import { TextProps } from "react-native";
+import { IColor } from "@cohubinc/cohub-utils";
 
 export interface ITypographyProps extends TextProps {
   fontFamily?: "Roboto Mono" | "MillerDisplay" | "Inter";
@@ -44,7 +44,7 @@ export interface ITypographyProps extends TextProps {
   /** Text color for dark backgrounds */
   inverted?: boolean;
 
-  color?: Color;
+  color?: IColor;
 
   uppercase?: boolean;
 
