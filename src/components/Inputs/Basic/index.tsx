@@ -18,7 +18,7 @@ type INativeProps = Omit<
   "value" | "onChange" | "onBlur" | "onFocus" | "onChangeText" | "style"
 >;
 type IFieldProps = FieldRenderProps<string, any>;
-type ISize = 1 | 2 | 3;
+type ISize = "small" | "medium" | "large";
 interface IBasicInputProps extends INativeProps {
   placeholder?: string;
   label?: string;
@@ -56,7 +56,7 @@ export default function Basic(props: IBasicInputProps) {
     accessibilityLabel,
     icon,
     iconPosition = "left",
-    size = 1,
+    size = "small",
     inverted,
     fontFamily = "Inter",
     inputStyle,
@@ -150,19 +150,19 @@ export default function Basic(props: IBasicInputProps) {
 
 type ISizeMap = { [key in ISize]: number };
 const typeSizeMap: ISizeMap = {
-  "1": 16,
-  "2": 24,
-  "3": 32
+  small: 16,
+  medium: 24,
+  large: 32
 };
 
 const iconSizeMap: ISizeMap = {
-  "1": 20,
-  "2": 28,
-  "3": 36
+  small: 20,
+  medium: 28,
+  large: 36
 };
 
 const dividerMarginTopMap: ISizeMap = {
-  "1": 2,
-  "2": 3,
-  "3": 5
+  small: 2,
+  medium: 3,
+  large: 5
 };
