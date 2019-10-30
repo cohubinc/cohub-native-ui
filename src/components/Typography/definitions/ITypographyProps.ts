@@ -1,12 +1,10 @@
-import Color from "../../../definitions/enums/Color";
-import { StyleProp, TextStyle } from "react-native";
+import { TextProps } from "react-native";
+import { IColor } from "@cohubinc/cohub-utils";
 
-export interface ITypographyProps {
+export interface ITypographyProps extends TextProps {
   fontFamily?: "Roboto Mono" | "MillerDisplay" | "Inter";
   /** React Children nodes are required */
   children: React.ReactNode;
-  /** Optionally pass style object */
-  style?: StyleProp<TextStyle> | Array<StyleProp<TextStyle>>;
   /** Text can be the muted color */
   muted?: boolean;
 
@@ -46,7 +44,7 @@ export interface ITypographyProps {
   /** Text color for dark backgrounds */
   inverted?: boolean;
 
-  color?: Color;
+  color?: IColor;
 
   uppercase?: boolean;
 

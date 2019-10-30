@@ -5,17 +5,20 @@ import {
   StyleProp,
   ViewStyle,
   View,
-  TextInputProps
+  TextInputProps,
+  TextStyle
 } from "react-native";
-import Color from "src/definitions/enums/Color";
-import Typography from "src/components/Typography";
+import Color, { ContrastColor } from "src/definitions/enums/Color";
+import Typography, { ITypographyProps } from "src/components/Typography";
 import Icon, { IIconProps } from "src/components/Icon";
+import Divider from "src/components/Divider";
 
 type INativeProps = Omit<
   TextInputProps,
   "value" | "onChange" | "onBlur" | "onFocus" | "onChangeText" | "style"
 >;
 type IFieldProps = FieldRenderProps<string, any>;
+type ISize = "small" | "medium" | "large";
 interface IBasicInputProps extends INativeProps {
   placeholder?: string;
   label?: string;
@@ -23,22 +26,44 @@ interface IBasicInputProps extends INativeProps {
   meta?: Partial<IFieldProps["meta"]>;
   style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
-  textColor?: Color;
-  icon?: IIconProps;
+  icon?: Omit<IIconProps, "size">;
   iconPosition?: "left" | "right";
+  /**
+   * Size of the input.
+   * label, text, placeholder, and icon are all effected by this property
+   * @default 1
+   */
+  size?: ISize;
+  /**
+   * Is this input being used over a colored or black background?
+   */
+  inverted?: boolean;
+  fontFamily?: ITypographyProps["fontFamily"];
+  inputStyle?: StyleProp<TextStyle>;
+  /**
+   * @default "left"
+   */
+  textAlign?: "center" | "left" | "right";
 }
 
-export default function Basic({
-  input,
-  meta,
-  placeholder,
-  style,
-  label,
-  accessibilityLabel,
-  icon,
-  iconPosition = "left",
-  ...nativeProps
-}: IBasicInputProps) {
+export default function Basic(props: IBasicInputProps) {
+  const {
+    input,
+    meta,
+    placeholder,
+    style,
+    label,
+    accessibilityLabel,
+    icon,
+    iconPosition = "left",
+    size = "small",
+    inverted,
+    fontFamily = "Inter",
+    inputStyle,
+    textAlign = "left",
+    ...nativeProps
+  } = props;
+
   const { onChange, onBlur, onFocus, value } = input || ({} as any);
 
   const accessibilityLabelText = accessibilityLabel || label || placeholder;
@@ -49,25 +74,46 @@ export default function Basic({
     );
   }
 
+  const fontSize = typeSizeMap[size];
+  const iconSize = iconSizeMap[size];
+  const iconRight = iconPosition === "right";
+  const iconMargin = 13;
+
   return (
     <View style={style}>
-      <Typography.Small color={Color.primary}>{label}</Typography.Small>
+      <View
+        style={{
+          alignItems: textAlign === "right" ? "flex-end" : "flex-start"
+        }}
+      >
+        <Typography
+          color={inverted ? Color.trueWhite : Color.primary}
+          style={{
+            fontSize: size ? fontSize - 4 : 12
+          }}
+          fontFamily={fontFamily}
+        >
+          {label}
+        </Typography>
+      </View>
       <View
         style={{
           width: "100%",
-          borderBottomWidth: 1.5,
-          borderBottomColor: Color.lightGrey as any,
           paddingVertical: 6,
-          flexDirection: "row"
+          flexDirection: iconRight ? "row-reverse" : "row"
         }}
       >
-        {icon && iconPosition === "left" && (
+        {icon && (
           <Icon
             name={icon.name}
-            size={20}
-            color={icon.color}
+            size={iconSize}
+            color={icon.color || inverted ? Color.trueWhite : undefined}
             onPress={icon.onPress}
-            style={{ marginRight: 13 }}
+            style={[
+              iconRight
+                ? { marginLeft: iconMargin }
+                : { marginRight: iconMargin }
+            ]}
           />
         )}
         <TextInput
@@ -77,23 +123,46 @@ export default function Basic({
           autoCorrect={false}
           onChangeText={onChange}
           value={value ? value.toString() : undefined}
-          style={{
-            flex: 1,
-            fontSize: 16,
-            fontFamily: "Inter",
-            color: Color.black as any
-          }}
+          style={[
+            {
+              flex: 1,
+              fontSize,
+              textAlign,
+              fontFamily,
+              color: inverted ? Color.trueWhite : Color.black,
+              opacity: inverted ? 0.8 : 1
+            },
+            inputStyle
+          ]}
         />
-        {icon && iconPosition === "right" && (
-          <Icon
-            name={icon.name}
-            size={20}
-            color={icon.color}
-            onPress={icon.onPress}
-            style={{ marginLeft: 13 }}
-          />
-        )}
       </View>
+      <Divider
+        style={{
+          marginVertical: 0,
+          marginTop: dividerMarginTopMap[size],
+          borderColor: inverted ? Color.trueWhite : Color.lightGrey,
+          opacity: inverted ? 0.4 : 1
+        }}
+      />
     </View>
   );
 }
+
+type ISizeMap = { [key in ISize]: number };
+const typeSizeMap: ISizeMap = {
+  small: 16,
+  medium: 24,
+  large: 32
+};
+
+const iconSizeMap: ISizeMap = {
+  small: 20,
+  medium: 28,
+  large: 36
+};
+
+const dividerMarginTopMap: ISizeMap = {
+  small: 2,
+  medium: 3,
+  large: 5
+};

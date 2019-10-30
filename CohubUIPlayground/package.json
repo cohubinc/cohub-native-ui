@@ -10,8 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cohubinc/cohub-native-ui": "1.0.10",
-    "@cohubinc/cohub-utils": "1.0.11",
+    "@cohubinc/cohub-native-ui": "1.1.3",
+    "@cohubinc/cohub-utils": "1.1.3",
     "eventemitter3": "^4.0.0",
     "final-form": "4.18.5",
     "react": ">=16.9.0",

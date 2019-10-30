@@ -50,7 +50,7 @@ export {
   IStatisticProps
 } from "src/components/Statistic";
 // export { default as Tabs, ITabsProps } from "src/components/Tabs";
-export { default as Typography } from "src/components/Typography";
 export {
+  default as Typography,
   ITypographyProps
-} from "src/components/Typography/definitions/ITypographyProps";
+} from "src/components/Typography";
