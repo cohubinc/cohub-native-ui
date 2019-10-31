@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, ReactNode, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import {
   View,
   StyleProp,
@@ -20,7 +20,7 @@ interface IOption<V> {
   /**
    * @default value
    */
-  label?: ReactElement;
+  label?: ReactNode;
   value: V;
 }
 interface IProps<Val> {
@@ -81,7 +81,7 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
   const filteredOpts = options.filter(opt => opt.value !== value);
 
   return (
-    <View style={[style]}>
+    <Wrapper style={[style]}>
       <Animated.View
         backgroundColor={backgroundColor}
         style={{ transform: [{ scale: shrinkAnimation }] }}
@@ -117,10 +117,13 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
           ))}
         </List>
       </AnimateHeight>
-    </View>
+    </Wrapper>
   );
 }
 
+const Wrapper = styled.View`
+  width: 100%;
+`;
 const borderRadius = "4px";
 const List = styled.View<{ backgroundColor: Color }>`
   border-bottom-left-radius: ${borderRadius};
@@ -128,14 +131,13 @@ const List = styled.View<{ backgroundColor: Color }>`
   background-color: ${p => p.backgroundColor};
   box-shadow: ${BoxShadow.dp3};
 `;
-
 const LabelRow = styled.View<{ backgroundColor: Color }>`
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   padding: 0 2px;
   background-color: ${p => p.backgroundColor};
 `;
-
 const ListItem = styled.TouchableOpacity`
   padding: 5px 2px;
 `;
