@@ -1,15 +1,15 @@
 import React, { Component, CSSProperties } from "react";
-import Color from "src/definitions/enums/Color";
-import Typography from "src/components/Typography";
+import { IColor, Color } from "@cohubinc/cohub-utils";
 
+import Typography from "src/components/Typography";
 import styles from "./Segment.module.scss";
 
 export interface IProps {
   children: React.ReactNode;
   selected: boolean;
-  backgroundColor: Color;
+  backgroundColor: IColor;
   small?: boolean;
-  color?: Color;
+  color?: IColor;
   style?: CSSProperties;
   onClick?: (event: any) => void;
 }

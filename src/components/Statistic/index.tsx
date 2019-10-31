@@ -1,10 +1,11 @@
 import React from "react";
-import Typography from "../Typography";
-import FormatMoney from "../FormatMoney";
-import FormatNumber from "../FormatNumber";
-import FormatPercent from "../FormatPercent";
-import Color from "../../definitions/enums/Color";
 import styled from "styled-components/native";
+import { IColor, Color } from "@cohubinc/cohub-utils";
+
+import Typography from "src/components/Typography";
+import FormatMoney from "src/components/FormatMoney";
+import FormatNumber from "src/components/FormatNumber";
+import FormatPercent from "src/components/FormatPercent";
 
 type Value = number | string | undefined | null;
 export interface IStatisticProps {
@@ -15,7 +16,7 @@ export interface IStatisticProps {
   format: "money" | "number" | "percentage" | "text";
   label: string;
   value: Value;
-  color?: Color;
+  color?: IColor;
   parsePercentage?: boolean;
 }
 

@@ -4,13 +4,13 @@ import {
   TextStyle,
   GestureResponderEvent
 } from "react-native";
-import Color from "../../definitions/enums/Color";
+import { IColor } from "@cohubinc/cohub-utils";
 
 interface IButtonProps extends TouchableOpacityProps {
   label: string | any;
   labelStyle?: StyleProp<TextStyle>;
-  color?: Color;
-  backgroundColor?: Color;
+  color?: IColor;
+  backgroundColor?: IColor;
   disabled?: boolean;
   onPress: (event?: GestureResponderEvent) => void;
   animated?: boolean;

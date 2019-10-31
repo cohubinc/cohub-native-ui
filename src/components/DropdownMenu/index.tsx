@@ -15,6 +15,7 @@ import styled from "styled-components/native";
 import { useToggleAnimation } from "src/hooks/useToggleAnimation";
 import BoxShadow from "src/definitions/enums/BoxShadow";
 import AnimateHeight from "src/components/AnimateHeight";
+import { IColor } from "@cohubinc/cohub-utils";
 
 interface IOption<V> {
   /**
@@ -32,12 +33,12 @@ interface IProps<Val> {
   /**
    * @default Color.trueWhite
    */
-  color?: Color;
+  color?: IColor;
   fontFamily?: Font;
   /**
    * @default Color.primary
    */
-  backgroundColor?: Color;
+  backgroundColor?: IColor;
   shrink?: boolean;
 }
 
@@ -125,13 +126,13 @@ const Wrapper = styled.View`
   width: 100%;
 `;
 const borderRadius = "4px";
-const List = styled.View<{ backgroundColor: Color }>`
+const List = styled.View<{ backgroundColor: IColor }>`
   border-bottom-left-radius: ${borderRadius};
   border-bottom-right-radius: ${borderRadius};
   background-color: ${p => p.backgroundColor};
   box-shadow: ${BoxShadow.dp3};
 `;
-const LabelRow = styled.View<{ backgroundColor: Color }>`
+const LabelRow = styled.View<{ backgroundColor: IColor }>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

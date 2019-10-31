@@ -1,12 +1,11 @@
 import React from "react";
 import { View, StyleProp, ViewStyle } from "react-native";
-
-import Colors from "../../definitions/enums/Color";
+import { IColor, Color } from "@cohubinc/cohub-utils";
 
 export type TMargin = 0.5 | 1 | 1.5 | 2 | 3 | 4 | 5 | 6;
 
 interface IProps {
-  color?: Colors;
+  color?: IColor;
   style?: StyleProp<ViewStyle>;
   marginSize?: TMargin;
   invisible?: boolean;
@@ -14,7 +13,7 @@ interface IProps {
 
 export default function Divider({
   style,
-  color = Colors.grey,
+  color = Color.grey,
   marginSize = 1,
   invisible = false
 }: IProps) {
