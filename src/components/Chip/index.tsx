@@ -41,7 +41,7 @@ export default class Chip extends Component<TChipProps> {
       style,
       size,
       active,
-      elevation
+      elevation = 0
     } = this.props;
 
     const name = label || children;
@@ -75,24 +75,25 @@ export default class Chip extends Component<TChipProps> {
     const CohubChipInner = styled.View`
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       height: 100%;
     `;
 
-    const Wrapper = styled.View`
+    const Wrapper = styled.View<{ boxShadow: BoxShadow }>`
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      box-shadow: ${(BoxShadow as any)[dpLevel]};
+      box-shadow: ${props => props.boxShadow || "none"};
     `;
 
     return (
-      <Wrapper>
+      <Wrapper boxShadow={(BoxShadow as any)[dpLevel]}>
         <CohubChip style={style} onPress={onPress}>
           <CohubChipInner>
             <Typography.Small
               color={ContrastColor[setBackgroundColor()] as any}
+              style={{ marginRight: 5 }}
             >
               {name}
             </Typography.Small>
