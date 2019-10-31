@@ -1,7 +1,11 @@
 import React from "react";
 import { ViewStyle, StyleProp, TextStyle } from "react-native";
 import styled from "styled-components/native";
+import { IColor } from "@cohubinc/cohub-utils";
+
 import Color from "src/definitions/enums/Color";
+import { IFontFamily } from "src/definitions/types/IFontFamily";
+import Typography from "src/components/Typography";
 
 export type Value = string;
 
@@ -14,6 +18,9 @@ export interface IProps {
   activeTabStyle?: StyleProp<ViewStyle>;
   tabTextStyle?: StyleProp<TextStyle>;
   activeTabTextStyle?: StyleProp<TextStyle>;
+  backgroundColor?: IColor;
+  fontFamily?: IFontFamily;
+  bold?: boolean;
 }
 
 function SplitButton({
@@ -24,20 +31,13 @@ function SplitButton({
   tabStyle,
   activeTabStyle,
   tabTextStyle,
-  activeTabTextStyle
+  activeTabTextStyle,
+  backgroundColor = Color.grey300,
+  fontFamily,
+  bold
 }: IProps) {
-  const Container = styled.View<{ backgroundColor: string }>`
-    background-color: ${props => props.backgroundColor};
-    padding-top: 8;
-    padding-bottom: 8;
-    padding-left: 8;
-    padding-right: 8;
-    flex-direction: row;
-    border-radius: 2;
-  `;
-
   return (
-    <Container backgroundColor={Color.grey300 as any} style={style}>
+    <Container {...{ backgroundColor, style }}>
       {values.map((val, i) => (
         <Tab
           label={val}
@@ -48,7 +48,8 @@ function SplitButton({
             tabStyle,
             activeTabStyle,
             tabTextStyle,
-            activeTabTextStyle
+            activeTabTextStyle,
+            fontFamily
           }}
         />
       ))}
@@ -56,7 +57,17 @@ function SplitButton({
   );
 }
 
-interface ITabProps {
+const Container = styled.View<{ backgroundColor: IColor }>`
+  background-color: ${props => props.backgroundColor};
+  padding-top: 8;
+  padding-bottom: 8;
+  padding-left: 8;
+  padding-right: 8;
+  flex-direction: row;
+  border-radius: 2;
+`;
+
+interface ITabProps extends Pick<IProps, "fontFamily" | "bold"> {
   label: string;
   onPress: (index: any) => void;
   selected: boolean;
@@ -73,37 +84,43 @@ const Tab = ({
   tabStyle,
   activeTabStyle,
   tabTextStyle,
-  activeTabTextStyle
+  activeTabTextStyle,
+  fontFamily,
+  bold
 }: ITabProps) => {
-  const TabContainer = styled.TouchableOpacity<{
-    selected: boolean;
-  }>`
-    background: ${props =>
-      props.selected ? `hsla(0, 2%, 88%, 0.5)` : `hsla(0, 2%, 88%, 0)`};
-    flex: 1;
-    border-radius: 2;
-    margin-left: 1;
-    margin-right: 1;
-  `;
-
-  const TabText = styled.Text`
-    text-align: center;
-    padding-top: 10;
-    padding-bottom: 10;
-    padding-left: 11;
-    padding-right: 11;
-  `;
   return (
     <TabContainer
       style={[tabStyle, selected ? activeTabStyle : {}]}
       selected={selected}
       onPress={onPress}
     >
-      <TabText style={[tabTextStyle, selected ? activeTabTextStyle : {}]}>
+      <TabText
+        {...{ bold, fontFamily }}
+        fontFamily={fontFamily}
+        style={[tabTextStyle, selected && activeTabTextStyle]}
+      >
         {label}
       </TabText>
     </TabContainer>
   );
 };
 
+const TabContainer = styled.TouchableOpacity<{
+  selected: boolean;
+}>`
+  background: ${props =>
+    props.selected ? `hsla(0, 2%, 88%, 0.5)` : `hsla(0, 2%, 88%, 0)`};
+  flex: 1;
+  border-radius: 2;
+  margin-left: 1;
+  margin-right: 1;
+`;
+
+const TabText = styled(Typography)`
+  text-align: center;
+  padding-top: 10;
+  padding-bottom: 10;
+  padding-left: 11;
+  padding-right: 11;
+`;
 export default SplitButton;
