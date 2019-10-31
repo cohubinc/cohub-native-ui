@@ -47,8 +47,8 @@ export default function IconWrapper(props: IWrapperProps) {
     align-items: center;
   `;
 
-  if (onPress || (onLongPress && !accessibilityLabel)) {
-    accessibilityLabel = `${props.name} button`;
+  if (pressable && !accessibilityLabel) {
+    accessibilityLabel = props.name;
   }
 
   const btnProps = pressable
