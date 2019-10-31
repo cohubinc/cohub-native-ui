@@ -1,7 +1,7 @@
-import Color from "../../../definitions/enums/Color";
+import { IColor, Color } from "@cohubinc/cohub-utils";
 
 const getStyles = (
-  incomingColor?: Color,
+  incomingColor?: IColor,
   highContrast?: boolean,
   insetShadow?: boolean
 ) => {

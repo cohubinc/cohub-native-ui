@@ -7,8 +7,8 @@ import {
   TouchableWithoutFeedbackProps,
   Insets
 } from "react-native";
+import { IColor } from "@cohubinc/cohub-utils";
 
-import Color from "src/definitions/enums/Color";
 import logError from "src/helpers/logError";
 
 import icons, { TIconName } from "./Icons";
@@ -21,7 +21,7 @@ type ITouchableProps = Pick<
 export interface IIconProps extends ITouchableProps {
   name: TIconName;
   size?: number;
-  color?: Color;
+  color?: IColor;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   transform?: TransformsStyle;

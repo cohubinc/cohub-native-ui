@@ -1,14 +1,13 @@
 import React from "react";
-import styled from "styled-components/native";
-
-import Color from "src/definitions/enums/Color";
-
-import { IIconProps } from "..";
 import { TouchableOpacity, View } from "react-native";
+import styled from "styled-components/native";
+import { IColor, Color } from "@cohubinc/cohub-utils";
+
+import { IIconProps } from "../";
 
 interface IProps {
-  children: (props: { color: Color; size: number }) => JSX.Element;
-  color?: Color;
+  children: (props: { color: IColor; size: number }) => JSX.Element;
+  color?: IColor;
 }
 
 export type IWrapperProps = IProps & IIconProps;

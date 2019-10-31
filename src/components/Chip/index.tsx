@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, Component } from "react";
+import { IColor, ContrastColor, Color } from "@cohubinc/cohub-utils";
 
-import Color, { ContrastColor } from "src/definitions/enums/Color";
 import Typography from "src/components/Typography";
 import Icon, { IIconProps } from "src/components/Icon";
 import styled from "styled-components/native";
@@ -13,7 +13,7 @@ interface IChipProps {
   onDelete?: MouseEventHandler<HTMLElement>;
   checked?: boolean;
   dark?: boolean;
-  backgroundColor?: Color;
+  backgroundColor?: IColor;
   size?: number;
   active?: boolean;
   style?: StyleProp<ViewStyle>;

@@ -7,11 +7,12 @@ import {
   View
 } from "react-native";
 
+import gs from "src/definitions/constants/GlobalStyles";
+import Colors from "src/definitions/enums/Color";
+import TButtonProps from "src/definitions/interfaces/IButtonProps";
+import { IColor } from "@cohubinc/cohub-utils";
+
 import BasicButton from "../Base";
-import gs from "../../../definitions/constants/GlobalStyles";
-import Colors from "../../../definitions/enums/Color";
-import TButtonProps from "../../../definitions/interfaces/IButtonProps";
-import Color from "../../../definitions/enums/Color";
 
 const defaultHeight = 40;
 
@@ -19,8 +20,8 @@ export interface IProps extends TButtonProps {
   bordered?: boolean;
   dark?: boolean;
   raised?: boolean;
-  textColor?: Color;
-  outlineColor?: Color;
+  textColor?: IColor;
+  outlineColor?: IColor;
 }
 
 export default class Outline extends BasicButton<IProps> {
