@@ -81,6 +81,12 @@ export default function Basic(props: IBasicInputProps) {
   const iconRight = iconPosition === "right";
   const iconMargin = 13;
 
+  if (!icon) return null;
+  console.log({
+    c: icon && icon.color,
+    actualC: icon.color || inverted ? Color.trueWhite : Color.black
+  });
+
   return (
     <View style={style}>
       <View
@@ -109,7 +115,7 @@ export default function Basic(props: IBasicInputProps) {
           <Icon
             name={icon.name}
             size={iconSize}
-            color={icon.color || inverted ? Color.trueWhite : Color.black}
+            color={icon.color || (inverted ? Color.trueWhite : Color.black)}
             onPress={icon.onPress}
             style={[
               iconRight
