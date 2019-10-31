@@ -102,6 +102,7 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
               bold={bold}
               color={color}
               style={{ marginRight: 8 }}
+              numberOfLines={1}
             >
               {label}
             </Typography.HeadingSmall>
