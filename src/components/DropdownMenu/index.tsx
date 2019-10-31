@@ -113,20 +113,15 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
         </TouchableWithoutFeedback>
       </Animated.View>
 
-      <AnimateHeight expanded={expanded}>
-        <List backgroundColor={backgroundColor}>
-          {filteredOpts.map(opt => (
-            <ListItem
-              key={opt.value as any}
-              onPress={() => onSelect(opt.value)}
-            >
-              <Typography.Large color={color}>
-                {opt.label || opt.value}
-              </Typography.Large>
-            </ListItem>
-          ))}
-        </List>
-      </AnimateHeight>
+      <List expanded={expanded} backgroundColor={backgroundColor}>
+        {filteredOpts.map(opt => (
+          <ListItem key={opt.value as any} onPress={() => onSelect(opt.value)}>
+            <Typography.Large color={color}>
+              {opt.label || opt.value}
+            </Typography.Large>
+          </ListItem>
+        ))}
+      </List>
     </Wrapper>
   );
 }
@@ -135,7 +130,7 @@ const Wrapper = styled.View`
   width: 100%;
 `;
 const borderRadius = "4px";
-const List = styled.View<{ backgroundColor: IColor }>`
+const List = styled(AnimateHeight)<{ backgroundColor: IColor }>`
   border-bottom-left-radius: ${borderRadius};
   border-bottom-right-radius: ${borderRadius};
   background-color: ${p => p.backgroundColor};

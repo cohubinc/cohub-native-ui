@@ -3,7 +3,8 @@ import {
   ViewStyle,
   StyleProp,
   Animated,
-  LayoutChangeEvent
+  LayoutChangeEvent,
+  View
 } from "react-native";
 
 interface IAnimateHeightProps {
@@ -54,9 +55,11 @@ const AnimateHeight: SFC<IAnimateHeightProps> = props => {
   }
 
   return (
-    <Animated.View style={[derivedStyle, style]} onLayout={getElHeightOnLayout}>
-      {children}
-    </Animated.View>
+    <View style={style}>
+      <Animated.View style={[derivedStyle]} onLayout={getElHeightOnLayout}>
+        {children}
+      </Animated.View>
+    </View>
   );
 };
 
