@@ -1,15 +1,15 @@
 import React from "react";
 import { IBasicInputProps } from "../Basic";
-import Color from "src/definitions/enums/Color";
-import { Inputs } from "src";
+import Basic from "src/components/Inputs/Basic";
 
 export interface ISearchInputProps
   extends Omit<IBasicInputProps, "icon" | "iconPosition"> {}
 
-function Search(props: ISearchInputProps) {
+function Search({ accessibilityLabel = "Search", ...rest }: ISearchInputProps) {
   return (
-    <Inputs.Basic
-      {...props}
+    <Basic
+      {...rest}
+      accessibilityLabel={accessibilityLabel}
       icon={{
         name: "search"
       }}
