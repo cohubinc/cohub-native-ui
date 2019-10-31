@@ -19,7 +19,7 @@ type INativeProps = Omit<
 >;
 type IFieldProps = FieldRenderProps<string, any>;
 type ISize = "small" | "medium" | "large";
-interface IBasicInputProps extends INativeProps {
+export interface IBasicInputProps extends INativeProps {
   placeholder?: string;
   label?: string;
   input?: Partial<IFieldProps["input"]>;
@@ -28,6 +28,7 @@ interface IBasicInputProps extends INativeProps {
   accessibilityLabel?: string;
   icon?: Omit<IIconProps, "size">;
   iconPosition?: "left" | "right";
+  inputRef?: React.RefObject<TextInput>;
   /**
    * Size of the input.
    * label, text, placeholder, and icon are all effected by this property
@@ -61,6 +62,7 @@ export default function Basic(props: IBasicInputProps) {
     fontFamily = "Inter",
     inputStyle,
     textAlign = "left",
+    inputRef,
     ...nativeProps
   } = props;
 
@@ -107,7 +109,7 @@ export default function Basic(props: IBasicInputProps) {
           <Icon
             name={icon.name}
             size={iconSize}
-            color={icon.color || inverted ? Color.trueWhite : undefined}
+            color={icon.color || inverted ? Color.trueWhite : Color.black}
             onPress={icon.onPress}
             style={[
               iconRight
@@ -122,6 +124,7 @@ export default function Basic(props: IBasicInputProps) {
           autoCapitalize="none"
           autoCorrect={false}
           onChangeText={onChange}
+          ref={inputRef}
           value={value ? value.toString() : undefined}
           style={[
             {
