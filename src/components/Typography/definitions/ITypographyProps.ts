@@ -1,8 +1,9 @@
 import { TextProps } from "react-native";
 import { IColor } from "@cohubinc/cohub-utils";
+import { IFontFamily } from "src/definitions/types/IFontFamily";
 
 export interface ITypographyProps extends TextProps {
-  fontFamily?: "Roboto Mono" | "MillerDisplay" | "Inter";
+  fontFamily?: IFontFamily;
   /** React Children nodes are required */
   children: React.ReactNode;
   /** Text can be the muted color */
