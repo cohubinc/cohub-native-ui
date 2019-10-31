@@ -43,8 +43,9 @@ const AnimateHeight: SFC<IAnimateHeightProps> = props => {
   interface IStyle {
     opacity?: number;
     height?: number | Animated.Value;
+    overflow: string;
   }
-  let derivedStyle: IStyle = { height: expandAnimation };
+  let derivedStyle: IStyle = { height: expandAnimation, overflow: "hidden" };
   if (elHeight === undefined) {
     // If element height isn't calculated yet set opacity to 0 so we can get a measurement but without actually revealing the element
     derivedStyle.opacity = 0;
