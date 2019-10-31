@@ -40,6 +40,10 @@ interface IProps<Val> {
    */
   backgroundColor?: IColor;
   shrink?: boolean;
+  /**
+   * @default false
+   */
+  bold?: boolean;
 }
 
 export default function DropdownMenu<Val>(props: IProps<Val>) {
@@ -51,7 +55,8 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
     onSelect,
     color = Color.trueWhite,
     backgroundColor = Color.primary,
-    shrink = false
+    shrink = false,
+    bold
   } = props;
 
   const [expanded, setExpanded] = useState(false);
@@ -93,7 +98,11 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
           }}
         >
           <LabelRow backgroundColor={backgroundColor}>
-            <Typography.HeadingSmall color={color} style={{ marginRight: 8 }}>
+            <Typography.HeadingSmall
+              bold={bold}
+              color={color}
+              style={{ marginRight: 8 }}
+            >
               {label}
             </Typography.HeadingSmall>
 
