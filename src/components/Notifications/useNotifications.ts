@@ -6,7 +6,7 @@ import {
 } from ".";
 import emitter from "src/helpers/eventEmitter";
 import IAction from "../../definitions/interfaces/IAction";
-import { TimeElapsedTracker } from "@cohubinc/cohub-utils";
+import { TimeElapsedTracker, guid } from "@cohubinc/cohub-utils";
 
 export default function useNotifications() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -39,7 +39,11 @@ function reducer(state: INotification[], action: IAction) {
 
       if (notEnoughTimeHasElapsed) return state;
 
-      return [...state, payload.notification];
+      const newNotif = payload.notification.id
+        ? payload.notification
+        : { ...payload.notification, id: guid() };
+
+      return [...state, newNotif];
     }
     case "REMOVE": {
       const payload: IRemoveNotificationPayload = action.payload;
