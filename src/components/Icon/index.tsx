@@ -67,6 +67,7 @@ Icon.Bell = buildIcon("bell");
 Icon.BoxAdd = buildIcon("boxAdd");
 Icon.Calculator = buildIcon("calculator");
 Icon.Calendar = buildIcon("calendar");
+Icon.Camera = buildIcon("camera");
 Icon.CaretDown = buildIcon("caretDown");
 Icon.Checkmark = buildIcon("checkmark");
 Icon.ChevronDown = buildIcon("chevronDown");
