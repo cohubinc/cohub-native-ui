@@ -1,7 +1,7 @@
 import React from "react";
 import { ViewStyle, StyleProp, TextStyle } from "react-native";
 import styled from "styled-components/native";
-import { IColor } from "@cohubinc/cohub-utils";
+import { IColor, ContrastColor } from "@cohubinc/cohub-utils";
 
 import Color from "src/definitions/enums/Color";
 import { IFontFamily } from "src/definitions/types/IFontFamily";
@@ -44,12 +44,14 @@ function SplitButton({
           key={i}
           onPress={() => onChange(i)}
           selected={selectedIndex === i}
+          textColor={backgroundColor && ContrastColor[backgroundColor]}
           {...{
             tabStyle,
             activeTabStyle,
             tabTextStyle,
             activeTabTextStyle,
-            fontFamily
+            fontFamily,
+            bold
           }}
         />
       ))}
@@ -67,14 +69,20 @@ const Container = styled.View<{ backgroundColor: IColor }>`
   border-radius: 2;
 `;
 
-interface ITabProps extends Pick<IProps, "fontFamily" | "bold"> {
+interface ITabProps
+  extends Pick<
+    IProps,
+    | "fontFamily"
+    | "bold"
+    | "tabStyle"
+    | "tabTextStyle"
+    | "activeTabTextStyle"
+    | "activeTabStyle"
+  > {
   label: string;
   onPress: (index: any) => void;
   selected: boolean;
-  tabStyle: StyleProp<ViewStyle>;
-  activeTabStyle: StyleProp<ViewStyle>;
-  tabTextStyle: StyleProp<TextStyle>;
-  activeTabTextStyle: StyleProp<TextStyle>;
+  textColor: IColor;
 }
 
 const Tab = ({
@@ -86,7 +94,8 @@ const Tab = ({
   tabTextStyle,
   activeTabTextStyle,
   fontFamily,
-  bold
+  bold,
+  textColor
 }: ITabProps) => {
   return (
     <TabContainer
@@ -97,6 +106,7 @@ const Tab = ({
       <TabText
         {...{ bold, fontFamily }}
         fontFamily={fontFamily}
+        color={textColor}
         style={[tabTextStyle, selected && activeTabTextStyle]}
       >
         {label}
