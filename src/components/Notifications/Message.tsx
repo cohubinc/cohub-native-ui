@@ -1,15 +1,16 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   Animated,
   StyleSheet,
   Text,
   TouchableOpacity,
-  Easing
+  Easing,
+  View
 } from "react-native";
 import { INotification, INotificationType } from ".";
 import gs from "../../definitions/constants/GlobalStyles";
 import Color, { ContrastColor } from "../../definitions/enums/Color";
-import { guid } from "@cohubinc/cohub-utils";
+
 interface IProps {
   notification: INotification;
   dismiss: (notification_id: INotification["id"]) => void;
@@ -21,7 +22,7 @@ export default function Message({ notification, dismiss }: IProps) {
     render,
     position = "top",
     isActionRequired = false,
-    id = guid(),
+    id,
     title,
     message,
     duration = notification.type &&
@@ -29,7 +30,7 @@ export default function Message({ notification, dismiss }: IProps) {
       ? 5000
       : 2000
   } = notification;
-
+  const [notificationHeight, setNotificationHeight] = useState(0);
   const transition = useRef<Animated.Value>(new Animated.Value(0));
 
   useEffect(() => {
@@ -58,12 +59,22 @@ export default function Message({ notification, dismiss }: IProps) {
 
   const styles = makeStyles(type);
 
+  const getOutputRange = () => {
+    if (notificationHeight) {
+      return position === "top"
+        ? [notificationHeight * -2, 0]
+        : [notificationHeight, notificationHeight * -1.5];
+    } else {
+      return position === "top" ? [-180, 0] : [40, -80];
+    }
+  };
+
   const animated = {
     transform: [
       {
         translateY: transition.current.interpolate({
           inputRange: [0, 1],
-          outputRange: position === "top" ? [-180, 0] : [40, -80]
+          outputRange: getOutputRange()
         })
       }
     ]
@@ -80,7 +91,13 @@ export default function Message({ notification, dismiss }: IProps) {
           animated
         ]}
       >
-        {render(notification, onDismiss)}
+        <View
+          onLayout={({ nativeEvent }) =>
+            setNotificationHeight(nativeEvent.layout.height)
+          }
+        >
+          {render(notification, onDismiss)}
+        </View>
       </Animated.View>
     );
   }
@@ -95,18 +112,24 @@ export default function Message({ notification, dismiss }: IProps) {
         animated
       ]}
     >
-      <TouchableOpacity onPress={onDismiss} style={styles.button}>
-        {title && (
-          <Text style={[gs.smallHeadingText, styles.text]}>{title}</Text>
-        )}
-        {typeof message === "string" ? (
-          <Text style={[styles.text]} numberOfLines={5}>
-            {message}
-          </Text>
-        ) : (
-          message
-        )}
-      </TouchableOpacity>
+      <View
+        onLayout={({ nativeEvent }) =>
+          setNotificationHeight(nativeEvent.layout.height)
+        }
+      >
+        <TouchableOpacity onPress={onDismiss} style={styles.button}>
+          {title && (
+            <Text style={[gs.smallHeadingText, styles.text]}>{title}</Text>
+          )}
+          {typeof message === "string" ? (
+            <Text style={[styles.text]} numberOfLines={5}>
+              {message}
+            </Text>
+          ) : (
+            message
+          )}
+        </TouchableOpacity>
+      </View>
     </Animated.View>
   );
 }
