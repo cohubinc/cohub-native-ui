@@ -103,6 +103,7 @@ Icon.Save = buildIcon("save");
 Icon.Scales = buildIcon("scales");
 Icon.ScanBarcode = buildIcon("scanBarcode");
 Icon.Search = buildIcon("search");
+Icon.Settings = buildIcon("settings");
 Icon.Shipping = buildIcon("shipping");
 Icon.Store = buildIcon("store");
 Icon.Subtract = buildIcon("subtract");

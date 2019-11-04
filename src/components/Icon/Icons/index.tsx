@@ -46,6 +46,7 @@ import save from "./Save";
 import scales from "./Scales";
 import scanBarcode from "./ScanBarcode";
 import search from "./Search";
+import settings from "./Settings";
 import shipping from "./Shipping";
 import store from "./Store";
 import subtract from "./Subtract";
@@ -109,6 +110,7 @@ export type TIconName =
   | "scales"
   | "scanBarcode"
   | "search"
+  | "settings"
   | "shipping"
   | "store"
   | "subtract"
@@ -172,6 +174,7 @@ const icons: TIconMap = {
   scales,
   scanBarcode,
   search,
+  settings,
   shipping,
   store,
   subtract,
