@@ -1,4 +1,5 @@
 import add from "./Add";
+import addItem from "./AddItem";
 import addUser from "./AddUser";
 import addUsers from "./AddUsers";
 import arrowDown from "./ArrowDown";
@@ -57,6 +58,7 @@ import { IIconProps } from "../index";
 
 export type TIconName =
   | "add"
+  | "addItem"
   | "addUser"
   | "addUsers"
   | "archive"
@@ -117,6 +119,7 @@ export type TIconName =
 type TIconMap = { [key in TIconName]: (props: IIconProps) => JSX.Element };
 const icons: TIconMap = {
   add,
+  addItem,
   addUser,
   addUsers,
   archive,
