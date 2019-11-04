@@ -147,9 +147,7 @@ const makeStyles = (type: INotificationType) =>
       maxWidth: 600,
       zIndex: 999,
       borderRadius: 4,
-      backgroundColor: (type === INotificationType.success
-        ? Color.primaryGreen
-        : Color.primaryRed) as any
+      backgroundColor: getBackgroundColor(type)
     },
     customContainer: {
       position: "absolute",
@@ -163,10 +161,7 @@ const makeStyles = (type: INotificationType) =>
       bottom: 0
     },
     text: {
-      color:
-        type === INotificationType.success
-          ? ContrastColor[Color.primaryGreen]
-          : ContrastColor[Color.primaryRed],
+      color: getTextColor(type),
       maxHeight: 100
     },
     button: {
@@ -180,3 +175,29 @@ const makeStyles = (type: INotificationType) =>
       paddingHorizontal: 10
     }
   });
+
+const getBackgroundColor = (type: INotificationType) => {
+  switch (type) {
+    case INotificationType.success:
+      return Color.primaryGreen;
+    case INotificationType.error:
+      return Color.primaryRed;
+    case INotificationType.info:
+      return Color.black;
+    default:
+      return Color.black;
+  }
+};
+
+const getTextColor = (type: INotificationType) => {
+  switch (type) {
+    case INotificationType.success:
+      return ContrastColor[Color.primaryGreen];
+    case INotificationType.error:
+      return ContrastColor[Color.primaryRed];
+    case INotificationType.info:
+      return ContrastColor[Color.black];
+    default:
+      return ContrastColor[Color.black];
+  }
+};

@@ -31,6 +31,7 @@ export {
   showSuccessNotification,
   showErrorNotification,
   showCustomNotification,
+  showInfoNotification,
   INotification,
   Notifications
 } from "src/components/Notifications";
