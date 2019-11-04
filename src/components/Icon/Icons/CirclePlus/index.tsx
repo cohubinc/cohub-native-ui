@@ -2,20 +2,27 @@ import React from "react";
 import { ContrastColor } from "src/definitions/enums/Color";
 import IconWrapper from "../../IconWrapper/index";
 import { IIconProps as IProps } from "../../index";
-import Svg, { Circle, Path } from "react-native-svg";
+import Svg, { Circle, Path, Rect } from "react-native-svg";
 
 const CirclePlus = (props: IProps) => (
   <IconWrapper {...props}>
-    {({ color, size }) => (
-      <Svg width={size} height={size} viewBox="0 0 18 18" fill="none">
-        <Circle cx="9" cy="9" r="9" fill={color as any} />
-        <Path
-          d="M2.76904 9.00006H15.2306M8.99981 15.2308V2.76929"
-          stroke={ContrastColor[color] as any}
-          strokeWidth="0.5"
-        />
-      </Svg>
-    )}
+    {({ color, size }) => {
+      const bgColor = ContrastColor[color];
+      return (
+        <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+          <Circle cx="12" cy="12" r="12" fill={color} />
+          <Rect x="11" y="6" width="2" height="12" fill={bgColor} />
+          <Rect
+            x="6"
+            y="13.0001"
+            width="2"
+            height="12"
+            transform="rotate(-90 6 13.0001)"
+            fill={bgColor}
+          />
+        </Svg>
+      );
+    }}
   </IconWrapper>
 );
 

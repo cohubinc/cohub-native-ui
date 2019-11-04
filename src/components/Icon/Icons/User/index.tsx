@@ -2,46 +2,57 @@ import React from "react";
 
 import IconWrapper from "../../IconWrapper/index";
 import { IIconProps as IProps } from "../../index";
-import guid from "src/helpers/guid";
-import Svg, { Mask, Circle, G } from "react-native-svg";
+import Svg, { Mask, Circle, G, Ellipse, Defs, Use } from "react-native-svg";
 
-const User = (props: IProps) => {
-  const uniqueId = guid();
-
-  return (
-    <IconWrapper {...props}>
-      {({ size }) => (
-        <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+const User = (props: IProps) => (
+  <IconWrapper {...props}>
+    {({ size, color }) => (
+      <Svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        fill="none"
+      >
+        <Defs>
           <Mask
-            id={uniqueId}
-            mask-type="alpha"
+            id="mask0"
             maskUnits={"userSpaceOnUse" as any}
             x="0"
             y="0"
             width={size}
             height={size}
           >
-            <Circle cx={size / 2} cy={size / 2} r={size / 2} fill="#F2F2F2" />
+            <Circle cx={size / 2} cy={size / 2} r={size / 2} fill="white" />
           </Mask>
-          <G mask={`url(#${uniqueId})`}>
-            <Circle cx={size / 2} cy={size / 2} r={size / 2} fill="#F2F2F2" />
+
+          <G id="G">
             <Circle
               cx={size / 2}
-              cy={size / 1.0909090909}
-              r={size / 3}
-              fill="#C4C4C4"
+              cy={size / 2}
+              r={size / 2}
+              stroke={color}
+              strokeWidth={(size / 20) * 2}
             />
-            <Circle
+            <Ellipse
               cx={size / 2}
-              cy={size / 2.6666666667}
-              r={size / 6}
-              fill="#C4C4C4"
+              cy={size * 0.916665}
+              rx={size * 0.3333333333}
+              ry={size * 0.3333333333}
+              fill={color}
+            />
+            <Ellipse
+              cx={size / 2}
+              cy={size * 0.375}
+              rx={size * 0.1666666666}
+              ry={size * 0.1666666666}
+              fill={color}
             />
           </G>
-        </Svg>
-      )}
-    </IconWrapper>
-  );
-};
+        </Defs>
+        <Use mask="url(#mask0)" href="#G" />
+      </Svg>
+    )}
+  </IconWrapper>
+);
 
 export default User;

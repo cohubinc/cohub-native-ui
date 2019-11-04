@@ -54,6 +54,7 @@ export default function Icon(props: IIconProps) {
 // I agree but as far as I can tell there isn't a way to do it without losing the type information.  //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 Icon.Add = buildIcon("add");
+Icon.AddItem = buildIcon("addItem");
 Icon.AddUser = buildIcon("addUser");
 Icon.AddUsers = buildIcon("addUsers");
 Icon.Archive = buildIcon("archive");
@@ -90,6 +91,7 @@ Icon.Eye = buildIcon("eye");
 Icon.Filter = buildIcon("filter");
 Icon.Flashlight = buildIcon("flashlight");
 Icon.Forward = buildIcon("forward");
+Icon.Help = buildIcon("help");
 Icon.Laptop = buildIcon("laptop");
 Icon.List = buildIcon("list");
 Icon.Menu = buildIcon("menu");
@@ -99,8 +101,13 @@ Icon.Rows = buildIcon("rows");
 Icon.Sales = buildIcon("sales");
 Icon.Save = buildIcon("save");
 Icon.Scales = buildIcon("scales");
+Icon.ScanBarcode = buildIcon("scanBarcode");
 Icon.Search = buildIcon("search");
+Icon.Settings = buildIcon("settings");
 Icon.Shipping = buildIcon("shipping");
+Icon.Star = buildIcon("star");
+Icon.Store = buildIcon("store");
+Icon.Subtract = buildIcon("subtract");
 Icon.TagDollar = buildIcon("tagDollar");
 Icon.Trash = buildIcon("trash");
 Icon.Triangle = buildIcon("triangle");
@@ -108,4 +115,3 @@ Icon.TriangleDown = buildIcon("triangleDown");
 Icon.TripleDotsVertical = buildIcon("tripleDotsVertical");
 Icon.UserGroup = buildIcon("userGroup");
 Icon.User = buildIcon("user");
-Icon.Subtract = buildIcon("subtract");

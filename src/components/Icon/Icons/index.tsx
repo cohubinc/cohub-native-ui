@@ -1,4 +1,5 @@
 import add from "./Add";
+import addItem from "./AddItem";
 import addUser from "./AddUser";
 import addUsers from "./AddUsers";
 import arrowDown from "./ArrowDown";
@@ -33,6 +34,7 @@ import eye from "./Eye";
 import filter from "./Filter";
 import flashlight from "./Flashlight";
 import forward from "./Forward";
+import help from "./Help";
 import laptop from "./Laptop";
 import list from "./List";
 import menu from "./Menu";
@@ -42,8 +44,12 @@ import rows from "./Rows";
 import sales from "./Sales";
 import save from "./Save";
 import scales from "./Scales";
+import scanBarcode from "./ScanBarcode";
 import search from "./Search";
+import settings from "./Settings";
 import shipping from "./Shipping";
+import star from "./Star";
+import store from "./Store";
 import subtract from "./Subtract";
 import tagDollar from "./TagDollar";
 import trash from "./Trash";
@@ -56,6 +62,7 @@ import { IIconProps } from "../index";
 
 export type TIconName =
   | "add"
+  | "addItem"
   | "addUser"
   | "addUsers"
   | "archive"
@@ -92,6 +99,7 @@ export type TIconName =
   | "filter"
   | "flashlight"
   | "forward"
+  | "help"
   | "laptop"
   | "list"
   | "menu"
@@ -101,8 +109,12 @@ export type TIconName =
   | "sales"
   | "save"
   | "scales"
+  | "scanBarcode"
   | "search"
+  | "settings"
   | "shipping"
+  | "star"
+  | "store"
   | "subtract"
   | "tagDollar"
   | "trash"
@@ -115,6 +127,7 @@ export type TIconName =
 type TIconMap = { [key in TIconName]: (props: IIconProps) => JSX.Element };
 const icons: TIconMap = {
   add,
+  addItem,
   addUser,
   addUsers,
   archive,
@@ -151,6 +164,7 @@ const icons: TIconMap = {
   filter,
   flashlight,
   forward,
+  help,
   laptop,
   list,
   menu,
@@ -160,8 +174,12 @@ const icons: TIconMap = {
   sales,
   save,
   scales,
+  scanBarcode,
   search,
+  settings,
   shipping,
+  star,
+  store,
   subtract,
   tagDollar,
   trash,
