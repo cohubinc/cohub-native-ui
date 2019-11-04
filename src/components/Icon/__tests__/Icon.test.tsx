@@ -2,9 +2,10 @@ import React from "react";
 import upperFirst from "lodash/upperFirst";
 
 import Icon, { iconNames } from "../";
-import { render, fireEvent } from "@testing-library/react-native";
-import "./extendExpect";
 import times from "lodash/times";
+import { render, fireEvent } from "@testing-library/react-native";
+
+import "./extendExpect";
 
 describe("Icon component", () => {
   iconNames.forEach(name => {

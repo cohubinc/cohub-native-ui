@@ -3,7 +3,7 @@ import React from "react";
 import IconWrapper from "../../IconWrapper/index";
 import { IIconProps as IProps } from "../../index";
 import guid from "src/helpers/guid";
-import Svg, { Mask, Circle, G, EMaskUnits } from "react-native-svg";
+import Svg, { Mask, Circle, G } from "react-native-svg";
 
 const User = (props: IProps) => {
   const uniqueId = guid();
@@ -15,7 +15,7 @@ const User = (props: IProps) => {
           <Mask
             id={uniqueId}
             mask-type="alpha"
-            maskUnits={EMaskUnits.USER_SPACE_ON_USE}
+            maskUnits={"userSpaceOnUse" as any}
             x="0"
             y="0"
             width={size}
