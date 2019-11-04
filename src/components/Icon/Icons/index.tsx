@@ -42,6 +42,7 @@ import rows from "./Rows";
 import sales from "./Sales";
 import save from "./Save";
 import scales from "./Scales";
+import scanBarcode from "./ScanBarcode";
 import search from "./Search";
 import shipping from "./Shipping";
 import subtract from "./Subtract";
@@ -101,6 +102,7 @@ export type TIconName =
   | "sales"
   | "save"
   | "scales"
+  | "scanBarcode"
   | "search"
   | "shipping"
   | "subtract"
@@ -160,6 +162,7 @@ const icons: TIconMap = {
   sales,
   save,
   scales,
+  scanBarcode,
   search,
   shipping,
   subtract,

@@ -99,6 +99,7 @@ Icon.Rows = buildIcon("rows");
 Icon.Sales = buildIcon("sales");
 Icon.Save = buildIcon("save");
 Icon.Scales = buildIcon("scales");
+Icon.ScanBarcode = buildIcon("scanBarcode");
 Icon.Search = buildIcon("search");
 Icon.Shipping = buildIcon("shipping");
 Icon.TagDollar = buildIcon("tagDollar");
