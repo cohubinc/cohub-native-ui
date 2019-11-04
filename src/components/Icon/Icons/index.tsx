@@ -48,6 +48,7 @@ import scanBarcode from "./ScanBarcode";
 import search from "./Search";
 import settings from "./Settings";
 import shipping from "./Shipping";
+import star from "./Star";
 import store from "./Store";
 import subtract from "./Subtract";
 import tagDollar from "./TagDollar";
@@ -112,6 +113,7 @@ export type TIconName =
   | "search"
   | "settings"
   | "shipping"
+  | "star"
   | "store"
   | "subtract"
   | "tagDollar"
@@ -176,6 +178,7 @@ const icons: TIconMap = {
   search,
   settings,
   shipping,
+  star,
   store,
   subtract,
   tagDollar,

@@ -105,6 +105,7 @@ Icon.ScanBarcode = buildIcon("scanBarcode");
 Icon.Search = buildIcon("search");
 Icon.Settings = buildIcon("settings");
 Icon.Shipping = buildIcon("shipping");
+Icon.Star = buildIcon("star");
 Icon.Store = buildIcon("store");
 Icon.Subtract = buildIcon("subtract");
 Icon.TagDollar = buildIcon("tagDollar");
