@@ -44,7 +44,8 @@ export interface IRemoveNotificationPayload {
 export enum INotificationType {
   success = "success",
   error = "error",
-  custom = "custom"
+  custom = "custom",
+  info = "info"
 }
 
 export function showNotification(notification: INotification) {
@@ -72,6 +73,15 @@ export function showErrorNotification(
   emitter.emit("showNotification", {
     ...notification,
     type: INotificationType.error
+  });
+}
+
+export function showInfoNotification(
+  notification: Omit<INotification, "type">
+) {
+  emitter.emit("showNotification", {
+    ...notification,
+    type: INotificationType.info
   });
 }
 
