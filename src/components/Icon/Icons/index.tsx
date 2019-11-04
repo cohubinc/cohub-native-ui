@@ -34,6 +34,7 @@ import eye from "./Eye";
 import filter from "./Filter";
 import flashlight from "./Flashlight";
 import forward from "./Forward";
+import help from "./Help";
 import laptop from "./Laptop";
 import list from "./List";
 import menu from "./Menu";
@@ -95,6 +96,7 @@ export type TIconName =
   | "filter"
   | "flashlight"
   | "forward"
+  | "help"
   | "laptop"
   | "list"
   | "menu"
@@ -156,6 +158,7 @@ const icons: TIconMap = {
   filter,
   flashlight,
   forward,
+  help,
   laptop,
   list,
   menu,

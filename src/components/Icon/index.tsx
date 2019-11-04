@@ -91,6 +91,7 @@ Icon.Eye = buildIcon("eye");
 Icon.Filter = buildIcon("filter");
 Icon.Flashlight = buildIcon("flashlight");
 Icon.Forward = buildIcon("forward");
+Icon.Help = buildIcon("help");
 Icon.Laptop = buildIcon("laptop");
 Icon.List = buildIcon("list");
 Icon.Menu = buildIcon("menu");
