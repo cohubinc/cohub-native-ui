@@ -10,6 +10,7 @@ import bell from "./Bell";
 import boxAdd from "./BoxAdd/index";
 import calculator from "./Calculator";
 import calendar from "./Calendar";
+import camera from "./Camera";
 import caretDown from "./CaretDown";
 import checkmark from "./Checkmark";
 import chevronDown from "./ChevronDown";
@@ -68,6 +69,7 @@ export type TIconName =
   | "boxAdd"
   | "calculator"
   | "calendar"
+  | "camera"
   | "caretDown"
   | "checkmark"
   | "chevronDown"
@@ -126,6 +128,7 @@ const icons: TIconMap = {
   boxAdd,
   calculator,
   calendar,
+  camera,
   caretDown,
   checkmark,
   chevronDown,
