@@ -1,67 +1,28 @@
-import React, { CSSProperties } from "react";
+import React from "react";
+import { StyleSheet, StyleProp, ViewStyle } from "react-native";
 
-import Color from "src/definitions/enums/Color";
-import { Fade } from "src/components/Transition";
+import LoaderUI from "./Loader";
 
-import "./loader.scss";
-
-export interface ILoaderProps {
-  /**
-   * The loader can take up the whole screen inside of the Backdrop overlay
-   */
-  fullScreen?: boolean;
-
-  asOverlay?: boolean;
-  /**
-   * To show or not to show
-   */
+interface IProps {
+  style?: StyleProp<ViewStyle>;
   show?: boolean;
-
-  /**
-   * Styles that will be applied to the root element
-   */
-  style?: CSSProperties;
   size?: number;
 }
 
-export default function Loader({
-  fullScreen,
-  show = true,
-  asOverlay,
-  style,
-  size = 30
-}: ILoaderProps) {
-  if (asOverlay) {
-    return (
-      <Fade show={show}>
-        <div
-          className="absolute flex justify-center items-center w-100 h-100"
-          style={{ background: Color.darkOverlay as any, ...style }}
-        >
-          <ShrinkGrowLoader dotSize={size} />
-        </div>
-      </Fade>
-    );
-  }
+export default function Loader(props: IProps) {
+  const { style, show = true, size } = props;
+  if (!show) return null;
 
-  return (
-    <Fade show={show}>
-      <ShrinkGrowLoader dotSize={size} />
-    </Fade>
-  );
+  return <LoaderUI size={size} style={[styles.container, style]} />;
 }
 
-const ShrinkGrowLoader = ({ dotSize }: { dotSize: number }) => {
-  return (
-    <div className="flex justify-center items-center">
-      <div
-        className="dot1"
-        style={{ borderRadius: "50%", width: dotSize, height: dotSize }}
-      />
-      <div
-        className="dot2"
-        style={{ borderRadius: "50%", width: dotSize, height: dotSize }}
-      />
-    </div>
-  );
-};
+const styles = StyleSheet.create({
+  container: {
+    width: 200,
+    height: 200,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center"
+  }
+});
