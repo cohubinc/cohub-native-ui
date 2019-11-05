@@ -22,10 +22,12 @@ import circleCheck from "./CircleCheck";
 import circlePlus from "./CirclePlus";
 import circlePlusInverted from "./CirclePlusInverted";
 import circleRemove from "./CircleRemove";
+import clock from "./Clock";
 import close from "./Close";
 import collectionDots from "./CollectionDots";
 import columns from "./Columns";
 import controlPanel from "./ControlPanel";
+import cube from "./Cube";
 import dashboard from "./Dashboard";
 import edit from "./Edit";
 import ellipsis from "./Ellipsis";
@@ -38,6 +40,7 @@ import help from "./Help";
 import laptop from "./Laptop";
 import list from "./List";
 import menu from "./Menu";
+import person from "./Person";
 import print from "./Print";
 import report from "./Report";
 import rows from "./Rows";
@@ -87,10 +90,12 @@ export type TIconName =
   | "circlePlus"
   | "circlePlusInverted"
   | "circleRemove"
+  | "clock"
   | "close"
   | "collectionDots"
   | "columns"
   | "controlPanel"
+  | "cube"
   | "dashboard"
   | "edit"
   | "ellipsis"
@@ -103,6 +108,7 @@ export type TIconName =
   | "laptop"
   | "list"
   | "menu"
+  | "person"
   | "print"
   | "report"
   | "rows"
@@ -152,10 +158,12 @@ const icons: TIconMap = {
   circlePlus,
   circlePlusInverted,
   circleRemove,
+  clock,
   close,
   collectionDots,
   columns,
   controlPanel,
+  cube,
   dashboard,
   edit,
   ellipsis,
@@ -168,6 +176,7 @@ const icons: TIconMap = {
   laptop,
   list,
   menu,
+  person,
   print,
   report,
   rows,
