@@ -39,6 +39,7 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
     loading,
     onRefresh,
     ItemSeparatorComponent,
+    onEndReachedThreshold = 0.5,
     style,
     ...rest
   } = props;
@@ -52,7 +53,7 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
 
   return (
     <FlatList
-      {...{ onRefresh, data, keyExtractor, ...rest }}
+      {...{ onRefresh, data, keyExtractor, onEndReachedThreshold, ...rest }}
       style={[style]}
       renderItem={rowData => {
         const { item } = rowData;

@@ -8,7 +8,6 @@ export { default as Buttons } from "src/components/Buttons";
 // export { IFabRefObject } from "src/components/Buttons/FloatingActionButton";
 export * from "src/components/Buttons";
 export { default as Chip, TChipProps } from "src/components/Chip";
-
 export { debug } from "src/constants/debug";
 export { default as Divider } from "src/components/Divider";
 export { default as DropdownMenu } from "src/components/DropdownMenu";
@@ -41,22 +40,12 @@ export {
   INotification,
   Notifications
 } from "src/components/Notifications";
-
-// export { default as Loader, ILoaderProps } from "src/components/Loader";
-// export { default as Modal, IModalProps } from "src/components/Modal";
-
-// TODO: find out what "Menu" is and if we need it. If not, nuke it
-// export { default as Menu, IMenuProps } from "src/components/Menu";
-// export {
-//   default as RenderBoolean,
-//   IRenderBooleanProps
-// } from "src/components/RenderBoolean";
+export { default as QueryResultList } from "src/components/QueryResultList";
 export { default as Segment, ISegmentProps } from "src/components/Segment";
 export {
   default as Statistic,
   IStatisticProps
 } from "src/components/Statistic";
-// export { default as Tabs, ITabsProps } from "src/components/Tabs";
 export {
   default as Typography,
   ITypographyProps
