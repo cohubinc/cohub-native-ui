@@ -1,8 +1,8 @@
 import lowerFirst from "lodash/lowerFirst";
 import findKey from "lodash/findKey";
 
-import Color from "src/definitions/enums/Color";
 import logError from "src/helpers/logError";
+import { Color } from "@cohubinc/cohub-utils";
 
 // Calculate the inset color by finding the background color then dropping down two color shades
 export function getInsetColor(backgroundColor: Color) {
@@ -13,7 +13,7 @@ export function getInsetColor(backgroundColor: Color) {
     const colorName = lowerFirst(color.split(colorLevel).filter(n => n)[0]);
     const insetColorLevel = parseInt(colorLevel) - 200;
     const insetColorName = `${colorName}${insetColorLevel}`;
-    const insetColorValue = Color[insetColorName as any];
+    const insetColorValue = (Color as any)[insetColorName];
 
     if (!insetColorValue) {
       logError(
