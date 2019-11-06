@@ -13,8 +13,10 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 const __DEV__ = NODE_ENV === "development";
 const dependencies = Object.keys(pkg.dependencies || {});
 const isStoryBuild = NODE_ENV === "storybook";
-const playgroundNativeUI =
-  "./CohubUIPlayground/node_modules/@cohubinc/cohub-native-ui/";
+
+const pathsToCopyBuildToo = ["./CohubUIPlayground"].map(
+  app => `${app}/node_modules/@cohubinc/cohub-native-ui/`
+);
 
 export default {
   input: "src/index.ts",
@@ -43,8 +45,8 @@ export default {
     }),
     commonjs(),
     execute("cp ./dist/index.d.ts ./dist/index.esm.d.ts"),
-    execute(
-      `sleep 2 && cp -R ./dist ${playgroundNativeUI} && cp -R ./package.json ${playgroundNativeUI}`
+    ...pathsToCopyBuildToo.map(path =>
+      execute(`sleep 2 && cp -R ./dist ${path} && cp -R ./package.json ${path}`)
     )
   ]
 };

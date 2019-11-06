@@ -46,10 +46,11 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
 
   const [fetchingMore, setFetchingMore] = useState(false);
 
-  if (data.length && fetchingMore) {
+  const isLoading = loading || fetchingMore;
+
+  if (data.length && isLoading) {
     data = [...data, { isLoaderRow: true }];
   }
-  const isLoading = loading || fetchingMore;
 
   return (
     <FlatList
