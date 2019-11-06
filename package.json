@@ -1,6 +1,6 @@
 {
   "name": "@cohubinc/cohub-native-ui",
-  "version": "1.1.26",
+  "version": "1.2.0",
   "description": "Sharable native UI components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
