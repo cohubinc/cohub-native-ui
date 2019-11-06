@@ -26,14 +26,21 @@ export default function QueryResultList<IItem>(props: IQueryResultList<IItem>) {
     fetchMore
   });
 
-  const payload = data[dataAccessorKey]
+  const payload = data[dataAccessorKey];
 
-  const nodes = payload?.edges?.nodes?.map(({node}: any) => node) || []
+  const nodes =
+    (payload &&
+      payload.edges &&
+      payload.edges.nodes.map(({ node }: any) => node)) ||
+    [];
 
   return (
     <BasicList
       data={nodes as IItem[]}
-      {...{ loading, renderItem, ...rest }}
+      {...{ loading, ...rest }}
+      renderItem={({ item }) => {
+        return null;
+      }}
       onRefresh={refetch}
       onEndReached={onEndReached}
     />
