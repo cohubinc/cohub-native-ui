@@ -1,3 +1,7 @@
+import { NativeModules } from "react-native";
+
+NativeModules.ReactNativeSocketMobile = jest.fn();
+
 jest.mock("react-native-socket-mobile", () => ({
   addEventListener: jest.fn(),
   removeEventListener: jest.fn(),
