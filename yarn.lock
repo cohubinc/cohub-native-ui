@@ -1077,10 +1077,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cohubinc/cohub-utils@1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-utils/-/cohub-utils-1.2.6.tgz#1bdd22719b13e01abb2d01f2a5357e38c4dbbfed"
-  integrity sha512-Ij0ldp8wqSH4m8gYYTxrtb1RntKTnjVZ2cxfDlBgKohig3yr5qhCYn1v0NPdlfhuxIYMs+vGGEM8u2I2kT1r4w==
+"@cohubinc/cohub-utils@1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-utils/-/cohub-utils-1.2.7.tgz#7c3e666b094cd37254e23b81aa661970d012fc11"
+  integrity sha512-wyhBvu95qBfaVW8rLZl8PqQX7lUz9W6h+vQuM3LXoQx0UgxHAg4IsGKl8mt3CqUTfpiOeekRQIbrw+BXuRFGmw==
   dependencies:
     decimal.js-light "2.5.0"
     lodash "4.17.15"

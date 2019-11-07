@@ -15,20 +15,14 @@ import Divider from "src/components/Divider";
 interface ILoaderRow {
   isLoaderRow?: boolean;
 }
-type IOnEndReachedCallback<Resp = void> = (info: {
-  distanceFromEnd: number;
-}) => Resp;
 type IFlatListProps<TItem> = Omit<
   FlatListProps<TItem | ILoaderRow>,
-  "data" | "renderItem" | "onEndReached" | "refreshControl"
+  "data" | "renderItem" | "refreshControl"
 >;
 export interface IBasicListProps<TItem> extends IFlatListProps<TItem> {
   loading?: boolean;
   data?: Array<TItem | ILoaderRow>;
   renderItem: ListRenderItem<TItem>;
-  onEndReached?:
-    | IOnEndReachedCallback
-    | IOnEndReachedCallback<Promise<() => void>>;
 }
 export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
   let {
@@ -44,17 +38,20 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
     ...rest
   } = props;
 
-  const [fetchingMore, setFetchingMore] = useState(false);
-
-  const isLoading = loading || fetchingMore;
-
-  if (data.length && isLoading) {
+  if (data.length && loading) {
     data = [...data, { isLoaderRow: true }];
   }
 
   return (
     <FlatList
-      {...{ onRefresh, data, keyExtractor, onEndReachedThreshold, ...rest }}
+      {...{
+        onRefresh,
+        data,
+        keyExtractor,
+        onEndReachedThreshold,
+        onEndReached,
+        ...rest
+      }}
       style={[style]}
       renderItem={rowData => {
         const { item } = rowData;
@@ -67,19 +64,13 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
       refreshControl={
         <RefreshControl
           tintColor={Color.green300 as any}
-          refreshing={isLoading}
+          refreshing={!!loading}
           onRefresh={onRefresh || undefined}
         />
       }
       ItemSeparatorComponent={() => <Divider />}
-      refreshing={isLoading}
-      onEndReachedThreshold={0.5}
-      onEndReached={async info => {
-        if (!onEndReached) return;
-        setFetchingMore(true);
-        await onEndReached(info);
-        setFetchingMore(false);
-      }}
+      refreshing={loading}
+      onEndReachedThreshold={onEndReachedThreshold}
     />
   );
 }
