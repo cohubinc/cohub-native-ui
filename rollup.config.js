@@ -3,6 +3,7 @@ import { DEFAULT_EXTENSIONS } from "@babel/core";
 import babel from "rollup-plugin-babel";
 import replace from "rollup-plugin-replace";
 import commonjs from "rollup-plugin-commonjs";
+import flow from "rollup-plugin-flow";
 // import docGenPlugin from "babel-plugin-react-docgen-typescript";
 import ttypescript from "ttypescript";
 import execute from "rollup-plugin-execute";
@@ -27,6 +28,7 @@ export default {
   ],
   external: dependencies,
   plugins: [
+    flow(),
     replace({
       __DEV__,
       exclude: "node_modules/**"
