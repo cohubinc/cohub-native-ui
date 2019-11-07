@@ -8,8 +8,8 @@ import {
   View
 } from "react-native";
 import { INotification, INotificationType } from ".";
-import gs from "../../definitions/constants/GlobalStyles";
-import Color, { ContrastColor } from "../../definitions/enums/Color";
+import gs from "src/definitions/constants/GlobalStyles";
+import Color, { ContrastColor } from "src/definitions/enums/Color";
 
 interface IProps {
   notification: INotification;

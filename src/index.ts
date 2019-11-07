@@ -50,3 +50,7 @@ export {
   default as Typography,
   ITypographyProps
 } from "src/components/Typography";
+export {
+  useBarcodeScanner,
+  useSocketMobileConfig
+} from "src/hooks/useBarcodeScanner";

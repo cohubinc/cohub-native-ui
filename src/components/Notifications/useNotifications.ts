@@ -5,7 +5,7 @@ import {
   IRemoveNotificationPayload
 } from ".";
 import emitter from "src/helpers/eventEmitter";
-import IAction from "../../definitions/interfaces/IAction";
+import IAction from "src/definitions/interfaces/IAction";
 import { TimeElapsedTracker, guid } from "@cohubinc/cohub-utils";
 
 export default function useNotifications() {

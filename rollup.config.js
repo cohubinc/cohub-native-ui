@@ -3,6 +3,7 @@ import { DEFAULT_EXTENSIONS } from "@babel/core";
 import babel from "rollup-plugin-babel";
 import replace from "rollup-plugin-replace";
 import commonjs from "rollup-plugin-commonjs";
+import flow from "rollup-plugin-flow";
 // import docGenPlugin from "babel-plugin-react-docgen-typescript";
 import ttypescript from "ttypescript";
 import execute from "rollup-plugin-execute";
@@ -29,6 +30,7 @@ export default {
   ],
   external: dependencies,
   plugins: [
+    flow(),
     replace({
       __DEV__,
       exclude: "node_modules/**"
@@ -41,7 +43,7 @@ export default {
       babelrc: false,
       extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
       exclude: "node_modules/**",
-      presets: ["@babel/preset-react"]
+      presets: ["@babel/preset-react", "@babel/preset-flow"]
     }),
     commonjs(),
     execute("cp ./dist/index.d.ts ./dist/index.esm.d.ts"),
