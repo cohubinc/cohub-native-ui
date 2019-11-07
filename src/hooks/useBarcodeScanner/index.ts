@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import emitter from "src/helpers/eventEmitter";
 import useSocketMobile from "./useSocketMobile";
-import {
-  IBarcodeScanner,
-  ScannerStatus,
-  ISocketMobileConfig
-} from "./IBarcodeScanner";
+import { IBarcodeScanner, ScannerStatus } from "./IBarcodeScanner";
 
 interface IResult {
   scanner: IBarcodeScanner | null;
@@ -19,25 +15,11 @@ let _result: IResult = {
   busy: false
 };
 
-type OnBarcodeScannedFn = (code: string) => void;
-
-let _socketMobileConfig: ISocketMobileConfig | undefined;
-
-export function useSocketMobileConfig(socketMobileConfig: ISocketMobileConfig) {
-  if (!_socketMobileConfig) {
-    _socketMobileConfig = socketMobileConfig;
-  }
-}
+type OnBarcodeScannedFn = (code: string) => Promise<void> | void;
 
 export default function useBarcodeScanner(
   onBarcodeScanned?: OnBarcodeScannedFn
 ): IResult {
-  if (!_socketMobileConfig) {
-    throw new Error(
-      "Socket Mobile Config must be initialized. Use 'useSocketMobileConfig' before calling this hook"
-    );
-  }
-
   useEffect(() => {
     if (onBarcodeScanned) {
       emitter.on("barcodeScanned", onBarcodeScanned);
@@ -50,16 +32,12 @@ export default function useBarcodeScanner(
     };
   }, [onBarcodeScanned]);
 
-  const [result, setResult] = useState(_result);
-
-  useEffect(() => {
-    setResult(_result);
-  }, [_result.status, _result.scanner && _result.scanner.name, _result.busy]);
+  const [result, setResult] = useState<IResult>(_result);
 
   // Connect and use SocketMobile Scanner
-  const socketMobile = useSocketMobile(_socketMobileConfig);
+  const socketMobile = useSocketMobile();
   useEffect(() => {
-    _result = socketMobile;
+    setResult(() => socketMobile);
   }, [
     socketMobile.status,
     socketMobile.scanner && socketMobile.scanner.name,

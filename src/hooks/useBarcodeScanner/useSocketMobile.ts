@@ -9,14 +9,26 @@ import {
 import emitter from "src/helpers/eventEmitter";
 import { showErrorNotification } from "src/components/Notifications";
 
-export default function useSocketMobile({
-  bundleId,
-  appKey,
-  developerId
-}: ISocketMobileConfig) {
+let listeners = 0;
+
+let _socketMobileConfig: ISocketMobileConfig | undefined;
+
+export function useSocketMobileConfig(socketMobileConfig: ISocketMobileConfig) {
+  if (!_socketMobileConfig) {
+    _socketMobileConfig = socketMobileConfig;
+  }
+}
+
+export default function useSocketMobile() {
   const [status, setStatus] = useState(ScannerStatus.Disconnected);
   const [busy, setBusy] = useState(false);
   const [scanner, setScanner] = useState<IBarcodeScanner | null>(null);
+
+  if (!_socketMobileConfig) {
+    throw new Error(
+      "Socket Mobile Config must be initialized. Use 'useSocketMobileConfig' before calling this hook"
+    );
+  }
 
   useEffect(() => {
     initStatus();
@@ -28,73 +40,67 @@ export default function useSocketMobile({
   }, []);
 
   const initStatus = async () => {
-    const socketMobileStatus = await SocketMobile.updateStatusFromDevices();
-
-    if (socketMobileStatus !== STATUS_WAITING) {
+    const newStatus = await SocketMobile.updateStatusFromDevices();
+    if (newStatus !== STATUS_WAITING) {
       setStatus(ScannerStatus.Connected);
-      updateScanner(socketMobileStatus);
+      setScanner({
+        name: newStatus,
+        type: BarcodeScannerType.SocketMobile
+      });
     }
   };
 
   const startListening = async () => {
+    listeners = listeners + 1;
+
     setListeners();
     setBusy(true);
 
     try {
-      await SocketMobile.start({
-        bundleId,
-        developerId,
-        appKey
-      });
+      await SocketMobile.start(_socketMobileConfig!);
     } catch (e) {
       showErrorNotification({ message: e.message });
     }
   };
 
   const stopListening = async () => {
-    setBusy(true);
+    listeners = listeners - 1;
 
-    try {
-      await SocketMobile.stop();
-    } catch (e) {
-      showErrorNotification({ message: e.message });
-    } finally {
-      SocketMobile.clearAllListeners();
-      emitter.removeAllListeners("barcodeScanned");
-      setBusy(false);
-    }
-  };
-
-  const updateScanner = (scannerName: string | null) => {
-    if (scannerName) {
-      const newScanner: IBarcodeScanner = {
-        name: scannerName,
-        type: BarcodeScannerType.SocketMobile
-      };
-
-      setScanner(newScanner);
-    } else {
-      setScanner(scanner);
+    if (listeners === 0) {
+      try {
+        await SocketMobile.stop();
+      } catch (e) {
+        showErrorNotification({ message: e.message });
+      } finally {
+        SocketMobile.clearAllListeners();
+        setBusy(false);
+      }
     }
   };
 
   const setListeners = () => {
-    SocketMobile.setDeviceStatusListener(async updatedStatus => {
-      if (updatedStatus === "connected") {
+    SocketMobile.setDeviceStatusListener(async (newStatus: string) => {
+      if (newStatus === "connected") {
         setStatus(ScannerStatus.Connected);
         setBusy(false);
 
-        const newScanner = await SocketMobile.updateStatusFromDevices();
-        updateScanner(newScanner);
+        const name = await SocketMobile.updateStatusFromDevices();
+        setScanner({
+          name,
+          type: BarcodeScannerType.SocketMobile
+        });
       } else {
         setStatus(ScannerStatus.Disconnected);
-        updateScanner(null);
+        setScanner(null);
+        setBusy(false);
       }
     });
 
-    SocketMobile.setDataListener(({ data }) => {
-      emitter.emit("barcodeScanned", data);
-    });
+    if (listeners === 1) {
+      SocketMobile.setDataListener(({ data }: { data: string }) => {
+        emitter.emit("barcodeScanned", data);
+      });
+    }
   };
 
   return { busy, status, scanner };
