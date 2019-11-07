@@ -117,7 +117,6 @@
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-commonjs": "10.0.2",
     "rollup-plugin-execute": "1.1.1",
-    "rollup-plugin-flow": "^1.1.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "2.2.0",
     "rollup-plugin-typescript2": "0.22.1",

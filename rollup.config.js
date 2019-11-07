@@ -3,7 +3,6 @@ import { DEFAULT_EXTENSIONS } from "@babel/core";
 import babel from "rollup-plugin-babel";
 import replace from "rollup-plugin-replace";
 import commonjs from "rollup-plugin-commonjs";
-import flow from "rollup-plugin-flow";
 // import docGenPlugin from "babel-plugin-react-docgen-typescript";
 import ttypescript from "ttypescript";
 import execute from "rollup-plugin-execute";
@@ -12,7 +11,9 @@ import pkg from "./package.json";
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const __DEV__ = NODE_ENV === "development";
-const dependencies = Object.keys(pkg.dependencies || {});
+const dependencies = Object.keys(
+  { ...pkg.dependencies, ...pkg.devDependencies, ...pkg.peerDependencies } || {}
+);
 const isStoryBuild = NODE_ENV === "storybook";
 
 const pathsToCopyBuildToo = ["./CohubUIPlayground"].map(
@@ -30,7 +31,6 @@ export default {
   ],
   external: dependencies,
   plugins: [
-    flow(),
     replace({
       __DEV__,
       exclude: "node_modules/**"
@@ -43,7 +43,7 @@ export default {
       babelrc: false,
       extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
       exclude: "node_modules/**",
-      presets: ["@babel/preset-react", "@babel/preset-flow"]
+      presets: ["@babel/preset-react"]
     }),
     commonjs(),
     execute("cp ./dist/index.d.ts ./dist/index.esm.d.ts"),

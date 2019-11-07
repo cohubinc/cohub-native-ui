@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import SoundPlayer from "react-native-sound-player";
 
-export default function useSoundPlayer(
+export function useSoundPlayer(
   onFinishPlaying = () => null,
   onFinishLoading = () => null,
   onFinishLoadingFile = () => null,
