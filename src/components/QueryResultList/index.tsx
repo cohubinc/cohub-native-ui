@@ -26,7 +26,7 @@ export default function QueryResultList<IItem>(props: IQueryResultList<IItem>) {
     fetchMore
   });
 
-  const payload = data[dataAccessorKey];
+  const payload = data && data[dataAccessorKey];
 
   const nodes =
     (payload && payload.edges && payload.edges.map(({ node }: any) => node)) ||
