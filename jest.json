@@ -11,6 +11,7 @@
   "testPathIgnorePatterns": ["\\.snap$", "<rootDir>/node_modules/"],
   "cacheDirectory": ".jest/cache",
   "setupFilesAfterEnv": [
-    "<rootDir>/node_modules/@testing-library/react-native/cleanup-after-each"
+    "<rootDir>/node_modules/@testing-library/react-native/cleanup-after-each",
+    "<rootDir>/testSetup.js"
   ]
 }
