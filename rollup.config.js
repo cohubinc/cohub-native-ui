@@ -39,7 +39,7 @@ export default {
       babelrc: false,
       extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
       exclude: "node_modules/**",
-      presets: ["@babel/preset-react"]
+      presets: ["@babel/preset-react", "@babel/preset-flow"]
     }),
     commonjs(),
     execute("cp ./dist/index.d.ts ./dist/index.esm.d.ts"),
