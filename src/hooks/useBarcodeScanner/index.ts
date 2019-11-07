@@ -9,15 +9,11 @@ interface IResult {
   busy: boolean;
 }
 
-let _result: IResult = {
-  scanner: null,
-  status: ScannerStatus.Disconnected,
-  busy: false
-};
-
 type OnBarcodeScannedFn = (code: string) => Promise<void> | void;
 
-export default function useBarcodeScanner(
+export { useSocketMobileConfig } from "./useSocketMobile";
+
+export function useBarcodeScanner(
   onBarcodeScanned?: OnBarcodeScannedFn
 ): IResult {
   useEffect(() => {
@@ -32,12 +28,16 @@ export default function useBarcodeScanner(
     };
   }, [onBarcodeScanned]);
 
-  const [result, setResult] = useState<IResult>(_result);
+  const [result, setResult] = useState<IResult>({
+    scanner: null,
+    status: ScannerStatus.Disconnected,
+    busy: false
+  });
 
   // Connect and use SocketMobile Scanner
   const socketMobile = useSocketMobile();
   useEffect(() => {
-    setResult(() => socketMobile);
+    setResult(socketMobile);
   }, [
     socketMobile.status,
     socketMobile.scanner && socketMobile.scanner.name,
