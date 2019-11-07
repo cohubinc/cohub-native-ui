@@ -13,9 +13,8 @@ interface IQueryResultList<IItem> extends IListProps<IItem> {
 }
 export default function QueryResultList<IItem>(props: IQueryResultList<IItem>) {
   const {
-    queryResult: { fetchMore, variables, data, loading, refetch },
+    queryResult: { fetchMore, variables, data, refetch },
     dataAccessorKey,
-    renderItem,
     ...rest
   } = props;
 
@@ -34,8 +33,8 @@ export default function QueryResultList<IItem>(props: IQueryResultList<IItem>) {
 
   return (
     <BasicList
+      {...rest}
       data={nodes as IItem[]}
-      {...{ loading, renderItem, ...rest }}
       onRefresh={refetch}
       onEndReached={onEndReached}
     />

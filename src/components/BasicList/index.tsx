@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FlatList,
   FlatListProps,
@@ -29,12 +29,10 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
     keyExtractor = defaultKeyExtractor,
     data = [],
     renderItem,
-    onEndReached,
     loading,
     onRefresh,
-    ItemSeparatorComponent,
+    ItemSeparatorComponent = () => <Divider />,
     onEndReachedThreshold = 0.5,
-    style,
     ...rest
   } = props;
 
@@ -45,14 +43,12 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
   return (
     <FlatList
       {...{
-        onRefresh,
         data,
         keyExtractor,
         onEndReachedThreshold,
-        onEndReached,
+        ItemSeparatorComponent,
         ...rest
       }}
-      style={[style]}
       renderItem={rowData => {
         const { item } = rowData;
         if ("isLoaderRow" in item && item.isLoaderRow) {
@@ -65,12 +61,10 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
         <RefreshControl
           tintColor={Color.green300 as any}
           refreshing={!!loading}
-          onRefresh={onRefresh || undefined}
+          onRefresh={props.onRefresh || undefined}
         />
       }
-      ItemSeparatorComponent={() => <Divider />}
       refreshing={loading}
-      onEndReachedThreshold={onEndReachedThreshold}
     />
   );
 }
