@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   FlatList,
   FlatListProps,
@@ -11,6 +11,9 @@ import { Color } from "@cohubinc/cohub-utils";
 
 import Loader from "src/components/Loader";
 import Divider from "src/components/Divider";
+import eventEmitter from "src/helpers/eventEmitter";
+
+const SCROLL_TO_TOP_EVENT = "cohub-basic-list-scroll-to-top"
 
 interface ILoaderRow {
   isLoaderRow?: boolean;
@@ -36,12 +39,26 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
     ...rest
   } = props;
 
+  const flatListRef = useRef<FlatList<any>>(null)
+
+  useEffect(() => {
+    function scrollToTop() {
+      flatListRef.current?.scrollToOffset({ animated: true, offset: 0 });
+    }
+    eventEmitter.on("cohub-basic-list-scroll-to-top", scrollToTop )
+
+    return () => {
+      eventEmitter.removeListener("cohub-basic-list-scroll-to-top", scrollToTop )
+    }
+  }, [])
+
   if (data.length && loading) {
     data = [...data, { isLoaderRow: true }];
   }
 
   return (
     <FlatList
+      ref={flatListRef}
       {...{
         data,
         keyExtractor,
@@ -90,4 +107,12 @@ type IRowItem<TItem> = {
 
 function defaultKeyExtractor<TItem>(item: IRowItem<TItem>, index: number) {
   return (item && item.id ? item.id : index).toString();
+}
+
+
+/**
+ * Scroll BasicList and or QueryResultList to top
+ */
+export function scrollListToTop() {
+  eventEmitter.emit(SCROLL_TO_TOP_EVENT)
 }

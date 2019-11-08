@@ -1,7 +1,8 @@
 export { default as AnimateHeight } from "src/components/AnimateHeight";
 export {
   default as BasicList,
-  IBasicListProps
+  IBasicListProps,
+  scrollListToTop
 } from "src/components/BasicList";
 export { default as BoxShadow } from "src/definitions/enums/BoxShadow";
 export { default as Buttons } from "src/components/Buttons";
