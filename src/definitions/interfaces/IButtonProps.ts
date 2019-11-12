@@ -7,6 +7,7 @@ import {
 import { IColor } from "@cohubinc/cohub-utils";
 
 interface IButtonProps extends TouchableOpacityProps {
+  elevationLevel?: 0 | 3;
   label: string | any;
   labelStyle?: StyleProp<TextStyle>;
   color?: IColor;

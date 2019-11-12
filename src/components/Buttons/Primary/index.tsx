@@ -6,6 +6,7 @@ import {
   Animated,
   View
 } from "react-native";
+import styled from "styled-components/native";
 
 import Colors from "../../../definitions/enums/Color";
 import gs from "../../../definitions/constants/GlobalStyles";
@@ -13,14 +14,16 @@ import BasicButton from "../Base";
 import IButtonProps from "../../../definitions/interfaces/IButtonProps";
 
 export default class Primary extends BasicButton {
-  static defaultProps: any = {
-    color: Colors.primaryGreen,
+  static defaultProps = {
+    color: "#EFF7EE" as any,
     raised: true,
-    animated: true
+    animated: true,
+    elevationLevel: 0
   };
 
   render() {
-    const { labelStyle, label, loading } = this.props;
+    const { labelStyle, label, loading, elevationLevel } = this.props;
+
     const styles = makeStyles(this.props);
 
     const { style, ...restOfProps } = this.props;
@@ -34,22 +37,14 @@ export default class Primary extends BasicButton {
         onLayout={this.onLayout}
         {...restOfProps}
       >
-        <Animated.View
-          style={[
-            styles.button,
-            // generateBoxShadow(this.props, {
-            //   highContrast:
-            //     highShadowContrast === undefined
-            //       ? color === Colors.primaryGreen
-            //       : highShadowContrast
-            // }),
-            this._pulseStyle
-          ]}
+        <PulseView
+          elevated={!!elevationLevel}
+          style={[styles.button, this._pulseStyle]}
         >
           <Text style={[gs.regularBodyText, styles.label, labelStyle]}>
             {label}
           </Text>
-        </Animated.View>
+        </PulseView>
         {loading && (
           <View style={this._lineContainerStyle}>
             <Animated.View style={[this._lineStyle, { bottom: 0 }]} />
@@ -60,18 +55,22 @@ export default class Primary extends BasicButton {
   }
 }
 
+const PulseView = styled(Animated.View)<{ elevated: boolean }>`
+  box-shadow: ${p => (p.elevated ? "0px 4px 10px rgba(0, 0, 0, 0.2)" : "none")};
+`;
+
 const height = 40;
 
-const makeStyles = (props: IButtonProps) =>
+const makeStyles = (p: IButtonProps) =>
   StyleSheet.create({
     button: {
       height,
       paddingHorizontal: 15,
-      backgroundColor: Colors.primaryGreen as any,
+      backgroundColor: p.backgroundColor || (Colors.primaryGreen as any),
       borderRadius: 4,
       justifyContent: "center",
       width: "100%",
-      opacity: props.disabled ? 0.3 : 1.0,
+      opacity: p.disabled ? 0.3 : 1.0,
       flex: 1,
       alignItems: "center"
     },
@@ -83,9 +82,8 @@ const makeStyles = (props: IButtonProps) =>
       flex: 1
     },
     label: {
-      // fontFamily: "Akkurat-Mono",
       textAlign: "center",
-      color: "#EFF7EE",
+      color: p.color,
       marginTop: 4
     },
     loader: {

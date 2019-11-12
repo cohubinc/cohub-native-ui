@@ -13,6 +13,7 @@ import TButtonProps from "src/definitions/interfaces/IButtonProps";
 import { IColor } from "@cohubinc/cohub-utils";
 
 import BasicButton from "../Base";
+import styled from "styled-components/native";
 
 const defaultHeight = 40;
 
@@ -22,6 +23,7 @@ export interface IProps extends TButtonProps {
   raised?: boolean;
   textColor?: IColor;
   outlineColor?: IColor;
+  elevationLevel: 0 | 3;
 }
 
 export default class Outline extends BasicButton<IProps> {
@@ -35,7 +37,14 @@ export default class Outline extends BasicButton<IProps> {
   };
 
   render() {
-    const { bordered, dark, color, style, ...restOfProps } = this.props;
+    const {
+      bordered,
+      dark,
+      color,
+      style,
+      elevationLevel,
+      ...restOfProps
+    } = this.props;
     const styles = makeStyles(this.props);
 
     return (
@@ -47,15 +56,9 @@ export default class Outline extends BasicButton<IProps> {
         style={[{ height: defaultHeight }, style]}
         {...restOfProps}
       >
-        <Animated.View
-          style={[
-            styles.button,
-            // generateBoxShadow(this.props, {
-            //   matchColor: !!bordered,
-            //   insetShadow: !bordered && !dark
-            // }),
-            this._pulseStyle
-          ]}
+        <PulseView
+          elevated={!!elevationLevel}
+          style={[styles.button, this._pulseStyle]}
         >
           <Text
             style={[gs.regularBodyText, styles.label, this.props.labelStyle]}
@@ -70,11 +73,15 @@ export default class Outline extends BasicButton<IProps> {
               />
             </View>
           )}
-        </Animated.View>
+        </PulseView>
       </TouchableOpacity>
     );
   }
 }
+
+const PulseView = styled(Animated.View)<{ elevated: boolean }>`
+  box-shadow: ${p => (p.elevated ? "0px 4px 10px rgba(0, 0, 0, 0.2)" : "none")};
+`;
 
 const makeStyles = (props: IProps) => {
   const { bordered, dark, color, outlineColor, textColor } = props;
