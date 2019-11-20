@@ -120,6 +120,7 @@ export default function Basic(props: IBasicInputProps) {
         )}
         <TextInput
           {...{ onBlur, onFocus, placeholder, ...nativeProps }}
+          placeholderTextColor={Color.grey700}
           accessibilityLabel={accessibilityLabelText}
           autoCapitalize="none"
           autoCorrect={false}
