@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, StyleProp, ViewStyle } from "react-native";
 
-import LoaderUI from "./Loader";
+import LineLoader from "./LineLoader";
+import LoaderUi from "./LoaderUi";
 
 interface IProps {
   style?: StyleProp<ViewStyle>;
@@ -13,8 +14,10 @@ export default function Loader(props: IProps) {
   const { style, show = true, size } = props;
   if (!show) return null;
 
-  return <LoaderUI size={size} style={[styles.container, style]} />;
+  return <LoaderUi size={size} style={[styles.container, style]} />;
 }
+
+Loader.Line = LineLoader;
 
 const styles = StyleSheet.create({
   container: {

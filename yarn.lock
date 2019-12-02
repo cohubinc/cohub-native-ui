@@ -2376,10 +2376,10 @@
     pretty-format "^24.9.0"
     wait-for-expect "^3.0.0"
 
-"@testing-library/jest-dom@^4.1.0":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-4.1.2.tgz#e523047191379abd67cf0896dfd93cabc7e33eab"
-  integrity sha512-fNf2rCfu0dBD4DmpzqR2ibsaFlFojrWI/EuU8LLqv73CzFIMvT2RMq88p5JVRe4DfeNj0mu0MQ5FTG4mQ0qFaA==
+"@testing-library/jest-dom@^4.2.4":
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-4.2.4.tgz#00dfa0cbdd837d9a3c2a7f3f0a248ea6e7b89742"
+  integrity sha512-j31Bn0rQo12fhCWOUWy9fl7wtqkp7In/YP2p5ZFyRuiiB9Qs3g+hS4gAmDWONbAHcRmVooNJ5eOHQDCOmUFXHg==
   dependencies:
     "@babel/runtime" "^7.5.1"
     chalk "^2.4.1"
@@ -2391,18 +2391,18 @@
     pretty-format "^24.0.0"
     redent "^3.0.0"
 
-"@testing-library/react-native@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-4.1.0.tgz#5f0f6e808bbdb13ad62611861ab2b1c83123c8f9"
-  integrity sha512-hXTLHdCu0b4o2+GyBAc0BJlMTyTJc/iVT5Vo9HZZ0G721mwP6bCHC1kahOQrnhYsyA21sR6E2p0hJMR2DAaP3w==
+"@testing-library/react-native@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-5.0.1.tgz#7edd21eef10aa9d2738e601964c6ca39014f8644"
+  integrity sha512-sS7dO8ws5GyQ7r2X6dw3Mj+KUjrY/9Obr+9zyrph6hwz5DDntrCvCz+NSyWtwIPeLsr7pRj+BWWsw8uYYFUKJg==
   dependencies:
     pretty-format "^24.9.0"
     wait-for-expect "^3.0.0"
 
-"@testing-library/react@^9.1.4":
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-9.3.0.tgz#1dabf46d1ea018a1c89acecc0e7b86859b34c0f8"
-  integrity sha512-FTPCwmLo0tLtP50Au2uGz4/N1BcJTnBx4StDVHZ47zPMEj1/+J2rk/RTj8SLoHRKWCtcmhN4wRmudOXQNP29/w==
+"@testing-library/react@^9.3.2":
+  version "9.3.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-9.3.2.tgz#418000daa980dafd2d9420cc733d661daece9aa0"
+  integrity sha512-J6ftWtm218tOLS175MF9eWCxGp+X+cUXCpkPIin8KAXWtyZbr9CbqJ8M8QNd6spZxJDAGlw+leLG4MJWLlqVgg==
   dependencies:
     "@babel/runtime" "^7.6.0"
     "@testing-library/dom" "^6.3.0"
