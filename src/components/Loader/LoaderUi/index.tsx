@@ -12,6 +12,7 @@ import { Color } from "@cohubinc/cohub-utils";
 interface IProps {
   style?: StyleProp<ViewStyle>;
   size?: number;
+  accessibilityLabel?: string;
 }
 
 export default class Loader extends React.Component<IProps> {
@@ -44,7 +45,7 @@ export default class Loader extends React.Component<IProps> {
   };
 
   render() {
-    const { size = 40, style } = this.props;
+    const { size = 40, style, accessibilityLabel = "circle" } = this.props;
     const circleStyle = { width: size, height: size, borderRadius: size / 2 };
 
     const solid = {
@@ -70,7 +71,7 @@ export default class Loader extends React.Component<IProps> {
     };
 
     return (
-      <View style={[styles.container, style]}>
+      <View testID="circle-loader" style={[styles.container, style]}>
         <Animated.View style={[circleStyle, styles.translucent, translucent]} />
         <Animated.View style={[circleStyle, styles.solid, solid]} />
       </View>
