@@ -7,8 +7,12 @@ interface IProps {
   show: boolean;
   width?: number | string;
   style?: StyleProp<ViewStyle>;
+  /**
+   * The delay (in milliseconds) used when showing the animation
+   */
+  delay?: number;
 }
-export default function LineLoader({ show, style, width }: IProps) {
+export default function LineLoader({ show, style, width, delay = 0 }: IProps) {
   const animation = useRef(new Animated.Value(0)).current;
   const loop = useRef(
     Animated.loop(
@@ -19,9 +23,20 @@ export default function LineLoader({ show, style, width }: IProps) {
       })
     )
   ).current;
+
+  const thisShow = useRef(show);
+  thisShow.current = show;
+
   useEffect(() => {
-    show ? loop.start() : loop.stop();
+    function start() {
+      setTimeout(() => {
+        thisShow.current && loop.start();
+      }, delay);
+    }
+
+    show ? start() : loop.stop();
   }, [show]);
+
   const [viewWidth, setViewWidth] = useState<number>(0);
 
   let animationStyle: null | { [style: string]: any } = {
