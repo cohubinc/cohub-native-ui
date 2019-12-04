@@ -6,7 +6,8 @@ import {
   ViewStyle,
   View,
   TextInputProps,
-  TextStyle
+  TextStyle,
+  ActivityIndicator
 } from "react-native";
 import Color, { ContrastColor } from "src/definitions/enums/Color";
 import Typography, { ITypographyProps } from "src/components/Typography";
@@ -27,6 +28,7 @@ export interface IBasicInputProps extends INativeProps {
   style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
   icon?: Omit<IIconProps, "size">;
+  loading?: boolean;
   iconPosition?: "left" | "right";
   inputRef?: React.RefObject<TextInput>;
   /**
@@ -56,6 +58,7 @@ export default function Basic(props: IBasicInputProps) {
     label,
     accessibilityLabel,
     icon,
+    loading = false,
     iconPosition = "left",
     size = "small",
     inverted,
@@ -105,7 +108,8 @@ export default function Basic(props: IBasicInputProps) {
           flexDirection: iconRight ? "row-reverse" : "row"
         }}
       >
-        {icon && (
+        {loading && <ActivityIndicator color={Color.primaryGreen} />}
+        {!loading && icon && (
           <Icon
             name={icon.name}
             size={iconSize}
