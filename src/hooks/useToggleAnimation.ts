@@ -15,11 +15,12 @@ interface IUseToggleAnimationOpts {
   to: IPosition;
   duration?: number;
   delay?: number;
+  useNativeDriver?: boolean;
 }
 export function useToggleAnimation(
   opts: IUseToggleAnimationOpts
 ): [Animated.AnimatedInterpolation, (state?: boolean) => void] {
-  const { from, to, duration = 300, delay } = opts;
+  const { from, to, duration = 300, delay, useNativeDriver = true } = opts;
 
   const [atSecondPosition, setAtSecondPosition] = useState(false);
   const stepAnimation = useRef(new Animated.Value(0)).current;
@@ -27,7 +28,7 @@ export function useToggleAnimation(
   useEffect(() => {
     Animated.timing(stepAnimation, {
       toValue: atSecondPosition ? 1 : 0,
-      useNativeDriver: true,
+      useNativeDriver,
       duration,
       delay
     }).start();
