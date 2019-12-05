@@ -56,3 +56,4 @@ export {
   useSocketMobileConfig
 } from "src/hooks/useBarcodeScanner";
 export { useSoundPlayer } from "src/hooks/useSoundPlayer";
+export { useToggleAnimation } from "src/hooks/useToggleAnimation";
