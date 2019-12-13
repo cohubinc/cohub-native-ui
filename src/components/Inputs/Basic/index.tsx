@@ -9,7 +9,7 @@ import {
   TextStyle,
   ActivityIndicator
 } from "react-native";
-import Color, { ContrastColor } from "src/definitions/enums/Color";
+import Color from "src/definitions/enums/Color";
 import Typography, { ITypographyProps } from "src/components/Typography";
 import Icon, { IIconProps } from "src/components/Icon";
 import Divider from "src/components/Divider";
@@ -57,7 +57,6 @@ export default function Basic(props: IBasicInputProps) {
     style,
     label,
     accessibilityLabel,
-    icon,
     loading = false,
     iconPosition = "left",
     size = "small",
@@ -68,10 +67,19 @@ export default function Basic(props: IBasicInputProps) {
     inputRef,
     ...nativeProps
   } = props;
+  let { icon } = props;
 
   const { onChange, onBlur, onFocus, value } = input || ({} as any);
 
   const accessibilityLabelText = accessibilityLabel || label || placeholder;
+
+  const showError = meta?.error && meta?.touched;
+
+  let borderColor = Color.lightGrey;
+  if (showError) {
+    borderColor = inverted ? Color.red200 : Color.red400;
+    icon = { name: "error", color: Color.red400 };
+  }
 
   if (!accessibilityLabelText) {
     console.warn(
@@ -81,7 +89,7 @@ export default function Basic(props: IBasicInputProps) {
 
   const fontSize = typeSizeMap[size];
   const iconSize = iconSizeMap[size];
-  const iconRight = iconPosition === "right";
+  const iconRight = showError || iconPosition === "right";
   const iconMargin = 13;
 
   return (
@@ -145,10 +153,10 @@ export default function Basic(props: IBasicInputProps) {
         />
       </View>
       <Divider
+        color={borderColor}
         style={{
           marginVertical: 0,
           marginTop: dividerMarginTopMap[size],
-          borderColor: inverted ? Color.trueWhite : Color.lightGrey,
           opacity: inverted ? 0.4 : 1
         }}
       />
