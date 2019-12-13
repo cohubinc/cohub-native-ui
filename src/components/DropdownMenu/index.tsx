@@ -12,7 +12,7 @@ import Font from "src/definitions/enums/Font";
 import Typography from "src/components/Typography";
 import Icon from "src/components/Icon";
 import styled from "styled-components/native";
-import { useToggleAnimation } from "src/hooks/useToggleAnimation";
+import { useTwoStepAnimation } from "src/hooks/useTwoStepAnimation";
 import BoxShadow from "src/definitions/enums/BoxShadow";
 import AnimateHeight from "src/components/AnimateHeight";
 import { IColor } from "@cohubinc/cohub-utils";
@@ -61,22 +61,22 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
 
   const [expanded, setExpanded] = useState(false);
 
-  const [rotateAnimation, setRotateAnimation] = useToggleAnimation({
-    from: "-90deg",
-    to: "0deg"
+  const [rotateAnimation, setRotateAnimation] = useTwoStepAnimation({
+    positionOne: "-90deg",
+    positionTwo: "0deg"
   });
 
-  const [shrinkAnimation, setShrinkAnimation] = useToggleAnimation({
-    from: 1,
-    to: 0.9
+  const [shrinkAnimation, setShrinkAnimation] = useTwoStepAnimation({
+    positionOne: 1,
+    positionTwo: 0.9
   });
 
   useEffect(() => {
-    setShrinkAnimation(shrink);
+    setShrinkAnimation(shrink ? 2 : 1);
   }, [shrink]);
 
   useEffect(() => {
-    setRotateAnimation(expanded);
+    setRotateAnimation(expanded ? 2 : 1);
   }, [expanded]);
 
   const selected = options.find(opt => opt.value === value);
