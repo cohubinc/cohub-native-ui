@@ -104,6 +104,7 @@ export default function Money({ input, style, textProps, label }: IProps) {
       }}
       onSubmitEditing={onSubmitEditing}
       keyboardType="decimal-pad"
+      returnKeyType="done"
       selectTextOnFocus
       inputRef={inputRef}
       inputStyle={[style]}
