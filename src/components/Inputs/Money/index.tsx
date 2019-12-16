@@ -9,31 +9,26 @@ import {
 } from "react-native";
 
 import Basic from "../Basic";
+import { FieldRenderProps } from "react-final-form";
 
 const FORMAT = "$ 0,0.00[000]";
 
+type IFieldProps = FieldRenderProps<string, any>;
+
 export interface IProps {
-  value: number;
-  onChange?: (value: string) => any;
-  onBlur?: (arg: any) => void;
-  onFocus?: (arg: any) => void;
+  placeholder?: string;
+  label?: string;
+  input?: Partial<IFieldProps["input"]>;
+  meta?: Partial<IFieldProps["meta"]>;
   style?: any;
   textProps?: TextInputProps;
-  label?: string;
 }
 
-export default function Money({
-  value: val,
-  onChange,
-  onBlur,
-  onFocus,
-  style,
-  textProps,
-  label
-}: IProps) {
-  const input = useRef<TextInput | null>(null);
+export default function Money({ input, style, textProps, label }: IProps) {
+  const inputRef = useRef<TextInput | null>(null);
 
-  const value = (val || "0").toString();
+  const value = (input?.value || "0").toString();
+  const { onChange, onBlur, onFocus } = input || {};
 
   const [formattedValue, setFormattedValue] = useState(
     numeral(value).format(FORMAT)
@@ -43,7 +38,7 @@ export default function Money({
   );
 
   useEffect(() => {
-    if (val || 0 >= 0) {
+    if (input?.value || 0 >= 0) {
       const stringVal = removeFormatting(value.toString());
       const numericVal = new Decimal(stringVal).toNumber();
 
@@ -56,7 +51,7 @@ export default function Money({
         }
       }
     }
-  }, [val]);
+  }, [input?.value]);
 
   const blurred = (evt: any) => {
     const stringValue = removeFormatting(formattedValue);
@@ -110,7 +105,7 @@ export default function Money({
       onSubmitEditing={onSubmitEditing}
       keyboardType="decimal-pad"
       selectTextOnFocus
-      inputRef={input}
+      inputRef={inputRef}
       inputStyle={[style]}
       {...textProps}
     />
