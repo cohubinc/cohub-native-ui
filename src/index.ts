@@ -1,4 +1,5 @@
 export { default as AnimateHeight } from "src/components/AnimateHeight";
+export { Alert } from "src/components/Alert";
 export {
   default as BasicList,
   IBasicListProps,
