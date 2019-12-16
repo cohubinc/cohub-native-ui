@@ -42,7 +42,8 @@ export function Alert(props: IAlertProps) {
   const AlertText = ({ children }: { children: string }) => (
     <Typography.Small color={color}>{children}</Typography.Small>
   );
-  function renderChildren() {
+
+  const body = (function renderChildren() {
     if (typeof message === "string") {
       return <AlertText>{message}</AlertText>;
     }
@@ -57,7 +58,7 @@ export function Alert(props: IAlertProps) {
     }
 
     return message;
-  }
+  })();
 
   return (
     <View
@@ -69,13 +70,14 @@ export function Alert(props: IAlertProps) {
           paddingVertical: 16,
           paddingHorizontal: 20,
           borderRadius: 4,
-          backgroundColor
+          backgroundColor,
+          opacity: body ? 1 : 0
         },
         style
       ]}
       {...rest}
     >
-      <View>{renderChildren()}</View>
+      <View>{body}</View>
     </View>
   );
 }
