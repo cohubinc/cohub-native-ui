@@ -23,7 +23,7 @@ export interface INotification {
   id?: string;
   title?: string;
   type?: INotificationType;
-  message: React.ReactNode;
+  message: React.ReactNode | string[];
   position?: "top" | "bottom";
   duration?: number;
   isActionRequired?: boolean;

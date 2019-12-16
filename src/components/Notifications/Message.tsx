@@ -1,15 +1,16 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, ReactNode } from "react";
 import {
   Animated,
   StyleSheet,
-  Text,
   TouchableOpacity,
   Easing,
   View
 } from "react-native";
-import { INotification, INotificationType } from ".";
+
 import gs from "src/definitions/constants/GlobalStyles";
 import Color, { ContrastColor } from "src/definitions/enums/Color";
+import { INotification, INotificationType } from ".";
+import Typography from "src/components/Typography";
 
 interface IProps {
   notification: INotification;
@@ -17,6 +18,9 @@ interface IProps {
 }
 
 export default function Message({ notification, dismiss }: IProps) {
+  const defaultDuration =
+    notification.type !== INotificationType.success ? 5000 : 2000;
+
   const {
     type = INotificationType.success,
     render,
@@ -25,11 +29,9 @@ export default function Message({ notification, dismiss }: IProps) {
     id,
     title,
     message,
-    duration = notification.type &&
-    notification.type !== INotificationType.success
-      ? 5000
-      : 2000
+    duration = defaultDuration
   } = notification;
+
   const [notificationHeight, setNotificationHeight] = useState(0);
   const transition = useRef<Animated.Value>(new Animated.Value(0));
 
@@ -64,9 +66,9 @@ export default function Message({ notification, dismiss }: IProps) {
       return position === "top"
         ? [notificationHeight * -2, 0]
         : [notificationHeight, notificationHeight * -1.5];
-    } else {
-      return position === "top" ? [-180, 0] : [40, -80];
     }
+
+    return position === "top" ? [-180, 0] : [40, -80];
   };
 
   const animated = {
@@ -80,7 +82,7 @@ export default function Message({ notification, dismiss }: IProps) {
     ]
   };
 
-  if (type === INotificationType.custom && !!render) {
+  if (type === INotificationType.custom && render) {
     return (
       <Animated.View
         style={[
@@ -102,6 +104,31 @@ export default function Message({ notification, dismiss }: IProps) {
     );
   }
 
+  const color = getTextColor(type);
+  const maxHeight = 100;
+  const MsgText: React.FunctionComponent = ({ children }) => (
+    <Typography color={color} style={{ maxHeight }}>
+      {children}
+    </Typography>
+  );
+
+  function renderMessage() {
+    if (typeof message === "string") {
+      return <MsgText>{message}</MsgText>;
+    }
+
+    if (
+      Array.isArray(message) &&
+      message.every(msg => typeof msg === "string")
+    ) {
+      return (message as string[]).map(text => {
+        return <MsgText key={text}>{text}</MsgText>;
+      });
+    }
+
+    return message;
+  }
+
   return (
     <Animated.View
       style={[
@@ -119,15 +146,11 @@ export default function Message({ notification, dismiss }: IProps) {
       >
         <TouchableOpacity onPress={onDismiss} style={styles.button}>
           {title && (
-            <Text style={[gs.smallHeadingText, styles.text]}>{title}</Text>
+            <Typography color={color} style={[gs.smallHeadingText]}>
+              {title}
+            </Typography>
           )}
-          {typeof message === "string" ? (
-            <Text style={[styles.text]} numberOfLines={5}>
-              {message}
-            </Text>
-          ) : (
-            message
-          )}
+          <View>{renderMessage()}</View>
         </TouchableOpacity>
       </View>
     </Animated.View>
@@ -159,10 +182,6 @@ const makeStyles = (type: INotificationType) =>
     },
     bottom: {
       bottom: 0
-    },
-    text: {
-      color: getTextColor(type),
-      maxHeight: 100
     },
     button: {
       justifyContent: "center",
