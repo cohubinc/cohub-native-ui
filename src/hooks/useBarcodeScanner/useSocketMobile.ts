@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
-import SocketMobile, { STATUS_WAITING } from "react-native-socket-mobile";
+import { useEffect, useState } from 'react';
+import SocketMobile, { STATUS_WAITING } from 'react-native-socket-mobile';
+import { showErrorNotification } from 'src/components/Notifications';
+import emitter from 'src/helpers/eventEmitter';
+
 import {
-  IBarcodeScanner,
-  BarcodeScannerType,
-  ScannerStatus,
-  ISocketMobileConfig
-} from "./IBarcodeScanner";
-import emitter from "src/helpers/eventEmitter";
-import { showErrorNotification } from "src/components/Notifications";
+  BarcodeScannerType, IBarcodeScanner, ISocketMobileConfig, ScannerStatus
+} from './IBarcodeScanner';
 
 let listeners = 0;
 
@@ -59,7 +57,10 @@ export default function useSocketMobile() {
     try {
       await SocketMobile.start(_socketMobileConfig!);
     } catch (e) {
-      showErrorNotification({ message: e.message });
+      showErrorNotification({
+        title: "Socket Mobile Scanner",
+        message: e.message
+      });
     }
   };
 
