@@ -64,9 +64,8 @@ export function Alert(props: IAlertProps) {
     <View
       style={[
         {
-          flexDirection: centerAlign ? "row" : "column",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: centerAlign ? "center" : "flex-start",
           paddingVertical: 16,
           paddingHorizontal: 20,
           borderRadius: 4,
