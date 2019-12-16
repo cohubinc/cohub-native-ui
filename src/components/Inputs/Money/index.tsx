@@ -1,13 +1,14 @@
-import { Decimal } from 'decimal.js-light';
-import numeral from 'numeral';
-import React, { useEffect, useRef, useState } from 'react';
+import { Decimal } from "decimal.js-light";
+import numeral from "numeral";
+import React, { useEffect, useRef, useState } from "react";
 import {
-  NativeSyntheticEvent, StyleSheet, TextInput, TextInputProps, TextInputSubmitEditingEventData
-} from 'react-native';
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputProps,
+  TextInputSubmitEditingEventData
+} from "react-native";
 
-import { Color } from '@cohubinc/cohub-utils';
-
-import FloatingLabel from '../FloatingLabel';
+import Basic from "../Basic";
 
 const FORMAT = "$ 0,0.00[000]";
 
@@ -18,7 +19,6 @@ export interface IProps {
   onFocus?: (arg: any) => void;
   style?: any;
   textProps?: TextInputProps;
-  basic?: boolean;
   label?: string;
 }
 
@@ -29,7 +29,6 @@ export default function Money({
   onFocus,
   style,
   textProps,
-  basic,
   label
 }: IProps) {
   const input = useRef<TextInput | null>(null);
@@ -87,75 +86,48 @@ export default function Money({
     }
   };
 
-  const isNumbery = (val?: string) => {
-    val = removeFormatting(val || "");
-    if (!val) return true;
-
-    const isInt = /^[\d -]+$/.test(val);
-    const isFloat = !isNaN(val as any) && val.includes(".");
-
-    return isInt || isFloat;
-  };
-
   return (
-    <FloatingLabel
-      basic={basic}
-      style={[
-        {
-          paddingHorizontal: 10,
-          width
-        },
-        style
-      ]}
+    <Basic
+      style={[style]}
       label={label}
-      value={formattedValue}
-      backgroundColor={Color.trueWhite}
-      inputStyle={[basic ? undefined : styles.input, style]}
-      render={renderProps => (
-        <TextInput
-          ref={input}
-          {...renderProps}
-          {...textProps}
-          selectTextOnFocus
-          onChangeText={txt => {
-            if (!isNumbery(txt)) {
-              return;
-            }
-            changed(txt);
-            renderProps.onChangeText && renderProps.onChangeText(txt);
-          }}
-          onBlur={e => {
-            blurred(e);
-            renderProps.onBlur && renderProps.onBlur(e);
-          }}
-          onFocus={e => {
-            renderProps.onFocus && renderProps.onFocus(e);
-            onFocus && onFocus(e);
-          }}
-          style={[{ width }, renderProps.style]}
-          keyboardType="decimal-pad"
-          onSubmitEditing={evt => {
-            renderProps.onSubmitEditing && renderProps.onSubmitEditing(evt);
-            onSubmitEditing(evt);
-          }}
-        />
-      )}
+      input={{
+        onBlur: e => {
+          blurred(e);
+          onBlur && onBlur(e);
+        },
+        onChange: txt => {
+          if (!isNumbery(txt)) {
+            return;
+          }
+          changed(txt);
+          onChange && onChange(txt);
+        },
+        onFocus: e => {
+          onFocus && onFocus(e);
+        },
+        value: formattedValue
+      }}
+      onSubmitEditing={onSubmitEditing}
+      keyboardType="decimal-pad"
+      selectTextOnFocus
+      inputRef={input}
+      inputStyle={[style]}
+      {...textProps}
     />
   );
 }
 
-const width = 249;
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    alignSelf: "center",
-    textAlign: "center",
-    borderRadius: 4,
-    color: Color.black
-  }
-});
-
 function removeFormatting(value: string) {
   const matches = (value.toString() || "0").match(/[\d,\s]+\.?\d*/g) || [];
   return (matches[0] || "0").replace(/[^\d.-]/g, "");
+}
+
+function isNumbery(value?: string) {
+  value = removeFormatting(value || "");
+  if (!value) return true;
+
+  const isInt = /^[\d -]+$/.test(value);
+  const isFloat = !isNaN(value as any) && value.includes(".");
+
+  return isInt || isFloat;
 }
