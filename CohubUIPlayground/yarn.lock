@@ -728,19 +728,19 @@
     react-select "^3.0.4"
     styled-components "^4.4.0"
 
-"@cohubinc/cohub-utils@1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-utils/-/cohub-utils-1.1.3.tgz#884619da100c72cc06965078809d993c8e816783"
-  integrity sha512-ZJyPIEbkzllt6uV8MUOTdMOBUgnBu9pl+vz0TmJhpEittgRkG0DUCXNURIqv8k98U1c1hL9xW309wS2FonojXQ==
+"@cohubinc/cohub-utils@1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-utils/-/cohub-utils-1.2.7.tgz#7c3e666b094cd37254e23b81aa661970d012fc11"
+  integrity sha512-wyhBvu95qBfaVW8rLZl8PqQX7lUz9W6h+vQuM3LXoQx0UgxHAg4IsGKl8mt3CqUTfpiOeekRQIbrw+BXuRFGmw==
   dependencies:
     decimal.js-light "2.5.0"
     lodash "4.17.15"
     moment "2.24.0"
 
-"@cohubinc/cohub-utils@1.2.7":
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-utils/-/cohub-utils-1.2.7.tgz#7c3e666b094cd37254e23b81aa661970d012fc11"
-  integrity sha512-wyhBvu95qBfaVW8rLZl8PqQX7lUz9W6h+vQuM3LXoQx0UgxHAg4IsGKl8mt3CqUTfpiOeekRQIbrw+BXuRFGmw==
+"@cohubinc/cohub-utils@1.2.9":
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/@cohubinc/cohub-utils/-/cohub-utils-1.2.9.tgz#7fafab9d0232e2df0aa665eaf4c43e2f577ff1fc"
+  integrity sha512-3siQjanQakDOqC+SlHVvARthtj8dU959vV6lbuM+yqQs/dPcqV7JxSQ0iTh3lx5nSx2LOpPsCVFwrwkzs0Y9UA==
   dependencies:
     decimal.js-light "2.5.0"
     lodash "4.17.15"

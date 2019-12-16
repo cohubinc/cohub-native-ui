@@ -15,6 +15,8 @@ interface IButtonProps extends TouchableHighlightProps {
   disabled?: boolean;
   onPress: (event?: GestureResponderEvent) => void;
   animated?: boolean;
+  mono?: boolean;
+  bold?: boolean;
   size?: number;
   action?: string;
   success?: boolean;

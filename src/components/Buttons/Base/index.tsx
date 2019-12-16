@@ -5,7 +5,9 @@ import {
   LayoutChangeEvent,
   StyleProp,
   ViewStyle,
-  TouchableHighlight
+  TouchableHighlight,
+  View,
+  ActivityIndicator
 } from "react-native";
 import IButtonProps from "../../../definitions/interfaces/IButtonProps";
 import Colors from "../../../definitions/enums/Color";
@@ -29,7 +31,7 @@ export default abstract class Base<T = {}> extends React.Component<
 
   static defaultProps = {
     animated: true,
-    color: Colors.black
+    color: Colors.primary
   };
 
   constructor(props: IButtonProps<T>) {
@@ -145,19 +147,42 @@ export default abstract class Base<T = {}> extends React.Component<
   };
 
   render() {
-    const { labelStyle, label, color } = this.props;
+    const {
+      labelStyle,
+      label,
+      color,
+      mono,
+      bold,
+      disabled,
+      loading
+    } = this.props;
 
     return (
       <TouchableHighlight
+        underlayColor={Color.trueWhite}
         onPressIn={this.beginPress}
         onPressOut={this.endPress}
         onLayout={this.onLayout}
         {...this.props}
       >
-        <Animated.View style={[this.props.style, this._pulseStyle]}>
-          <Typography color={color || Color.primary} style={[labelStyle]}>
+        <Animated.View
+          style={[
+            this.props.style,
+            this._pulseStyle,
+            { flexDirection: "row", alignItems: "center" }
+          ]}
+        >
+          <Typography
+            color={color}
+            style={[labelStyle, disabled ? { opacity: 0.3 } : undefined]}
+            mono={mono}
+            bold={bold}
+          >
             {label}
           </Typography>
+          {loading && (
+            <ActivityIndicator style={{ marginLeft: 8 }} color={color} />
+          )}
         </Animated.View>
       </TouchableHighlight>
     );

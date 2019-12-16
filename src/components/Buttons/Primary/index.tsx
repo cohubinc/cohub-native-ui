@@ -1,22 +1,16 @@
 import React from "react";
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  Animated,
-  View
-} from "react-native";
+import { StyleSheet, Animated, View, TouchableHighlight } from "react-native";
 import styled from "styled-components/native";
 
-import Colors from "../../../definitions/enums/Color";
-import gs from "../../../definitions/constants/GlobalStyles";
 import BasicButton from "../Base";
 import IButtonProps from "../../../definitions/interfaces/IButtonProps";
 import { Typography } from "src";
+import Color, { ContrastColor } from "../../../definitions/enums/Color";
 
 export default class Primary extends BasicButton {
   static defaultProps = {
-    color: "#EFF7EE" as any,
+    color: ContrastColor[Color.primary] as any,
+    backgroundColor: Color.primary,
     raised: true,
     animated: true,
     elevationLevel: 0
@@ -30,26 +24,32 @@ export default class Primary extends BasicButton {
     const { style, ...restOfProps } = this.props;
 
     return (
-      <TouchableOpacity
-        activeOpacity={0.7}
+      <TouchableHighlight
         onPressIn={this.beginPress}
         onPressOut={this.endPress}
         style={[{ height }, style]}
         onLayout={this.onLayout}
         {...restOfProps}
       >
-        <PulseView
-          elevated={!!elevationLevel}
-          style={[styles.button, this._pulseStyle]}
-        >
-          <Typography style={[styles.label, labelStyle]}>{label}</Typography>
-        </PulseView>
-        {loading && (
-          <View style={this._lineContainerStyle}>
-            <Animated.View style={[this._lineStyle, { bottom: 0 }]} />
-          </View>
-        )}
-      </TouchableOpacity>
+        <>
+          <PulseView
+            elevated={!!elevationLevel}
+            style={[styles.button, this._pulseStyle]}
+          >
+            <Typography
+              color={this.props.color}
+              style={[styles.label, labelStyle]}
+            >
+              {label}
+            </Typography>
+          </PulseView>
+          {loading && (
+            <View style={this._lineContainerStyle}>
+              <Animated.View style={[this._lineStyle, { bottom: 0 }]} />
+            </View>
+          )}
+        </>
+      </TouchableHighlight>
     );
   }
 }
@@ -65,7 +65,7 @@ const makeStyles = (p: IButtonProps) =>
     button: {
       height,
       paddingHorizontal: 15,
-      backgroundColor: p.backgroundColor || (Colors.primaryGreen as any),
+      backgroundColor: p.backgroundColor,
       borderRadius: 4,
       justifyContent: "center",
       width: "100%",
@@ -82,7 +82,6 @@ const makeStyles = (p: IButtonProps) =>
     },
     label: {
       textAlign: "center",
-      color: p.color,
       marginTop: 4
     },
     loader: {
