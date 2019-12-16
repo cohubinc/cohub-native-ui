@@ -12,6 +12,7 @@ import Colors from "../../../definitions/enums/Color";
 import gs from "../../../definitions/constants/GlobalStyles";
 import BasicButton from "../Base";
 import IButtonProps from "../../../definitions/interfaces/IButtonProps";
+import { Typography } from "src";
 
 export default class Primary extends BasicButton {
   static defaultProps = {
@@ -41,9 +42,7 @@ export default class Primary extends BasicButton {
           elevated={!!elevationLevel}
           style={[styles.button, this._pulseStyle]}
         >
-          <Text style={[gs.regularBodyText, styles.label, labelStyle]}>
-            {label}
-          </Text>
+          <Typography style={[styles.label, labelStyle]}>{label}</Typography>
         </PulseView>
         {loading && (
           <View style={this._lineContainerStyle}>

@@ -1,20 +1,21 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   Text,
-  TouchableOpacity,
   Animated,
   LayoutChangeEvent,
   StyleProp,
-  ViewStyle
+  ViewStyle,
+  TouchableHighlight
 } from "react-native";
 import IButtonProps from "../../../definitions/interfaces/IButtonProps";
 import Colors from "../../../definitions/enums/Color";
 import gs from "../../../definitions/constants/GlobalStyles";
 import Color from "../../../definitions/enums/Color";
+import { Typography } from "src";
 
 export { IButtonProps };
 
-export default abstract class Basic<T = {}> extends React.Component<
+export default abstract class Base<T = {}> extends React.Component<
   IButtonProps<T>
 > {
   // Animation to enlarge the container
@@ -120,7 +121,7 @@ export default abstract class Basic<T = {}> extends React.Component<
           bottom: 0,
           position: "absolute",
           borderRadius: 4,
-          backgroundColor: Color.primary || color,
+          backgroundColor: color || Color.primary,
           transform: [
             {
               translateX: this._lineAnimation.interpolate({
@@ -144,20 +145,21 @@ export default abstract class Basic<T = {}> extends React.Component<
   };
 
   render() {
-    const { labelStyle, label } = this.props;
+    const { labelStyle, label, color } = this.props;
 
     return (
-      <TouchableOpacity
-        activeOpacity={0.7}
+      <TouchableHighlight
         onPressIn={this.beginPress}
         onPressOut={this.endPress}
         onLayout={this.onLayout}
         {...this.props}
       >
         <Animated.View style={[this.props.style, this._pulseStyle]}>
-          <Text style={[gs.regularBodyText, labelStyle]}>{label}</Text>
+          <Typography color={color || Color.primary} style={[labelStyle]}>
+            {label}
+          </Typography>
         </Animated.View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     );
   }
 }

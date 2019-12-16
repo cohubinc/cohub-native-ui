@@ -1,12 +1,12 @@
 import {
   StyleProp,
-  TouchableOpacityProps,
+  TouchableHighlightProps,
   TextStyle,
   GestureResponderEvent
 } from "react-native";
 import { IColor } from "@cohubinc/cohub-utils";
 
-interface IButtonProps extends TouchableOpacityProps {
+interface IButtonProps extends TouchableHighlightProps {
   elevationLevel?: 0 | 3;
   label: string | any;
   labelStyle?: StyleProp<TextStyle>;
