@@ -1,19 +1,13 @@
-import React from "react";
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  Animated,
-  View
-} from "react-native";
+import React from 'react';
+import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import gs from 'src/definitions/constants/GlobalStyles';
+import Colors from 'src/definitions/enums/Color';
+import TButtonProps from 'src/definitions/interfaces/IButtonProps';
+import styled from 'styled-components/native';
 
-import gs from "src/definitions/constants/GlobalStyles";
-import Colors from "src/definitions/enums/Color";
-import TButtonProps from "src/definitions/interfaces/IButtonProps";
-import { IColor } from "@cohubinc/cohub-utils";
+import { IColor } from '@cohubinc/cohub-utils';
 
-import BasicButton from "../Base";
-import styled from "styled-components/native";
+import BasicButton from '../Base';
 
 const defaultHeight = 40;
 
@@ -23,7 +17,7 @@ export interface IProps extends TButtonProps {
   raised?: boolean;
   textColor?: IColor;
   outlineColor?: IColor;
-  elevationLevel: 0 | 3;
+  elevationLevel?: 0 | 3;
 }
 
 export default class Outline extends BasicButton<IProps> {
@@ -42,7 +36,7 @@ export default class Outline extends BasicButton<IProps> {
       dark,
       color,
       style,
-      elevationLevel,
+      elevationLevel = 0,
       ...restOfProps
     } = this.props;
     const styles = makeStyles(this.props);
