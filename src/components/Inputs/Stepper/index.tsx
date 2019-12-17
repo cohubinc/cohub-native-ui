@@ -15,6 +15,8 @@ interface IStepperInputProps {
   style?: StyleProp<ViewStyle>;
   step?: number;
   allowNegative?: boolean;
+  lowerLimit?: number;
+  upperLimit?: number;
   accessibilityLabel: string;
 }
 
@@ -41,6 +43,8 @@ export default function Stepper({
   style,
   step = 1,
   allowNegative,
+  lowerLimit,
+  upperLimit,
   accessibilityLabel
 }: IStepperInputProps) {
   const { onBlur, onFocus } = input;
@@ -64,14 +68,28 @@ export default function Stepper({
     }
     if (!isInt(val)) return;
 
-    const numVal = Number.parseFloat(val);
+    let numVal = Number.parseFloat(val);
     // numVal could be NaN, if so return early
     if (!numVal && numVal !== 0) return;
+
+    if (numVal <= 0 && !allowNegative) {
+      numVal = 0;
+    }
+
+    if (lowerLimit && numVal <= lowerLimit) {
+      numVal = lowerLimit;
+    }
+
+    if (upperLimit && numVal >= upperLimit) {
+      numVal = upperLimit;
+    }
 
     setTmpVal(numVal);
   }
 
-  const disabled = allowNegative ? false : value <= 0;
+  let minusDiabled = allowNegative ? false : value <= 0;
+  minusDiabled = lowerLimit ? value <= lowerLimit : minusDiabled;
+  const plusDisabled = upperLimit ? value >= upperLimit : false;
 
   return (
     <Container
@@ -82,12 +100,17 @@ export default function Stepper({
         borderSide="Right"
         iconName="subtract"
         accessibilityLabel={`adjust count down by ${step}`}
-        disabled={disabled}
+        disabled={minusDiabled}
         onPress={() => {
           setTmpVal(val => {
             let nextDecrement = val - step;
+
             if (nextDecrement <= 0 && !allowNegative) {
               nextDecrement = 0;
+            }
+
+            if (lowerLimit && nextDecrement <= lowerLimit) {
+              nextDecrement = lowerLimit;
             }
 
             return nextDecrement;
@@ -113,9 +136,18 @@ export default function Stepper({
       <StepBtn
         borderSide="Left"
         iconName="add"
+        disabled={plusDisabled}
         accessibilityLabel={`adjust count up by ${step}`}
         onPress={() => {
-          setTmpVal(v => v + step);
+          setTmpVal(val => {
+            let nextDecrement = val + step;
+
+            if (upperLimit && nextDecrement >= upperLimit) {
+              nextDecrement = upperLimit;
+            }
+
+            return nextDecrement;
+          });
         }}
       />
     </Container>
