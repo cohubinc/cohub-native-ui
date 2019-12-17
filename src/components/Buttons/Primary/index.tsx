@@ -27,7 +27,7 @@ export default class Primary extends BasicButton {
       <TouchableHighlight
         onPressIn={this.beginPress}
         onPressOut={this.endPress}
-        style={[{ height }, style]}
+        style={[{ height }, style, styles.disabledButton]}
         onLayout={this.onLayout}
         {...restOfProps}
       >
@@ -69,9 +69,11 @@ const makeStyles = (p: IButtonProps) =>
       borderRadius: 4,
       justifyContent: "center",
       width: "100%",
-      opacity: p.disabled ? 0.3 : 1.0,
       flex: 1,
       alignItems: "center"
+    },
+    disabledButton: {
+      opacity: p.disabled ? 0.3 : 1.0
     },
     content: {
       flexDirection: "row",
