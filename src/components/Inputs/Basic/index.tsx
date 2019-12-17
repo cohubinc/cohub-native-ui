@@ -91,6 +91,9 @@ export default function Basic(props: IBasicInputProps) {
   const iconSize = iconSizeMap[size];
   const iconRight = showError || iconPosition === "right";
   const iconMargin = 13;
+  const iconStyle = [
+    iconRight ? { marginLeft: iconMargin } : { marginRight: iconMargin }
+  ];
 
   return (
     <View style={style}>
@@ -116,18 +119,16 @@ export default function Basic(props: IBasicInputProps) {
           flexDirection: iconRight ? "row-reverse" : "row"
         }}
       >
-        {loading && <ActivityIndicator color={Color.primaryGreen} />}
+        {loading && (
+          <ActivityIndicator color={Color.primaryGreen} style={iconStyle} />
+        )}
         {!loading && icon && (
           <Icon
             name={icon.name}
             size={iconSize}
             color={icon.color || (inverted ? Color.trueWhite : Color.black)}
             onPress={icon.onPress}
-            style={[
-              iconRight
-                ? { marginLeft: iconMargin }
-                : { marginRight: iconMargin }
-            ]}
+            style={iconStyle}
           />
         )}
         <TextInput
