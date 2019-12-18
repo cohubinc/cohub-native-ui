@@ -37,6 +37,7 @@ import filter from "./Filter";
 import flashlight from "./Flashlight";
 import forward from "./Forward";
 import help from "./Help";
+import importExport from "./ImportExport";
 import laptop from "./Laptop";
 import list from "./List";
 import menu from "./Menu";
@@ -54,6 +55,7 @@ import shipping from "./Shipping";
 import star from "./Star";
 import store from "./Store";
 import subtract from "./Subtract";
+import sync from "./Sync";
 import tagDollar from "./TagDollar";
 import trash from "./Trash";
 import triangle from "./Triangle";
@@ -105,6 +107,7 @@ export type TIconName =
   | "flashlight"
   | "forward"
   | "help"
+  | "importExport"
   | "laptop"
   | "list"
   | "menu"
@@ -122,6 +125,7 @@ export type TIconName =
   | "star"
   | "store"
   | "subtract"
+  | "sync"
   | "tagDollar"
   | "trash"
   | "triangle"
@@ -173,6 +177,7 @@ const icons: TIconMap = {
   flashlight,
   forward,
   help,
+  importExport,
   laptop,
   list,
   menu,
@@ -190,6 +195,7 @@ const icons: TIconMap = {
   star,
   store,
   subtract,
+  sync,
   tagDollar,
   trash,
   triangle,
