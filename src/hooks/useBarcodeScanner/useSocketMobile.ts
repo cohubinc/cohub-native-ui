@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
-import SocketMobile, { STATUS_WAITING } from 'react-native-socket-mobile';
-import { showErrorNotification } from 'src/components/Notifications';
-import emitter from 'src/helpers/eventEmitter';
-
+import { useEffect, useState } from "react";
+import SocketMobile, { STATUS_WAITING } from "react-native-socket-mobile";
+import { showErrorNotification } from "src/components/Notifications";
+import emitter from "src/helpers/eventEmitter";
+import { check, PERMISSIONS, RESULTS } from "react-native-permissions";
 import {
-  BarcodeScannerType, IBarcodeScanner, ISocketMobileConfig, ScannerStatus
-} from './IBarcodeScanner';
+  BarcodeScannerType,
+  IBarcodeScanner,
+  ISocketMobileConfig,
+  ScannerStatus
+} from "./IBarcodeScanner";
 
 let listeners = 0;
 
@@ -21,6 +24,7 @@ export default function useSocketMobile() {
   const [status, setStatus] = useState(ScannerStatus.Disconnected);
   const [busy, setBusy] = useState(false);
   const [scanner, setScanner] = useState<IBarcodeScanner | null>(null);
+  const [permissionGranted, setPermissionGranted] = useState(false);
 
   if (!_socketMobileConfig) {
     throw new Error(
@@ -28,14 +32,22 @@ export default function useSocketMobile() {
     );
   }
 
+  check(PERMISSIONS.IOS.BLUETOOTH_PERIPHERAL).then(res => {
+    if (res === RESULTS.GRANTED) setPermissionGranted(true);
+  });
+
   useEffect(() => {
-    initStatus();
-    startListening();
+    if (permissionGranted) {
+      initStatus();
+      startListening();
+    }
 
     return () => {
-      stopListening();
+      if (permissionGranted) {
+        stopListening();
+      }
     };
-  }, []);
+  }, [permissionGranted]);
 
   const initStatus = async () => {
     const newStatus = await SocketMobile.updateStatusFromDevices();
