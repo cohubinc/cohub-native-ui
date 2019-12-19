@@ -4,7 +4,6 @@ import { ReactNode } from "react";
 
 import Typography, { ITypographyProps } from "src/components/Typography";
 import { IColor, Color } from "@cohubinc/cohub-utils";
-import { debug } from "src/constants/debug";
 import Loader from "src/components/Loader";
 
 interface ITextButtonProps extends Omit<TouchableOpacityProps, "hitSlop"> {
@@ -44,7 +43,7 @@ export default function Text(props: ITextButtonProps) {
   return (
     <TouchableOpacity
       {...restProps}
-      style={[{ minHeight: 24, justifyContent: "center" }, style, debug]}
+      style={[{ minHeight: 24, justifyContent: "center" }, style]}
       disabled={disabled}
       hitSlop={slop}
     >
