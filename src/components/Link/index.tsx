@@ -59,7 +59,11 @@ export default function Link(props: IProps) {
         style
       ]}
     >
-      <Typography color={color} style={textStyle} fontFamily={fontFamily}>
+      <Typography
+        color={color}
+        style={[{ fontSize: 12 }, textStyle]}
+        fontFamily={fontFamily}
+      >
         {children}
       </Typography>
     </TouchableOpacity>
