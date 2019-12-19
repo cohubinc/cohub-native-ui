@@ -220,6 +220,8 @@ PODS:
   - ReactNativeSocketMobile (0.1.1):
     - React
     - SKTCaptureObjC (~> 1.0)
+  - RNPermissions (2.0.8):
+    - React
   - RNSoundPlayer (0.10.1):
     - React
   - RNSVG (9.11.1):
@@ -256,6 +258,7 @@ DEPENDENCIES:
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeSocketMobile (from `../node_modules/react-native-socket-mobile/ios`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNSoundPlayer (from `../node_modules/react-native-sound-player`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -316,6 +319,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeSocketMobile:
     :path: "../node_modules/react-native-socket-mobile/ios"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNSoundPlayer:
     :path: "../node_modules/react-native-sound-player"
   RNSVG:
@@ -350,6 +355,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: fb54c732fd20405a76598e431aa2f8c2bf527de9
   ReactCommon: 5848032ed2f274fcb40f6b9ec24067787c42d479
   ReactNativeSocketMobile: f904ce3317b8da4832a764450a35566c141c7f68
+  RNPermissions: 923c1506d0bde387fbcfc18a8f87945806d03c19
   RNSoundPlayer: bbe1f7b0ce43c2cf0fdf710890ace93693e88836
   RNSVG: be27aa7c58819f97399388ae53d7fa0572f32c7f
   SKTCaptureObjC: aa724acfe25b318a04d7ad4365753f030628e640
@@ -357,4 +363,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7fa7713ca0f04b170d3556d41dc894883aa8173b
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

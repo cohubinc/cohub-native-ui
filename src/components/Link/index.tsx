@@ -23,6 +23,8 @@ export default function Link(props: IProps) {
     ...restOfProps
   } = props;
 
+  const color = (muted ? Color.darkGrey : Color.primaryGreen) as any;
+
   let hitSlop = props.hitSlop || 5;
   if (typeof hitSlop === "number") {
     hitSlop = { top: hitSlop, left: hitSlop, bottom: hitSlop, right: hitSlop };
@@ -44,20 +46,12 @@ export default function Link(props: IProps) {
       style={[
         underlined && {
           borderBottomWidth: 1,
-          borderColor: Color.primaryGreen as any
+          borderColor: color
         },
         style
       ]}
     >
-      <Typography
-        style={[
-          {
-            color: (muted ? Color.darkGrey : Color.primaryGreen) as any
-          }
-        ]}
-      >
-        {children}
-      </Typography>
+      <Typography color={color}>{children}</Typography>
     </TouchableOpacity>
   );
 }

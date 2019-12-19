@@ -1,8 +1,12 @@
-import { TextProps } from "react-native";
+import { TextProps, StyleProp, TextStyle } from "react-native";
 import { IColor } from "@cohubinc/cohub-utils";
 import { IFontFamily } from "src/definitions/types/IFontFamily";
+type TextStyleWithoutColor = StyleProp<Omit<TextStyle, "color">>;
+interface ITextProps extends Omit<TextProps, "style"> {
+  style?: TextStyleWithoutColor;
+}
 
-export interface ITypographyProps extends TextProps {
+export interface ITypographyProps extends ITextProps {
   fontFamily?: IFontFamily;
   /** React Children nodes are required */
   children: React.ReactNode;
