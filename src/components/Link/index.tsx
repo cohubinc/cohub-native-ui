@@ -12,6 +12,10 @@ interface IProps extends Omit<TouchableOpacityProps, "hitSlop"> {
   underlined?: boolean;
   hitSlop?: number | TouchableOpacityProps["hitSlop"];
   textStyle?: ITypographyProps["style"];
+  /**
+   * @default "Roboto Mono"
+   */
+  fontFamily?: ITypographyProps["fontFamily"];
 }
 
 export default function Link(props: IProps) {
@@ -23,6 +27,7 @@ export default function Link(props: IProps) {
     onPress,
     underlined = true,
     textStyle,
+    fontFamily = "Roboto Mono",
     ...restOfProps
   } = props;
 
@@ -54,7 +59,7 @@ export default function Link(props: IProps) {
         style
       ]}
     >
-      <Typography color={color} style={textStyle}>
+      <Typography color={color} style={textStyle} fontFamily={fontFamily}>
         {children}
       </Typography>
     </TouchableOpacity>
