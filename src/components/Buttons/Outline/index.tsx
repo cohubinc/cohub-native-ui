@@ -1,13 +1,20 @@
-import React from 'react';
-import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import gs from 'src/definitions/constants/GlobalStyles';
-import Colors from 'src/definitions/enums/Color';
-import TButtonProps from 'src/definitions/interfaces/IButtonProps';
-import styled from 'styled-components/native';
+import React from "react";
+import {
+  Animated,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
+import styled from "styled-components/native";
+import { Color } from "@cohubinc/cohub-utils";
 
-import { IColor } from '@cohubinc/cohub-utils';
+import gs from "src/definitions/constants/GlobalStyles";
+import TButtonProps from "src/definitions/interfaces/IButtonProps";
 
-import BasicButton from '../Base';
+import { IColor } from "@cohubinc/cohub-utils";
+
+import BasicButton from "../Base";
 
 const defaultHeight = 40;
 
@@ -25,8 +32,8 @@ export default class Outline extends BasicButton<IProps> {
     bordered: true,
     dark: false,
     raised: true,
-    backgroundColor: Colors.trueWhite,
-    color: Colors.iconGrey,
+    backgroundColor: Color.trueWhite,
+    color: Color.iconGrey,
     animated: true
   };
 
@@ -79,7 +86,7 @@ const PulseView = styled(Animated.View)<{ elevated: boolean }>`
 
 const makeStyles = (props: IProps) => {
   const { bordered, dark, color, outlineColor, textColor } = props;
-  const backgroundColor = dark ? Colors.black : props.backgroundColor;
+  const backgroundColor = dark ? Color.black : props.backgroundColor;
 
   return StyleSheet.create({
     button: {

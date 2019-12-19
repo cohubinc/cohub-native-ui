@@ -5,10 +5,11 @@ import {
   GestureResponderEvent
 } from "react-native";
 import { IColor } from "@cohubinc/cohub-utils";
+import { ReactNode } from "react";
 
 interface IButtonProps extends TouchableHighlightProps {
   elevationLevel?: 0 | 3;
-  label: string | any;
+  label: ReactNode;
   labelStyle?: StyleProp<TextStyle>;
   color?: IColor;
   backgroundColor?: IColor;

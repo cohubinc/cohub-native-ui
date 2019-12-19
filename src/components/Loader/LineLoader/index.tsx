@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Animated, ViewStyle, StyleProp, View } from "react-native";
 
 import { useRef, useEffect } from "react";
+import { IColor, Color } from "@cohubinc/cohub-utils";
 
 interface IProps {
   show: boolean;
@@ -11,8 +12,20 @@ interface IProps {
    * The delay (in milliseconds) used when showing the animation
    */
   delay?: number;
+  /**
+   * @default Color.primary
+   */
+  color?: IColor;
 }
-export default function LineLoader({ show, style, width, delay = 0 }: IProps) {
+export default function LineLoader(props: IProps) {
+  const {
+    show,
+    style,
+    width = "100%",
+    delay = 0,
+    color = Color.primary
+  } = props;
+
   const animation = useRef(new Animated.Value(0)).current;
   const loop = useRef(
     Animated.loop(
@@ -42,7 +55,7 @@ export default function LineLoader({ show, style, width, delay = 0 }: IProps) {
   let animationStyle: null | { [style: string]: any } = {
     width: "50%",
     height: 4,
-    backgroundColor: "#63B05A",
+    backgroundColor: color,
     transform: [
       {
         translateX: animation.interpolate({
@@ -68,7 +81,7 @@ export default function LineLoader({ show, style, width, delay = 0 }: IProps) {
   return (
     <View
       testID="line-loader"
-      style={[{ width: width || "100%" }, style, !show && { opacity: 0 }]}
+      style={[{ width }, style, !show && { opacity: 0 }]}
       onLayout={e => {
         setViewWidth(e.nativeEvent.layout.width || 0);
       }}

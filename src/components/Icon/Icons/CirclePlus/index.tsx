@@ -1,8 +1,9 @@
 import React from "react";
-import { ContrastColor } from "src/definitions/enums/Color";
+import Svg, { Circle, Rect } from "react-native-svg";
+import { ContrastColor } from "@cohubinc/cohub-utils";
+
 import IconWrapper from "../../IconWrapper/index";
 import { IIconProps as IProps } from "../../index";
-import Svg, { Circle, Path, Rect } from "react-native-svg";
 
 const CirclePlus = (props: IProps) => (
   <IconWrapper {...props}>

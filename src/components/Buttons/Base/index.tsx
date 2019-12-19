@@ -1,19 +1,16 @@
 import React from "react";
 import {
-  Text,
   Animated,
   LayoutChangeEvent,
   StyleProp,
   ViewStyle,
   TouchableHighlight,
-  View,
   ActivityIndicator
 } from "react-native";
-import IButtonProps from "../../../definitions/interfaces/IButtonProps";
-import Colors from "../../../definitions/enums/Color";
-import gs from "../../../definitions/constants/GlobalStyles";
-import Color from "../../../definitions/enums/Color";
-import { Typography } from "src";
+import { Color } from "@cohubinc/cohub-utils";
+
+import IButtonProps from "src/definitions/interfaces/IButtonProps";
+import Typography from "src/components/Typography";
 
 export { IButtonProps };
 
@@ -31,7 +28,7 @@ export default abstract class Base<T = {}> extends React.Component<
 
   static defaultProps = {
     animated: true,
-    color: Colors.primary
+    color: Color.primary
   };
 
   constructor(props: IButtonProps<T>) {

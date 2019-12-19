@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Color } from "@cohubinc/cohub-utils";
+
 import Typography from "../Typography";
 import "./Menu.scss";
-import Color from "src/definitions/enums/Color";
 
 interface IMenuItem {
   label: string;

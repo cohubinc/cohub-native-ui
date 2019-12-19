@@ -4,7 +4,7 @@ import { FieldRenderProps } from "react-final-form";
 import styled from "styled-components/native";
 import { isInt } from "@cohubinc/cohub-utils";
 
-import Color from "src/definitions/enums/Color";
+import { Color } from "@cohubinc/cohub-utils";
 import StepBtn from "./StepBtn";
 
 type FieldProps = FieldRenderProps<number, IFixMe>;

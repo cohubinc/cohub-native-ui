@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Button from "./Base";
 import OutlineButton from "./Outline";
 import IButtonProps from "../../definitions/interfaces/IButtonProps";
+import Text from "./Text";
 
 import Primary from "./Primary";
 // import Secondary from "./Secondary";
@@ -41,6 +42,7 @@ export default class Buttons extends Component<IButtonProps> {
   // static FloatingAction = FloatingActionButton;
 
   static Split = Split;
+  static Text = Text;
 
   render() {
     return <Buttons.Primary {...this.props} />;

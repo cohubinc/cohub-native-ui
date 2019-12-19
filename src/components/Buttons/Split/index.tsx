@@ -3,7 +3,7 @@ import { ViewStyle, StyleProp, TextStyle } from "react-native";
 import styled from "styled-components/native";
 import { IColor, ContrastColor } from "@cohubinc/cohub-utils";
 
-import Color from "src/definitions/enums/Color";
+import { Color } from "@cohubinc/cohub-utils";
 import { IFontFamily } from "src/definitions/types/IFontFamily";
 import Typography from "src/components/Typography";
 

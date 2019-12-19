@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback
 } from "react-native";
 
-import Color from "src/definitions/enums/Color";
+import { Color } from "@cohubinc/cohub-utils";
 import Font from "src/definitions/enums/Font";
 import Typography from "src/components/Typography";
 import Icon from "src/components/Icon";

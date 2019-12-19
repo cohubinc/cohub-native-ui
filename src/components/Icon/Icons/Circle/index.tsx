@@ -2,7 +2,7 @@ import React from "react";
 
 import IconWrapper from "../../IconWrapper/index";
 import { IIconProps as IProps } from "../../index";
-import Color from "src/definitions/enums/Color";
+import { Color } from "@cohubinc/cohub-utils";
 import Svg, { Circle as SvgCircle } from "react-native-svg";
 
 const Circle = (props: IProps) => (

@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Animated, View, TouchableHighlight } from "react-native";
 import styled from "styled-components/native";
+import { Color, ContrastColor } from "@cohubinc/cohub-utils";
 
-import BasicButton from "../Base";
+import Typography from "src/components/Typography";
 import IButtonProps from "../../../definitions/interfaces/IButtonProps";
-import { Typography } from "src";
-import Color, { ContrastColor } from "../../../definitions/enums/Color";
+import BasicButton from "../Base";
 
 export default class Primary extends BasicButton {
   static defaultProps = {

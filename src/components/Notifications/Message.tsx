@@ -6,9 +6,9 @@ import {
   Easing,
   View
 } from "react-native";
+import { Color, ContrastColor } from "@cohubinc/cohub-utils";
 
 import gs from "src/definitions/constants/GlobalStyles";
-import Color, { ContrastColor } from "src/definitions/enums/Color";
 import { INotification, INotificationType } from ".";
 import Typography from "src/components/Typography";
 

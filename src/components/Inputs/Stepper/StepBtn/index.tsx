@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TIconName } from "src/components/Icon/Icons";
 import styled from "styled-components/native";
 
-import Color from "src/definitions/enums/Color";
+import { Color } from "@cohubinc/cohub-utils";
 import Icon from "src/components/Icon";
 
 type IBorderSide = "Left" | "Right";

@@ -1,7 +1,7 @@
 import React from "react";
 import { ITypographyProps } from "../definitions/ITypographyProps";
+import { Color } from "@cohubinc/cohub-utils";
 
-import Color from "src/definitions/enums/Color";
 import { Text, StyleProp, TextStyle } from "react-native";
 
 type TFactoryArgs = Omit<ITypographyProps, "children">;

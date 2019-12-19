@@ -9,7 +9,7 @@ import {
   TextStyle,
   ActivityIndicator
 } from "react-native";
-import Color from "src/definitions/enums/Color";
+import { Color } from "@cohubinc/cohub-utils";
 import Typography, { ITypographyProps } from "src/components/Typography";
 import Icon, { IIconProps } from "src/components/Icon";
 import Divider from "src/components/Divider";

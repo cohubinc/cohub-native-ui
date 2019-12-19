@@ -1,7 +1,7 @@
 import React from "react";
 import { Linking, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { Color } from "@cohubinc/cohub-utils";
 
-import Color from "src/definitions/enums/Color";
 import Typography from "src/components/Typography";
 
 interface IProps extends Omit<TouchableOpacityProps, "hitSlop"> {
