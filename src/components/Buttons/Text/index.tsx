@@ -7,7 +7,7 @@ import { IColor, Color } from "@cohubinc/cohub-utils";
 import { debug } from "src/constants/debug";
 import Loader from "src/components/Loader";
 
-interface ITextButtonProps extends TouchableOpacityProps {
+interface ITextButtonProps extends Omit<TouchableOpacityProps, "hitSlop"> {
   label: ReactNode;
   /**
    * @default true
@@ -20,6 +20,7 @@ interface ITextButtonProps extends TouchableOpacityProps {
   textStyle?: ITypographyProps["style"];
   fontSize?: number;
   disabled?: boolean;
+  hitSlop?: number | TouchableOpacityProps["hitSlop"];
 }
 
 export default function Text(props: ITextButtonProps) {
@@ -31,14 +32,21 @@ export default function Text(props: ITextButtonProps) {
     style,
     disabled,
     fontSize,
+    hitSlop,
     ...restProps
   } = props;
+
+  let slop = props.hitSlop || 5;
+  if (typeof slop === "number") {
+    slop = { top: slop, left: slop, bottom: slop, right: slop };
+  }
 
   return (
     <TouchableOpacity
       {...restProps}
       style={[{ minHeight: 24, justifyContent: "center" }, style, debug]}
       disabled={disabled}
+      hitSlop={slop}
     >
       <Typography
         uppercase
