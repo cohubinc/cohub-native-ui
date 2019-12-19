@@ -7,12 +7,13 @@ import {
   Animated,
   Easing
 } from "react-native";
-import { Color } from "@cohubinc/cohub-utils";
+import { Color, IColor } from "@cohubinc/cohub-utils";
 
 interface IProps {
   style?: StyleProp<ViewStyle>;
   size?: number;
   accessibilityLabel?: string;
+  color: IColor;
 }
 
 export default class Loader extends React.Component<IProps> {
@@ -45,7 +46,14 @@ export default class Loader extends React.Component<IProps> {
   };
 
   render() {
-    const { size = 40, style, accessibilityLabel = "circle" } = this.props;
+    const {
+      size = 40,
+      style,
+      accessibilityLabel = "circle",
+      color
+    } = this.props;
+    const styles = makeStyles({ color });
+
     const circleStyle = { width: size, height: size, borderRadius: size / 2 };
 
     const solid = {
@@ -79,20 +87,26 @@ export default class Loader extends React.Component<IProps> {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-    flex: 1,
-    height: "100%"
-  },
-  solid: {
-    position: "absolute",
-    backgroundColor: Color.primaryGreen
-  },
-  translucent: {
-    backgroundColor: "hsl(114, 35%, 75%)"
-  }
-});
+interface IStyleProps {
+  color: IColor;
+}
+
+const makeStyles = ({ color }: IStyleProps) =>
+  StyleSheet.create({
+    container: {
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      alignSelf: "center",
+      flex: 1,
+      height: "100%"
+    },
+    solid: {
+      position: "absolute",
+      backgroundColor: color
+    },
+    translucent: {
+      backgroundColor: color,
+      opacity: 0.3
+    }
+  });
