@@ -4,12 +4,13 @@ import { Linking, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import Color from "src/definitions/enums/Color";
 import Typography from "src/components/Typography";
 
-interface IProps extends TouchableOpacityProps {
+interface IProps extends Omit<TouchableOpacityProps, "hitSlop"> {
   children: React.ReactNode;
   muted?: boolean;
   href?: string;
   /** @default true */
   underlined?: boolean;
+  hitSlop?: number | TouchableOpacityProps["hitSlop"];
 }
 
 export default function Link(props: IProps) {
