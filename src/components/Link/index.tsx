@@ -2,7 +2,7 @@ import React from "react";
 import { Linking, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { Color } from "@cohubinc/cohub-utils";
 
-import Typography from "src/components/Typography";
+import Typography, { ITypographyProps } from "src/components/Typography";
 
 interface IProps extends Omit<TouchableOpacityProps, "hitSlop"> {
   children: React.ReactNode;
@@ -11,6 +11,7 @@ interface IProps extends Omit<TouchableOpacityProps, "hitSlop"> {
   /** @default true */
   underlined?: boolean;
   hitSlop?: number | TouchableOpacityProps["hitSlop"];
+  textStyle?: ITypographyProps["style"];
 }
 
 export default function Link(props: IProps) {
@@ -21,6 +22,7 @@ export default function Link(props: IProps) {
     href,
     onPress,
     underlined = true,
+    textStyle,
     ...restOfProps
   } = props;
 
@@ -52,7 +54,9 @@ export default function Link(props: IProps) {
         style
       ]}
     >
-      <Typography color={color}>{children}</Typography>
+      <Typography color={color} style={textStyle}>
+        {children}
+      </Typography>
     </TouchableOpacity>
   );
 }
