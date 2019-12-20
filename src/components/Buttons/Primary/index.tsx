@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { Color, ContrastColor } from "@cohubinc/cohub-utils";
 
 import Typography from "src/components/Typography";
-import IButtonProps from "../../../definitions/interfaces/IButtonProps";
+import IButtonProps from "src/definitions/interfaces/IButtonProps";
 import BasicButton from "../Base";
 
 export default class Primary extends BasicButton {
@@ -37,7 +37,7 @@ export default class Primary extends BasicButton {
             style={[styles.button, this._pulseStyle]}
           >
             <Typography
-              color={this.props.color}
+              color={ContrastColor[this.props.color!]}
               style={[styles.label, labelStyle]}
             >
               {label}
@@ -65,7 +65,7 @@ const makeStyles = (p: IButtonProps) =>
     button: {
       height,
       paddingHorizontal: 15,
-      backgroundColor: p.backgroundColor,
+      backgroundColor: p.color,
       borderRadius: 4,
       justifyContent: "center",
       width: "100%",
