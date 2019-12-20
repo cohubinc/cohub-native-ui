@@ -9,8 +9,7 @@ import BasicButton from "../Base";
 
 export default class Primary extends BasicButton {
   static defaultProps = {
-    color: ContrastColor[Color.primary] as any,
-    backgroundColor: Color.primary,
+    color: Color.primary,
     raised: true,
     animated: true,
     elevationLevel: 0
