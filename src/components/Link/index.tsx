@@ -56,6 +56,7 @@ export default function Link(props: IProps) {
           borderBottomWidth: 1,
           borderColor: color
         },
+        { alignSelf: "flex-start" },
         style
       ]}
     >
