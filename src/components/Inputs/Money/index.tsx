@@ -22,11 +22,16 @@ export interface IProps {
   meta?: Partial<IFieldProps["meta"]>;
   style?: any;
   textProps?: TextInputProps;
+  inputRef?: React.RefObject<TextInput>;
 }
 
-export default function Money({ input, style, textProps, label }: IProps) {
-  const inputRef = useRef<TextInput | null>(null);
-
+export default function Money({
+  input,
+  style,
+  textProps,
+  label,
+  inputRef
+}: IProps) {
   const value = (input?.value || "0").toString();
   const { onChange, onBlur, onFocus } = input || {};
 
