@@ -23,6 +23,7 @@ export interface IProps {
   style?: any;
   textProps?: TextInputProps;
   inputRef?: React.RefObject<TextInput>;
+  onSubmitEditing?: () => void;
 }
 
 export default function Money({
@@ -30,7 +31,8 @@ export default function Money({
   style,
   textProps,
   label,
-  inputRef
+  inputRef,
+  onSubmitEditing: passedOnSubmitEditing
 }: IProps) {
   const value = (input?.value || "0").toString();
   const { onChange, onBlur, onFocus } = input || {};
@@ -70,6 +72,7 @@ export default function Money({
     evt: NativeSyntheticEvent<TextInputSubmitEditingEventData>
   ) => {
     blurred(evt);
+    passedOnSubmitEditing && passedOnSubmitEditing();
   };
 
   const changed = (text: string) => {
