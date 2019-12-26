@@ -56,7 +56,9 @@ export default function IconWrapper(props: IWrapperProps) {
         onPress,
         onLongPress,
         onPressOut,
-        onPressIn: () => ReactNativeHapticFeedback.trigger("impactMedium", {}),
+        onPressIn: () =>
+          enableHaptics &&
+          ReactNativeHapticFeedback.trigger("impactMedium", {}),
         disabled
       }
     : {};
