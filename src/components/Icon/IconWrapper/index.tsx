@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 import { IColor, Color } from "@cohubinc/cohub-utils";
-
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import { IIconProps } from "../";
 
 interface IProps {
@@ -21,7 +21,8 @@ export default function IconWrapper(props: IWrapperProps) {
     style,
     onPress,
     onLongPress,
-    onPressOut
+    onPressOut,
+    enableHaptics = false
   } = props;
 
   let { accessibilityLabel } = props;
@@ -55,6 +56,7 @@ export default function IconWrapper(props: IWrapperProps) {
         onPress,
         onLongPress,
         onPressOut,
+        onPressIn: () => ReactNativeHapticFeedback.trigger("impactMedium", {}),
         disabled
       }
     : {};

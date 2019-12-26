@@ -26,6 +26,7 @@ export interface IIconProps extends ITouchableProps {
   style?: StyleProp<ViewStyle>;
   transform?: TransformsStyle;
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
+  enableHaptics?: boolean;
   accessibilityLabel?: string;
   hitSlop?: Insets | number;
 }
