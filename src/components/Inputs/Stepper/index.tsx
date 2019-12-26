@@ -3,7 +3,7 @@ import { ViewStyle, StyleProp } from "react-native";
 import { FieldRenderProps } from "react-final-form";
 import styled from "styled-components/native";
 import { isInt } from "@cohubinc/cohub-utils";
-
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import { Color } from "@cohubinc/cohub-utils";
 import StepBtn from "./StepBtn";
 
@@ -18,6 +18,7 @@ interface IStepperInputProps {
   lowerLimit?: number;
   upperLimit?: number;
   accessibilityLabel: string;
+  enableHaptics?: boolean;
 }
 
 const Container = styled.View`
@@ -45,7 +46,8 @@ export default function Stepper({
   allowNegative,
   lowerLimit,
   upperLimit,
-  accessibilityLabel
+  accessibilityLabel,
+  enableHaptics = false
 }: IStepperInputProps) {
   const { onBlur, onFocus } = input;
   const value = input.value || 0;
@@ -71,6 +73,10 @@ export default function Stepper({
     let numVal = Number.parseFloat(val);
     // numVal could be NaN, if so return early
     if (!numVal && numVal !== 0) return;
+
+    if (enableHaptics) {
+      ReactNativeHapticFeedback.trigger("selection", {});
+    }
 
     if (numVal <= 0 && !allowNegative) {
       numVal = 0;
@@ -102,6 +108,10 @@ export default function Stepper({
         accessibilityLabel={`adjust count down by ${step}`}
         disabled={minusDiabled}
         onPress={() => {
+          if (enableHaptics) {
+            ReactNativeHapticFeedback.trigger("selection", {});
+          }
+
           setTmpVal(val => {
             let nextDecrement = val - step;
 
@@ -140,6 +150,10 @@ export default function Stepper({
         accessibilityLabel={`adjust count up by ${step}`}
         onPress={() => {
           setTmpVal(val => {
+            if (enableHaptics) {
+              ReactNativeHapticFeedback.trigger("selection", {});
+            }
+
             let nextDecrement = val + step;
 
             if (upperLimit && nextDecrement >= upperLimit) {

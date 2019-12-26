@@ -11,7 +11,7 @@ import { Color } from "@cohubinc/cohub-utils";
 
 import IButtonProps from "src/definitions/interfaces/IButtonProps";
 import Typography from "src/components/Typography";
-
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 export { IButtonProps };
 
 export default abstract class Base<T = {}> extends React.Component<
@@ -28,7 +28,8 @@ export default abstract class Base<T = {}> extends React.Component<
 
   static defaultProps = {
     animated: true,
-    color: Color.primary
+    color: Color.primary,
+    enableHaptics: false
   };
 
   constructor(props: IButtonProps<T>) {
@@ -92,6 +93,12 @@ export default abstract class Base<T = {}> extends React.Component<
   }
 
   beginPress = () => {
+    const { enableHaptics } = this.props;
+
+    if (enableHaptics) {
+      ReactNativeHapticFeedback.trigger("impactHeavy", {});
+    }
+
     Animated.timing(this._pulseAnimation, {
       toValue: 1,
       duration: 100,

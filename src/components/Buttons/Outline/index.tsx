@@ -34,7 +34,8 @@ export default class Outline extends BasicButton<IProps> {
     raised: true,
     backgroundColor: Color.trueWhite,
     color: Color.iconGrey,
-    animated: true
+    animated: true,
+    enableHaptics: false
   };
 
   render() {

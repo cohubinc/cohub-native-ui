@@ -12,7 +12,8 @@ export default class Primary extends BasicButton {
     color: Color.primary,
     raised: true,
     animated: true,
-    elevationLevel: 0
+    elevationLevel: 0,
+    enableHaptics: false
   };
 
   render() {

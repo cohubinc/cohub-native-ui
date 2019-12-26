@@ -36,6 +36,8 @@ target 'CohubUIPlayground' do
   pod 'ReactNativeSocketMobile', path: '../node_modules/react-native-socket-mobile/ios'
 
 
+  pod 'RNReactNativeHapticFeedback', :path => '../node_modules/react-native-haptic-feedback'
+
   target 'CohubUIPlaygroundTests' do
     inherit! :search_paths
     # Pods for testing

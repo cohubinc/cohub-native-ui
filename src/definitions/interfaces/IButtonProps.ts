@@ -25,6 +25,7 @@ interface IButtonProps extends TouchableHighlightProps {
   loading?: boolean;
   raised?: boolean;
   highShadowContrast?: boolean;
+  enableHaptics?: boolean;
 }
 
 type TButtonProps<Props = {}> = IButtonProps & Props;
