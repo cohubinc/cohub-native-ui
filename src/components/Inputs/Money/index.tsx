@@ -10,6 +10,7 @@ import {
 
 import Basic from "../Basic";
 import { FieldRenderProps } from "react-final-form";
+import { IColor } from "@cohubinc/cohub-utils";
 
 const FORMAT = "$ 0,0.00[000]";
 
@@ -24,6 +25,7 @@ export interface IProps {
   textProps?: TextInputProps;
   inputRef?: React.RefObject<TextInput>;
   onSubmitEditing?: () => void;
+  tintColor?: IColor;
 }
 
 export default function Money({
@@ -32,6 +34,7 @@ export default function Money({
   textProps,
   label,
   inputRef,
+  tintColor,
   onSubmitEditing: passedOnSubmitEditing
 }: IProps) {
   const value = (input?.value || "0").toString();
@@ -93,6 +96,7 @@ export default function Money({
     <Basic
       style={[style]}
       label={label}
+      tintColor={tintColor}
       input={{
         onBlur: e => {
           blurred(e);
