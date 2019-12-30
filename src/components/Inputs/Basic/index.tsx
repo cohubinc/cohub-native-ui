@@ -9,7 +9,7 @@ import {
   TextStyle,
   ActivityIndicator
 } from "react-native";
-import { Color } from "@cohubinc/cohub-utils";
+import { Color, IColor } from "@cohubinc/cohub-utils";
 import Typography, { ITypographyProps } from "src/components/Typography";
 import Icon, { IIconProps } from "src/components/Icon";
 import Divider from "src/components/Divider";
@@ -30,6 +30,7 @@ export interface IBasicInputProps extends INativeProps {
   icon?: Omit<IIconProps, "size">;
   loading?: boolean;
   iconPosition?: "left" | "right";
+  tintColor?: IColor;
   inputRef?: React.RefObject<TextInput>;
   /**
    * Size of the input.
@@ -56,6 +57,7 @@ export default function Basic(props: IBasicInputProps) {
     placeholder,
     style,
     label,
+    tintColor,
     accessibilityLabel,
     loading = false,
     iconPosition = "left",
@@ -103,7 +105,7 @@ export default function Basic(props: IBasicInputProps) {
         }}
       >
         <Typography
-          color={inverted ? Color.trueWhite : Color.primary}
+          color={tintColor ?? (inverted ? Color.trueWhite : Color.primary)}
           style={{
             fontSize: size ? fontSize - 4 : 12
           }}
