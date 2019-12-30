@@ -7,13 +7,13 @@ import {
   ListRenderItemInfo,
   RefreshControl
 } from "react-native";
-import { Color } from "@cohubinc/cohub-utils";
+import { Color, IColor } from "@cohubinc/cohub-utils";
 
 import Loader from "src/components/Loader";
 import Divider from "src/components/Divider";
 import eventEmitter from "src/helpers/eventEmitter";
 
-const SCROLL_TO_TOP_EVENT = "cohub-basic-list-scroll-to-top"
+const SCROLL_TO_TOP_EVENT = "cohub-basic-list-scroll-to-top";
 
 interface ILoaderRow {
   isLoaderRow?: boolean;
@@ -26,6 +26,7 @@ export interface IBasicListProps<TItem> extends IFlatListProps<TItem> {
   loading?: boolean;
   data?: Array<TItem | ILoaderRow>;
   renderItem: ListRenderItem<TItem>;
+  tintColor?: IColor;
 }
 export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
   let {
@@ -36,21 +37,25 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
     onRefresh,
     ItemSeparatorComponent = () => <Divider />,
     onEndReachedThreshold = 0.5,
+    tintColor = Color.green300,
     ...rest
   } = props;
 
-  const flatListRef = useRef<FlatList<any>>(null)
+  const flatListRef = useRef<FlatList<any>>(null);
 
   useEffect(() => {
     function scrollToTop() {
       flatListRef.current?.scrollToOffset({ animated: true, offset: 0 });
     }
-    eventEmitter.on("cohub-basic-list-scroll-to-top", scrollToTop )
+    eventEmitter.on("cohub-basic-list-scroll-to-top", scrollToTop);
 
     return () => {
-      eventEmitter.removeListener("cohub-basic-list-scroll-to-top", scrollToTop )
-    }
-  }, [])
+      eventEmitter.removeListener(
+        "cohub-basic-list-scroll-to-top",
+        scrollToTop
+      );
+    };
+  }, []);
 
   if (data.length && loading) {
     data = [...data, { isLoaderRow: true }];
@@ -76,7 +81,7 @@ export default function BasicList<TItem>(props: IBasicListProps<TItem>) {
       }}
       refreshControl={
         <RefreshControl
-          tintColor={Color.green300 as any}
+          tintColor={tintColor as any}
           refreshing={!!loading}
           onRefresh={props.onRefresh || undefined}
         />
@@ -109,10 +114,9 @@ function defaultKeyExtractor<TItem>(item: IRowItem<TItem>, index: number) {
   return (item && item.id ? item.id : index).toString();
 }
 
-
 /**
  * Scroll BasicList and or QueryResultList to top
  */
 export function scrollListToTop() {
-  eventEmitter.emit(SCROLL_TO_TOP_EVENT)
+  eventEmitter.emit(SCROLL_TO_TOP_EVENT);
 }

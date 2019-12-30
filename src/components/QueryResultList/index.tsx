@@ -1,6 +1,6 @@
 import React from "react";
 import { QueryResult } from "react-apollo";
-import { useOnEndReached } from "@cohubinc/cohub-utils";
+import { useOnEndReached, IColor, Color } from "@cohubinc/cohub-utils";
 
 import BasicList, { IBasicListProps } from "src/components/BasicList";
 
@@ -10,10 +10,12 @@ interface IQueryResultList<IItem> extends IListProps<IItem> {
   queryResult: QueryResult<any, any>;
   /** How do we access your data in the query response? */
   dataAccessorKey: string;
+  tintColor?: IColor;
 }
 export default function QueryResultList<IItem>(props: IQueryResultList<IItem>) {
   const {
     queryResult: { fetchMore, variables, data, refetch },
+    tintColor = Color.green300,
     dataAccessorKey,
     ...rest
   } = props;
@@ -35,6 +37,7 @@ export default function QueryResultList<IItem>(props: IQueryResultList<IItem>) {
     <BasicList
       {...rest}
       data={nodes as IItem[]}
+      tintColor={tintColor}
       onRefresh={refetch}
       onEndReached={onEndReached}
     />
