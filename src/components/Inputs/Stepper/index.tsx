@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { ViewStyle, StyleProp } from "react-native";
 import { FieldRenderProps } from "react-final-form";
 import styled from "styled-components/native";
-import { isInt } from "@cohubinc/cohub-utils";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import debounce from "lodash/debounce";
+import { isInt } from "@cohubinc/cohub-utils";
 import { Color } from "@cohubinc/cohub-utils";
+
 import StepBtn from "./StepBtn";
 
 type FieldProps = FieldRenderProps<number, IFixMe>;
@@ -38,23 +40,37 @@ const Input = styled.TextInput`
   font-family: Inter;
 `;
 
-export default function Stepper({
-  input = {} as TInput,
-  meta,
-  style,
-  step = 1,
-  allowNegative,
-  lowerLimit,
-  upperLimit,
-  accessibilityLabel,
-  enableHaptics = false
-}: IStepperInputProps) {
+export default function Stepper(props: IStepperInputProps) {
+  const {
+    input = {} as TInput,
+    style,
+    step = 1,
+    allowNegative,
+    lowerLimit,
+    upperLimit,
+    accessibilityLabel,
+    enableHaptics = false
+  } = props;
+
   const { onBlur, onFocus } = input;
   const value = input.value || 0;
   const [tmpVal, setTmpVal] = useState(value);
 
+  // We are debouncing this function so this input can update a value thats stored in redux without performance issues.
+  // The way this is written the FIRST input.onChange function passed in through the props is the only one that ever gets used.
+  const debouncedOnChange = useCallback(
+    debounce(
+      (val: number) => {
+        input.onChange && input.onChange(val);
+      },
+      150,
+      { trailing: true, leading: false }
+    ),
+    []
+  );
+
   useEffect(() => {
-    input.onChange && input.onChange(tmpVal);
+    debouncedOnChange(tmpVal);
   }, [tmpVal]);
 
   // Track incoming value prop and keep the

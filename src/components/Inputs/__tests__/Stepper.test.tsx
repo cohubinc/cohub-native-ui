@@ -185,9 +185,12 @@ describe("Input.Stepper", () => {
     // Add 4 internally
     times(4, () => fireEvent.press(getByLabelText(getStepForwardLabel())));
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    // Give it time for the state to update
+    setTimeout(() => {
+      const val = getByLabelText(txtInputLabel).getProp("value");
 
-    expect(val).toEqual("10");
+      expect(val).toEqual("10");
+    }, 250);
   });
 });
 
@@ -208,3 +211,5 @@ function StepperTestDemo() {
     </View>
   );
 }
+
+const sleep = async (ms = 500) => new Promise(r => setTimeout(r, ms));
