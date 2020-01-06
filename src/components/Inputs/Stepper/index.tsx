@@ -43,7 +43,6 @@ const Input = styled.TextInput`
 export default function Stepper(props: IStepperInputProps) {
   const {
     input = {} as TInput,
-    meta,
     style,
     step = 1,
     allowNegative,
@@ -52,13 +51,13 @@ export default function Stepper(props: IStepperInputProps) {
     accessibilityLabel,
     enableHaptics = false
   } = props;
+
   const { onBlur, onFocus } = input;
   const value = input.value || 0;
   const [tmpVal, setTmpVal] = useState(value);
 
   // We are debouncing this function so this input can update a value thats stored in redux without performance issues.
   // The way this is written the FIRST input.onChange function passed in through the props is the only one that ever gets used.
-
   const debouncedOnChange = useCallback(
     debounce(
       (val: number) => {
