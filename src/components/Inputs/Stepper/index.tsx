@@ -21,6 +21,7 @@ interface IStepperInputProps {
   upperLimit?: number;
   accessibilityLabel: string;
   enableHaptics?: boolean;
+  debounceOnChange?: boolean;
 }
 
 const Container = styled.View`
@@ -49,7 +50,8 @@ export default function Stepper(props: IStepperInputProps) {
     lowerLimit,
     upperLimit,
     accessibilityLabel,
-    enableHaptics = false
+    enableHaptics = false,
+    debounceOnChange
   } = props;
 
   const { onBlur, onFocus } = input;
@@ -58,19 +60,21 @@ export default function Stepper(props: IStepperInputProps) {
 
   // We are debouncing this function so this input can update a value thats stored in redux without performance issues.
   // The way this is written the FIRST input.onChange function passed in through the props is the only one that ever gets used.
-  const debouncedOnChange = useCallback(
-    debounce(
-      (val: number) => {
-        input.onChange && input.onChange(val);
-      },
-      150,
-      { trailing: true, leading: false }
-    ),
-    []
+  const memoizedOnChange = useCallback(
+    debounceOnChange
+      ? debounce(
+          (val: number) => {
+            input.onChange && input.onChange(val);
+          },
+          150,
+          { trailing: true, leading: false }
+        )
+      : (val: number) => input.onChange && input.onChange(val),
+    [input.onChange, accessibilityLabel]
   );
 
   useEffect(() => {
-    debouncedOnChange(tmpVal);
+    memoizedOnChange(tmpVal);
   }, [tmpVal]);
 
   // Track incoming value prop and keep the
