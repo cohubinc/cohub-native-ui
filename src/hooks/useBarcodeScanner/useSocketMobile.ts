@@ -25,7 +25,9 @@ export default function useSocketMobile() {
   const [status, setStatus] = useState(ScannerStatus.Disconnected);
   const [busy, setBusy] = useState(false);
   const [scanner, setScanner] = useState<IBarcodeScanner | null>(null);
-  const [permissionGranted, setPermissionGranted] = useState(false);
+  const [permissionGranted, setPermissionGranted] = useState(
+    Platform.OS === "android"
+  );
 
   if (!_socketMobileConfig) {
     throw new Error(
@@ -39,8 +41,6 @@ export default function useSocketMobile() {
         setPermissionGranted(true);
       }
     });
-  } else {
-    setPermissionGranted(true);
   }
 
   useEffect(() => {
