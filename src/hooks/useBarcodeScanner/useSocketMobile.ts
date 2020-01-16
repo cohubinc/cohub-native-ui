@@ -9,6 +9,7 @@ import {
   ISocketMobileConfig,
   ScannerStatus
 } from "./IBarcodeScanner";
+import { Platform } from "react-native";
 
 let listeners = 0;
 
@@ -32,9 +33,15 @@ export default function useSocketMobile() {
     );
   }
 
-  check(PERMISSIONS.IOS.BLUETOOTH_PERIPHERAL).then(res => {
-    if (res === RESULTS.GRANTED) setPermissionGranted(true);
-  });
+  if (Platform.OS === "ios") {
+    check(PERMISSIONS.IOS.BLUETOOTH_PERIPHERAL).then(res => {
+      if (res === RESULTS.GRANTED) {
+        setPermissionGranted(true);
+      }
+    });
+  } else {
+    setPermissionGranted(true);
+  }
 
   useEffect(() => {
     if (permissionGranted) {
