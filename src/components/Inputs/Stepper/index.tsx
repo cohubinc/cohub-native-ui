@@ -21,6 +21,7 @@ interface IStepperInputProps {
   upperLimit?: number;
   accessibilityLabel: string;
   enableHaptics?: boolean;
+  disabled?: boolean;
 }
 
 const Container = styled.View`
@@ -49,7 +50,8 @@ export default function Stepper(props: IStepperInputProps) {
     lowerLimit,
     upperLimit,
     accessibilityLabel,
-    enableHaptics = false
+    enableHaptics = false,
+    disabled = false
   } = props;
 
   const { onBlur, onFocus } = input;
@@ -122,7 +124,7 @@ export default function Stepper(props: IStepperInputProps) {
         borderSide="Right"
         iconName="subtract"
         accessibilityLabel={`adjust count down by ${step}`}
-        disabled={minusDiabled}
+        disabled={disabled || minusDiabled}
         onPress={() => {
           if (enableHaptics) {
             ReactNativeHapticFeedback.trigger("selection", {});
@@ -151,6 +153,8 @@ export default function Stepper(props: IStepperInputProps) {
         autoCapitalize="none"
         autoCorrect={false}
         onChangeText={handleChange}
+        style={disabled ? { color: Color.black, opacity: 0.8 } : {}}
+        editable={!disabled}
         value={tmpVal ? tmpVal.toString() : "0"}
         selectTextOnFocus={true}
         onFocus={e => {
@@ -162,7 +166,7 @@ export default function Stepper(props: IStepperInputProps) {
       <StepBtn
         borderSide="Left"
         iconName="add"
-        disabled={plusDisabled}
+        disabled={disabled || plusDisabled}
         accessibilityLabel={`adjust count up by ${step}`}
         onPress={() => {
           setTmpVal(val => {

@@ -29,6 +29,7 @@ export interface IBasicInputProps extends INativeProps {
   accessibilityLabel?: string;
   icon?: Omit<IIconProps, "size">;
   loading?: boolean;
+  showBottomBorder?: boolean;
   iconPosition?: "left" | "right";
   tintColor?: IColor;
   inputRef?: React.RefObject<TextInput>;
@@ -66,6 +67,7 @@ export default function Basic(props: IBasicInputProps) {
     fontFamily = "Inter",
     inputStyle,
     textAlign = "left",
+    showBottomBorder = true,
     inputRef,
     ...nativeProps
   } = props;
@@ -155,14 +157,16 @@ export default function Basic(props: IBasicInputProps) {
           ]}
         />
       </View>
-      <Divider
-        color={borderColor}
-        style={{
-          marginVertical: 0,
-          marginTop: dividerMarginTopMap[size],
-          opacity: inverted ? 0.4 : 1
-        }}
-      />
+      {showBottomBorder && (
+        <Divider
+          color={borderColor}
+          style={{
+            marginVertical: 0,
+            marginTop: dividerMarginTopMap[size],
+            opacity: inverted ? 0.4 : 1
+          }}
+        />
+      )}
     </View>
   );
 }
