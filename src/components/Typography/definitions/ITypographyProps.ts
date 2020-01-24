@@ -6,7 +6,9 @@ import {
 import { IColor } from "@cohubinc/cohub-utils";
 import { IFontFamily } from "src/definitions/types/IFontFamily";
 
-type TextStyle = StyleProp<Omit<NativeTextStyle, "color" | "fontFamily">>;
+type TextStyle = StyleProp<
+  Omit<NativeTextStyle, "color" | "fontFamily" | "fontSize">
+>;
 interface ITextProps extends Omit<TextProps, "style"> {
   style?: TextStyle;
 }
@@ -63,4 +65,6 @@ export interface ITypographyProps extends ITextProps {
   kerning?: number;
 
   "data-qa"?: string;
+
+  fontSize?: number;
 }

@@ -1,41 +1,44 @@
 import { typographyFactory } from "./typographyFactory";
 
+import { ITypographyProps } from "../definitions/ITypographyProps";
+
 export const SuperTitle = typographyFactory({
   "data-qa": "page-supertitle",
-  style: { fontSize: 48 }
+  fontSize: 48
 });
 
 export const Title = typographyFactory({
   "data-qa": "page-title",
-  style: { fontSize: 36 }
+  fontSize: 36
 });
 
 export const Subtitle = typographyFactory({
   "data-qa": "page-subtitle",
-  style: { fontSize: 30 }
+  fontSize: 30
 });
 
 export const HeadingLarge = typographyFactory({
   "data-qa": "heading-large",
-  style: { fontSize: 24 }
+  fontSize: 24
 });
 
 export const HeadingSmall = typographyFactory({
   "data-qa": "heading-small",
-  style: { fontSize: 20 }
+  fontSize: 20
 });
 
 export const HeadingTiny = typographyFactory({
   "data-qa": "heading-tiny",
-  style: { fontSize: 18 }
+  fontSize: 18
 });
 
-export const Large = typographyFactory({ style: { fontSize: 16 } });
+export const Large = typographyFactory({ fontSize: 16 });
 
-export const Regular = typographyFactory({
-  style: { fontSize: 14 }
-});
+export const Regular = (props: ITypographyProps) =>
+  typographyFactory({
+    fontSize: 14
+  })(props);
 
-export const Small = typographyFactory({ style: { fontSize: 12 } });
+export const Small = typographyFactory({ fontSize: 12 });
 
-export const Tiny = typographyFactory({ style: { fontSize: 10.2 } });
+export const Tiny = typographyFactory({ fontSize: 10.2 });

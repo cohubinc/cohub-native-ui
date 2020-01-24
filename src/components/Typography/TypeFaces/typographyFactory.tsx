@@ -1,13 +1,14 @@
 import React from "react";
-import { ITypographyProps } from "../definitions/ITypographyProps";
 import { Color } from "@cohubinc/cohub-utils";
+
+import { ITypographyProps } from "../definitions/ITypographyProps";
 
 import { Text, StyleProp, TextStyle } from "react-native";
 
 type TFactoryArgs = Omit<ITypographyProps, "children">;
 // Function that takes some typography props and returns a Typography component
 export function typographyFactory(defaultProps: TFactoryArgs) {
-  return (props: ITypographyProps) => {
+  return (props: Omit<ITypographyProps, "fontSize">) => {
     const { style: factoryStyle } = defaultProps;
     const { children, style } = props;
 
@@ -29,6 +30,7 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       bold,
       mono,
       italicize,
+      fontSize,
       ...nativeProps
     } = mergedProperties;
 
@@ -48,8 +50,7 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
     const styleProp: Array<StyleProp<TextStyle>> = [
       factoryStyle,
       style,
-      { fontWeight },
-      { color }
+      { fontWeight, color, fontSize }
     ];
 
     styleProp.push(fontFamily ? { fontFamily } : { fontFamily: "Inter" });
