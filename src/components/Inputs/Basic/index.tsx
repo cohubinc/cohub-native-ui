@@ -18,16 +18,18 @@ type INativeProps = Omit<
   TextInputProps,
   "value" | "onChange" | "onBlur" | "onFocus" | "onChangeText" | "style"
 >;
+type IIcon = Omit<IIconProps, "size">;
 type IFieldProps = FieldRenderProps<string, any>;
+type IInput = Partial<IFieldProps["input"]>;
 type ISize = "small" | "medium" | "large";
 export interface IBasicInputProps extends INativeProps {
   placeholder?: string;
   label?: string;
-  input?: Partial<IFieldProps["input"]>;
+  input?: IInput;
   meta?: Partial<IFieldProps["meta"]>;
   style?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
-  icon?: Omit<IIconProps, "size">;
+  icon?: IIcon;
   loading?: boolean;
   showBottomBorder?: boolean;
   iconPosition?: "left" | "right";
@@ -71,9 +73,10 @@ export default function Basic(props: IBasicInputProps) {
     inputRef,
     ...nativeProps
   } = props;
+
   let { icon } = props;
 
-  const { onChange, onBlur, onFocus, value } = input || ({} as any);
+  const { onChange, onBlur, onFocus, value } = input || ({} as IInput);
 
   const accessibilityLabelText = accessibilityLabel || label || placeholder;
 
@@ -95,8 +98,13 @@ export default function Basic(props: IBasicInputProps) {
   const iconSize = iconSizeMap[size];
   const iconRight = showError || iconPosition === "right";
   const iconMargin = 13;
+
+  const { style: incomingIconStyle, color: iconColor, ...restIcon } =
+    icon || ({} as IIcon);
+
   const iconStyle = [
-    iconRight ? { marginLeft: iconMargin } : { marginRight: iconMargin }
+    iconRight ? { marginLeft: iconMargin } : { marginRight: iconMargin },
+    incomingIconStyle
   ];
 
   return (
@@ -128,17 +136,19 @@ export default function Basic(props: IBasicInputProps) {
         )}
         {!loading && icon && (
           <Icon
-            name={icon.name}
+            {...restIcon}
             size={iconSize}
-            color={icon.color || (inverted ? Color.trueWhite : Color.black)}
-            onPress={icon.onPress}
-            style={iconStyle}
+            color={iconColor || (inverted ? Color.trueWhite : Color.black)}
+            style={[iconStyle]}
           />
         )}
         <TextInput
-          {...{ onBlur, onFocus, placeholder, ...nativeProps }}
-          placeholderTextColor={Color.grey700}
+          {...nativeProps}
+          placeholder={placeholder}
           accessibilityLabel={accessibilityLabelText}
+          onBlur={onBlur as any}
+          onFocus={onFocus as any}
+          placeholderTextColor={Color.grey700}
           autoCapitalize="none"
           autoCorrect={false}
           onChangeText={onChange}
