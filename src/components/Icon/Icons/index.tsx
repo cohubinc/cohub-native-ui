@@ -27,11 +27,13 @@ import close from "./Close";
 import collectionDots from "./CollectionDots";
 import columns from "./Columns";
 import controlPanel from "./ControlPanel";
+import count from "./Count";
 import cube from "./Cube";
 import dashboard from "./Dashboard";
 import edit from "./Edit";
 import ellipsis from "./Ellipsis";
 import error from "./Error";
+import errorOutline from "./ErrorOutline";
 import eye from "./Eye";
 import filter from "./Filter";
 import flashlight from "./Flashlight";
@@ -98,11 +100,13 @@ export type TIconName =
   | "collectionDots"
   | "columns"
   | "controlPanel"
+  | "count"
   | "cube"
   | "dashboard"
   | "edit"
   | "ellipsis"
   | "error"
+  | "errorOutline"
   | "eye"
   | "filter"
   | "flashlight"
@@ -169,11 +173,13 @@ const icons: TIconMap = {
   collectionDots,
   columns,
   controlPanel,
+  count,
   cube,
   dashboard,
   edit,
   ellipsis,
   error,
+  errorOutline,
   eye,
   filter,
   flashlight,
