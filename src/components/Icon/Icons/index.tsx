@@ -40,6 +40,7 @@ import help from "./Help";
 import importExport from "./ImportExport";
 import laptop from "./Laptop";
 import list from "./List";
+import location from "./Location";
 import menu from "./Menu";
 import person from "./Person";
 import print from "./Print";
@@ -110,6 +111,7 @@ export type TIconName =
   | "importExport"
   | "laptop"
   | "list"
+  | "location"
   | "menu"
   | "person"
   | "print"
@@ -180,6 +182,7 @@ const icons: TIconMap = {
   importExport,
   laptop,
   list,
+  location,
   menu,
   person,
   print,

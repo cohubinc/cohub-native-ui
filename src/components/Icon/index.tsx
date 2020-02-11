@@ -98,6 +98,7 @@ Icon.Help = buildIcon("help");
 Icon.ImportExport = buildIcon("importExport");
 Icon.Laptop = buildIcon("laptop");
 Icon.List = buildIcon("list");
+Icon.Location = buildIcon("location");
 Icon.Menu = buildIcon("menu");
 Icon.Print = buildIcon("print");
 Icon.Person = buildIcon("person");
