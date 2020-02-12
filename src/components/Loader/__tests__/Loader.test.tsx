@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react-native";
 
 import Loader from "../";
+import { isLineLoaderVisible } from "src/helpers/test-utils";
 
 describe("Loaders", () => {
   it(`It shows the circle-loader when show is TRUE`, () => {
@@ -16,18 +17,14 @@ describe("Loaders", () => {
   });
 
   it(`It shows the line-loader when show is TRUE`, async () => {
-    const { findByTestId } = render(<Loader.Line show={true} />);
-    const loader = await findByTestId("line-loader");
-    expect(linLoaderIsVisible(loader)).toBe(true);
+    const { getByTestId } = render(<Loader.Line show={true} />);
+    const loader = getByTestId("line-loader");
+    expect(isLineLoaderVisible(loader)).toBe(true);
   });
 
   it(`It does NOT show the line-loader when show is FALSE`, async () => {
-    const { findByTestId } = render(<Loader.Line show={false} />);
-    const loader = await findByTestId("line-loader");
-    expect(linLoaderIsVisible(loader)).toBe(false);
+    const { getByTestId } = render(<Loader.Line show={false} />);
+    const loader = getByTestId("line-loader");
+    expect(isLineLoaderVisible(loader)).toBe(false);
   });
 });
-
-function linLoaderIsVisible(loader: any) {
-  return !(loader?.props?.style?.pop().opacity === 0);
-}

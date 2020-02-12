@@ -12,8 +12,6 @@ import React from 'react';
 import {SafeAreaView, View, StatusBar} from 'react-native';
 import DevSandbox from './DevSandbox';
 
-import {Buttons, Icon, Typography, Chip} from '@cohubinc/cohub-native-ui';
-
 export default function App() {
   return (
     <>
