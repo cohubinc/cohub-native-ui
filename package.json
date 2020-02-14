@@ -1,6 +1,6 @@
 {
   "name": "@cohubinc/cohub-native-ui",
-  "version": "1.5.26",
+  "version": "1.6.0",
   "description": "Sharable native UI components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
     "lint:fix": "yarn lint --fix",
     "test:coverage": "yarn test --coverage",
     "checkTypes": "yarn tsc --noEmit",
-    "release": "yarn build && yarn publish",
+    "release": "yarn && yarn build && yarn publish",
     "test": "NODE_ENV=test jest --config jest.json --watch"
   },
   "lint-staged": {
