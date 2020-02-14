@@ -11,7 +11,6 @@ export interface IOutlineButtonProps extends TButtonProps {
   dark?: boolean;
   textColor?: IColor;
   outlineColor?: IColor;
-  secondaryFont?: boolean;
 }
 
 const defaultProps: Partial<IOutlineButtonProps> = {
@@ -32,7 +31,6 @@ export default function Outline(props: IOutlineButtonProps) {
     outlineColor,
     color,
     textColor,
-    secondaryFont,
     ...rest
   } = mergedProps;
 
@@ -51,8 +49,7 @@ export default function Outline(props: IOutlineButtonProps) {
       labelStyle={{
         fontSize: 12,
         lineHeight: 14,
-        color: (textColor || color) as any,
-        fontFamily: secondaryFont ? "Roboto Mono" : undefined
+        color: (textColor || color) as any
       }}
       loaderColor={color}
       borderColor={(outlineColor || color) as any}
