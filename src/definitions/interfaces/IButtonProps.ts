@@ -11,7 +11,9 @@ import { ITypographyProps } from "src/components/Typography";
 
 interface INativeStyleProp
   extends Omit<TouchableHighlightProps, "style" | "children"> {
-  style?: StyleProp<Omit<ViewStyle, "position" | "borderColor" | "boorsd">>;
+  style?: StyleProp<
+    Omit<ViewStyle, "position" | "borderColor" | "boorsd" | "width" | "height">
+  >;
 }
 
 interface ILableStyle extends Omit<TextStyle, "fontFamily"> {
@@ -38,6 +40,8 @@ interface IButtonProps extends INativeStyleProp {
   absolutePosition?: Pick<ViewStyle, "top" | "bottom" | "left" | "right">;
   loaderColor?: IColor;
   borderColor?: IColor;
+  width?: ViewStyle["width"];
+  height?: ViewStyle["height"];
 }
 
 type TButtonProps<Props = {}> = IButtonProps & Props;
