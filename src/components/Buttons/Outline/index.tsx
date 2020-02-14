@@ -4,8 +4,6 @@ import { Color, IColor } from "@cohubinc/cohub-utils";
 import TButtonProps from "src/definitions/interfaces/IButtonProps";
 import BaseButton from "../Base";
 
-const defaultHeight = 40;
-
 export interface IOutlineButtonProps extends TButtonProps {
   bordered?: boolean;
   dark?: boolean;
@@ -39,13 +37,7 @@ export default function Outline(props: IOutlineButtonProps) {
   return (
     <BaseButton
       {...rest}
-      style={[
-        {
-          backgroundColor,
-          height: defaultHeight
-        },
-        style
-      ]}
+      style={[{ backgroundColor }, style]}
       labelStyle={{
         fontSize: 12,
         lineHeight: 14,

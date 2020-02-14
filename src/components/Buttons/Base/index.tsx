@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import styled from "styled-components/native";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
@@ -17,7 +17,7 @@ export default function Base(props: IButtonProps) {
     label,
     loading,
     elevationLevel = 0,
-    color = Color.grey300,
+    color = Color.grey400,
     absolutePosition,
     loaderColor = ContrastColor[color],
     borderColor,
@@ -27,8 +27,12 @@ export default function Base(props: IButtonProps) {
     disabled,
     mono,
     bold,
+    width,
+    height = 40,
     ...rest
   } = props;
+
+  const [elementwidth, setElementwidth] = useState(0);
 
   let accessibilityLabelDefault: IBaseButtonProps["accessibilityLabel"] =
     "button";
@@ -54,8 +58,14 @@ export default function Base(props: IButtonProps) {
         positionStyles,
         { backgroundColor: color },
         boxShadowsMap[elevationLevel],
-        incomingStyleProp
+        incomingStyleProp,
+        { width, height }
       ]}
+      onLayout={event => {
+        const demensions = event.nativeEvent.layout;
+
+        setElementwidth(demensions.width);
+      }}
     >
       <Touchable
         style={[
@@ -69,7 +79,8 @@ export default function Base(props: IButtonProps) {
             alignItems: "center",
             opacity: disabled ? 0.3 : 1.0
           },
-          incomingStyleProp
+          incomingStyleProp,
+          { width: "100%", height: "100%" }
         ]}
         onPress={e => {
           onPress(e);
@@ -90,11 +101,13 @@ export default function Base(props: IButtonProps) {
         </Typography>
 
         <Loader.Line
-          style={{
-            width: "108%",
-            bottom: 0,
-            position: "absolute"
-          }}
+          style={[
+            {
+              width: elementwidth,
+              position: "absolute",
+              bottom: 0
+            }
+          ]}
           show={!!loading}
           color={loaderColor}
         />
@@ -119,12 +132,9 @@ const Touchable = styled.TouchableOpacity`
   align-items: center;
 `;
 
-const height = 40;
-
 const makeStyles = (p: IButtonProps) =>
   StyleSheet.create({
     button: {
-      height,
       borderRadius: 4
     },
     content: {
