@@ -17,7 +17,10 @@ export interface ITextButtonProps
    * @default Color.iconGrey
    */
   color?: IColor;
-  textStyle?: ITypographyProps["style"];
+  mono?: boolean;
+  bold?: boolean;
+  uppercase?: boolean;
+  textProps?: ITypographyProps;
   fontSize?: number;
   disabled?: boolean;
   hitSlop?: number | TouchableOpacityProps["hitSlop"];
@@ -27,12 +30,15 @@ export default function Text(props: ITextButtonProps) {
   const {
     label,
     color = Color.iconGrey,
-    textStyle,
+    textProps,
     loading,
     style,
     disabled,
-    fontSize,
+    fontSize = 12,
     hitSlop,
+    mono,
+    bold,
+    uppercase,
     ...restProps
   } = props;
 
@@ -49,9 +55,11 @@ export default function Text(props: ITextButtonProps) {
       hitSlop={slop}
     >
       <Typography
-        uppercase
+        {...textProps}
+        uppercase={uppercase}
+        bold={bold}
         weight="500"
-        style={[{ fontSize: 12 }, textStyle, { fontSize }]}
+        style={[{ fontSize: fontSize }]}
         color={disabled ? Color.grey600 : color}
       >
         {label}
