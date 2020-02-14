@@ -1,8 +1,8 @@
 import React from "react";
+import Svg, { Path } from "react-native-svg";
 
 import IconWrapper from "../../IconWrapper/index";
 import { IIconProps as IProps } from "../../index";
-import Svg, { Path } from "react-native-svg";
 
 const Eye = (props: IProps) => (
   <IconWrapper {...props}>

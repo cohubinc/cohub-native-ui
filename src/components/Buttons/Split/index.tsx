@@ -2,14 +2,14 @@ import React from "react";
 import { ViewStyle, StyleProp, TextStyle } from "react-native";
 import styled from "styled-components/native";
 import { IColor, ContrastColor } from "@cohubinc/cohub-utils";
-
 import { Color } from "@cohubinc/cohub-utils";
+
 import { IFontFamily } from "src/definitions/types/IFontFamily";
 import Typography from "src/components/Typography";
 
 export type Value = string;
 
-export interface IProps {
+export interface ISplitButtonProps {
   values: Value[];
   selectedIndex: number;
   onChange: (index: number) => void;
@@ -23,19 +23,21 @@ export interface IProps {
   bold?: boolean;
 }
 
-function SplitButton({
-  onChange,
-  values,
-  selectedIndex,
-  style,
-  tabStyle,
-  activeTabStyle,
-  tabTextStyle,
-  activeTabTextStyle,
-  backgroundColor = Color.grey300,
-  fontFamily,
-  bold
-}: IProps) {
+export default function SplitButton(props: ISplitButtonProps) {
+  const {
+    onChange,
+    values,
+    selectedIndex,
+    style,
+    tabStyle,
+    activeTabStyle,
+    tabTextStyle,
+    activeTabTextStyle,
+    backgroundColor = Color.grey300,
+    fontFamily,
+    bold
+  } = props;
+
   return (
     <Container {...{ backgroundColor, style }}>
       {values.map((val, i) => (
@@ -71,7 +73,7 @@ const Container = styled.View<{ backgroundColor: IColor }>`
 
 interface ITabProps
   extends Pick<
-    IProps,
+    ISplitButtonProps,
     | "fontFamily"
     | "bold"
     | "tabStyle"
@@ -133,4 +135,3 @@ const TabText = styled(Typography)`
   padding-left: 11;
   padding-right: 11;
 `;
-export default SplitButton;

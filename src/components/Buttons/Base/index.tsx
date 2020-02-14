@@ -1,194 +1,145 @@
 import React from "react";
-import {
-  Animated,
-  LayoutChangeEvent,
-  StyleProp,
-  ViewStyle,
-  TouchableHighlight,
-  ActivityIndicator
-} from "react-native";
-import { Color } from "@cohubinc/cohub-utils";
+import { StyleSheet, Animated, ViewStyle, View } from "react-native";
+import styled from "styled-components/native";
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import { Color, ContrastColor, IColor } from "@cohubinc/cohub-utils";
 
 import IButtonProps from "src/definitions/interfaces/IButtonProps";
+import BoxShadow from "src/definitions/enums/BoxShadow";
 import Typography from "src/components/Typography";
-import ReactNativeHapticFeedback from "react-native-haptic-feedback";
-export { IButtonProps };
+import Loader from "src/components/Loader";
 
-export default abstract class Base<T = {}> extends React.Component<
-  IButtonProps<T>
-> {
-  // Animation to enlarge the container
-  _pulseAnimation: Animated.Value;
-  _pulseStyle: any;
+export type IBaseButtonProps = IButtonProps;
 
-  // Animation to draw a loader under the text content
-  _lineAnimation: Animated.Value;
-  _lineStyle: any;
-  _lineContainerStyle: StyleProp<ViewStyle>;
+export default function Base(props: IButtonProps) {
+  const {
+    style: incomingStyleProp,
+    labelStyle,
+    label,
+    loading,
+    elevationLevel = 0,
+    color = Color.grey300,
+    absolutePosition,
+    loaderColor = ContrastColor[color],
+    borderColor,
+    onPress,
+    enableHaptics,
+    accessibilityLabel,
+    disabled,
+    ...rest
+  } = props;
 
-  static defaultProps = {
-    animated: true,
-    color: Color.primary,
-    enableHaptics: false
-  };
+  let accessibilityLabelDefault: IBaseButtonProps["accessibilityLabel"] =
+    "button";
 
-  constructor(props: IButtonProps<T>) {
-    super(props);
-
-    this._pulseAnimation = new Animated.Value(0);
-    this._pulseStyle = props.animated
-      ? {
-          transform: [
-            {
-              scale: this._pulseAnimation.interpolate({
-                inputRange: [0, 1],
-                outputRange: [1, 1.08]
-              })
-            }
-          ]
-        }
-      : null;
-
-    this._lineAnimation = new Animated.Value(0);
-    this._lineStyle = null;
-    this._lineContainerStyle = {
-      overflow: "hidden",
-      width: "100%",
-      height: 4,
-      bottom: 0,
-      position: "absolute"
-    };
-  }
-
-  componentDidMount() {
-    if (this.props.loading) {
-      const loop = Animated.loop(
-        Animated.timing(this._lineAnimation, {
-          toValue: 100,
-          duration: 4000,
-          useNativeDriver: true
-        })
-      );
-
-      loop.start();
+  if (!accessibilityLabel) {
+    if (typeof label === "string") {
+      accessibilityLabelDefault = label;
     }
   }
 
-  componentDidUpdate(prevProps: IButtonProps<T>) {
-    const loop = Animated.loop(
-      Animated.timing(this._lineAnimation, {
-        toValue: 100,
-        duration: 4000,
-        useNativeDriver: true
-      })
-    );
+  const styles = makeStyles(props);
 
-    if (!prevProps.loading && this.props.loading) {
-      loop.start();
-    }
-
-    if (prevProps.loading && !this.props.loading) {
-      loop.stop();
-    }
-  }
-
-  beginPress = () => {
-    const { enableHaptics } = this.props;
-
-    if (enableHaptics) {
-      ReactNativeHapticFeedback.trigger("impactHeavy", {});
-    }
-
-    Animated.timing(this._pulseAnimation, {
-      toValue: 1,
-      duration: 100,
-      useNativeDriver: true
-    }).start();
+  const positionStyles: ViewStyle | false = !!absolutePosition && {
+    position: "absolute",
+    ...absolutePosition
   };
 
-  endPress = () => {
-    Animated.timing(this._pulseAnimation, {
-      toValue: 0,
-      duration: 100,
-      useNativeDriver: true
-    }).start();
-  };
-
-  onLayout = (event: LayoutChangeEvent) => {
-    const { animated, color } = this.props;
-
-    const width = event.nativeEvent.layout.width;
-
-    this._lineStyle = animated
-      ? {
-          left: 0,
-          width: "50%",
-          height: 4,
-          bottom: 0,
-          position: "absolute",
-          borderRadius: 4,
-          backgroundColor: color || Color.primary,
-          transform: [
-            {
-              translateX: this._lineAnimation.interpolate({
-                inputRange: [0, 10, 30, 40, 60, 100],
-                outputRange: [-0.5, 1.0, 1.5, 1.0, -0.5, -0.5].map(
-                  val => val * width * 0.5
-                )
-              })
-            },
-            {
-              scaleX: this._lineAnimation.interpolate({
-                inputRange: [0, 10, 30, 40, 60, 100],
-                outputRange: [0, 1.0, 0, 1.0, 0, 0]
-              })
-            }
-          ]
-        }
-      : null;
-
-    this.forceUpdate();
-  };
-
-  render() {
-    const {
-      labelStyle,
-      label,
-      color,
-      mono,
-      bold,
-      disabled,
-      loading
-    } = this.props;
-
-    return (
-      <TouchableHighlight
-        underlayColor={Color.trueWhite}
-        onPressIn={this.beginPress}
-        onPressOut={this.endPress}
-        onLayout={this.onLayout}
-        {...this.props}
+  return (
+    <View
+      testID="button-container"
+      style={[
+        styles.button,
+        positionStyles,
+        { backgroundColor: color },
+        boxShadowsMap[elevationLevel],
+        incomingStyleProp
+      ]}
+    >
+      <Touchable
+        style={[
+          styles.button,
+          {
+            borderColor,
+            borderWidth: borderColor ? 1 : 0,
+            paddingHorizontal: 15,
+            overflow: "hidden",
+            justifyContent: "center",
+            alignItems: "center",
+            opacity: disabled ? 0.3 : 1.0
+          },
+          incomingStyleProp
+        ]}
+        onPress={e => {
+          onPress(e);
+          enableHaptics && ReactNativeHapticFeedback.trigger("impactHeavy", {});
+        }}
+        accessibilityLabel={accessibilityLabelDefault}
+        disabled={disabled}
+        {...rest}
       >
-        <Animated.View
-          style={[
-            this.props.style,
-            this._pulseStyle,
-            { flexDirection: "row", alignItems: "center" }
-          ]}
+        <Typography
+          color={(labelStyle?.color as IColor) || ContrastColor[color]}
+          fontFamily={labelStyle?.fontFamily}
+          style={[styles.label, labelStyle]}
         >
-          <Typography
-            color={color}
-            style={[labelStyle, disabled ? { opacity: 0.3 } : undefined]}
-            mono={mono}
-            bold={bold}
-          >
-            {label}
-          </Typography>
-          {loading && (
-            <ActivityIndicator style={{ marginLeft: 8 }} color={color} />
-          )}
-        </Animated.View>
-      </TouchableHighlight>
-    );
-  }
+          {label}
+        </Typography>
+
+        <Loader.Line
+          style={{
+            width: "108%",
+            bottom: 0,
+            position: "absolute"
+          }}
+          show={!!loading}
+          color={loaderColor}
+        />
+      </Touchable>
+    </View>
+  );
 }
+
+const boxShadowThree = {
+  shadowColor: "rgba(0, 0, 0, 0.12)",
+  shadowOffset: { height: 1, width: 0 },
+  shadowOpacity: 1,
+  shadowRadius: 8
+};
+
+const boxShadowsMap = { 0: null, 3: boxShadowThree };
+
+const Touchable = styled.TouchableOpacity`
+  padding: 0px 15px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+`;
+
+const height = 40;
+
+const makeStyles = (p: IButtonProps) =>
+  StyleSheet.create({
+    button: {
+      height,
+      borderRadius: 4
+    },
+    content: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      alignItems: "center",
+      alignContent: "center",
+      flex: 1
+    },
+    label: {
+      textAlign: "center",
+      marginTop: 4
+    },
+    loader: {
+      width: 50,
+      height: 50,
+      alignContent: "center",
+      justifyContent: "center",
+      alignSelf: "center"
+    }
+  });

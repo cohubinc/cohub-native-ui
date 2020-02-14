@@ -6,7 +6,14 @@ export {
   scrollListToTop
 } from "src/components/BasicList";
 export { default as BoxShadow } from "src/definitions/enums/BoxShadow";
-export { default as Buttons } from "src/components/Buttons";
+export {
+  default as Buttons,
+  IBaseButtonProps,
+  IPrimaryButtonProps,
+  IOutlineButtonProps,
+  ISplitButtonProps,
+  ITextButtonProps
+} from "src/components/Buttons";
 // export { IFabRefObject } from "src/components/Buttons/FloatingActionButton";
 export * from "src/components/Buttons";
 export { default as Chip, TChipProps } from "src/components/Chip";

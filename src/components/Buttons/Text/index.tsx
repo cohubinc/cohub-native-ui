@@ -6,7 +6,8 @@ import Typography, { ITypographyProps } from "src/components/Typography";
 import { IColor, Color } from "@cohubinc/cohub-utils";
 import Loader from "src/components/Loader";
 
-interface ITextButtonProps extends Omit<TouchableOpacityProps, "hitSlop"> {
+export interface ITextButtonProps
+  extends Omit<TouchableOpacityProps, "hitSlop"> {
   label: ReactNode;
   /**
    * @default true
