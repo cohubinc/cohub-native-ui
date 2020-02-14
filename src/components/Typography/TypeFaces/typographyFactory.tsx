@@ -52,7 +52,7 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       { color }
     ];
 
-    styleProp.push(fontFamily ? { fontFamily } : { fontFamily: "Inter" });
+    styleProp.push({ fontFamily: fontFamily || "Inter" });
 
     styleProp.push(mono && { fontFamily: "Roboto Mono" });
 

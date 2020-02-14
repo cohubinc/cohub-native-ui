@@ -1,11 +1,10 @@
 import React from "react";
-import { StyleSheet, Animated, ViewStyle, View } from "react-native";
+import { StyleSheet, ViewStyle, View } from "react-native";
 import styled from "styled-components/native";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import { Color, ContrastColor, IColor } from "@cohubinc/cohub-utils";
 
 import IButtonProps from "src/definitions/interfaces/IButtonProps";
-import BoxShadow from "src/definitions/enums/BoxShadow";
 import Typography from "src/components/Typography";
 import Loader from "src/components/Loader";
 
@@ -26,6 +25,8 @@ export default function Base(props: IButtonProps) {
     enableHaptics,
     accessibilityLabel,
     disabled,
+    mono,
+    bold,
     ...rest
   } = props;
 
@@ -80,6 +81,8 @@ export default function Base(props: IButtonProps) {
       >
         <Typography
           color={(labelStyle?.color as IColor) || ContrastColor[color]}
+          bold={bold}
+          mono={mono}
           fontFamily={labelStyle?.fontFamily}
           style={[styles.label, labelStyle]}
         >
