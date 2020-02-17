@@ -50,13 +50,14 @@ export default function Base(props: IButtonProps) {
     ...absolutePosition
   };
 
+  const borderRadius = 4;
+
   return (
     <View
       testID="button-container"
       style={[
-        styles.button,
         positionStyles,
-        { backgroundColor: color },
+        { backgroundColor: Color.trueWhite, borderRadius },
         boxShadowsMap[elevationLevel],
         incomingStyleProp,
         { width, height }
@@ -69,15 +70,16 @@ export default function Base(props: IButtonProps) {
     >
       <Touchable
         style={[
-          styles.button,
           {
             borderColor,
+            borderRadius,
             borderWidth: borderColor ? 1 : 0,
             paddingHorizontal: 15,
             overflow: "hidden",
             justifyContent: "center",
             alignItems: "center",
-            opacity: disabled ? 0.3 : 1.0
+            opacity: disabled ? 0.3 : 1.0,
+            backgroundColor: color
           },
           incomingStyleProp,
           { width: "100%", height: "100%" }
@@ -134,9 +136,6 @@ const Touchable = styled.TouchableOpacity`
 
 const makeStyles = (p: IButtonProps) =>
   StyleSheet.create({
-    button: {
-      borderRadius: 4
-    },
     content: {
       flexDirection: "row",
       justifyContent: "space-around",
