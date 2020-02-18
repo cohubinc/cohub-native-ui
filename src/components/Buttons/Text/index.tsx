@@ -59,7 +59,7 @@ export default function Text(props: ITextButtonProps) {
         uppercase={uppercase}
         bold={bold}
         weight="500"
-        style={[{ fontSize: fontSize }]}
+        style={[{ fontSize: fontSize }, textProps?.style]}
         color={disabled ? Color.grey600 : color}
       >
         {label}
