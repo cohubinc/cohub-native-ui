@@ -20,7 +20,7 @@ export interface ITextButtonProps
   mono?: boolean;
   bold?: boolean;
   uppercase?: boolean;
-  textProps?: ITypographyProps;
+  textProps?: Omit<ITypographyProps, "children">;
   fontSize?: number;
   disabled?: boolean;
   hitSlop?: number | TouchableOpacityProps["hitSlop"];
