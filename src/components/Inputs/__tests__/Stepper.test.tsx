@@ -160,6 +160,74 @@ describe("Input.Stepper", () => {
     expect(val).toEqual("0");
   });
 
+  it("onRemove gets called when you try to go negative by default", () => {
+    const onRemoveSpy = jest.fn();
+
+    const { getByLabelText } = render(
+      <Inputs.Stepper
+        input={{ value: 0 }}
+        onRemove={onRemoveSpy}
+        accessibilityLabel={accessibilityLabel}
+      />
+    );
+
+    fireEvent.press(getByLabelText("remove item"));
+
+    expect(onRemoveSpy.mock.calls.length).toBe(1);
+  });
+
+  it("onRemove doesn't get called when allowNegative is true", () => {
+    const onRemoveSpy = jest.fn();
+
+    const { getByLabelText } = render(
+      <Inputs.Stepper
+        allowNegative
+        input={{ value: 0 }}
+        onRemove={onRemoveSpy}
+        accessibilityLabel={accessibilityLabel}
+      />
+    );
+
+    times(3, () => fireEvent.press(getByLabelText(getStepBackLabel())));
+
+    expect(onRemoveSpy.mock.calls.length).toBe(0);
+  });
+
+  it("onRemove gets called when you try to go below lowerLimit", () => {
+    const onRemoveSpy = jest.fn();
+
+    const { getByLabelText } = render(
+      <Inputs.Stepper
+        lowerLimit={2}
+        input={{ value: 2 }}
+        onRemove={onRemoveSpy}
+        accessibilityLabel={accessibilityLabel}
+      />
+    );
+
+    fireEvent.press(getByLabelText("remove item"));
+
+    expect(onRemoveSpy.mock.calls.length).toBe(1);
+  });
+
+  it("onRemove doesn't get called when you aren't trying to go below lowerLimit", () => {
+    const onRemoveSpy = jest.fn();
+
+    const { getByLabelText } = render(
+      <Inputs.Stepper
+        lowerLimit={2}
+        input={{ value: 5 }}
+        onRemove={onRemoveSpy}
+        accessibilityLabel={accessibilityLabel}
+      />
+    );
+
+    fireEvent.press(getByLabelText(getStepBackLabel()));
+    fireEvent.press(getByLabelText(getStepBackLabel()));
+
+    expect(onRemoveSpy.mock.calls.length).toBe(0);
+  });
+
   it("When changing the value from outside the stepper button the UI stays in sync", () => {
     const { getByLabelText, getByText } = render(<StepperTestDemo />);
 
