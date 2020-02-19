@@ -23,6 +23,10 @@ interface IStepperInputProps {
   enableHaptics?: boolean;
   disabled?: boolean;
   debounceOnChange?: boolean;
+  /**
+   * This function will be called when belowNegative is false and the value goes below zero or the defined lower limit
+   */
+  onRemove?: () => void;
 }
 
 const Container = styled.View`
@@ -53,16 +57,21 @@ export default function Stepper(props: IStepperInputProps) {
     accessibilityLabel,
     debounceOnChange,
     enableHaptics = false,
-    disabled = false
+    disabled = false,
+    onRemove
   } = props;
 
   const { onBlur, onFocus } = input;
   const value = input.value || 0;
   const [tmpVal, setTmpVal] = useState(value);
 
+  const shouldRemove =
+    !!onRemove &&
+    (lowerLimit ? value <= lowerLimit : value === 0 && !allowNegative);
+
   // We are debouncing this function so this input can update a value thats stored in redux without performance issues.
   // The way this is written the FIRST input.onChange function passed in through the props is the only one that ever gets used.
-  var memoizedOnChange = useCallback(
+  const memoizedOnChange = useCallback(
     debounceOnChange
       ? debounce(
           (val: number) => {
@@ -119,8 +128,9 @@ export default function Stepper(props: IStepperInputProps) {
     setTmpVal(numVal);
   }
 
-  let minusDiabled = allowNegative ? false : value <= 0;
-  minusDiabled = lowerLimit ? value <= lowerLimit : minusDiabled;
+  let minusDisabled = allowNegative ? false : value <= 0;
+  minusDisabled = lowerLimit ? value <= lowerLimit : minusDisabled;
+  minusDisabled = minusDisabled && !onRemove;
   const plusDisabled = upperLimit ? value >= upperLimit : false;
 
   return (
@@ -129,13 +139,21 @@ export default function Stepper(props: IStepperInputProps) {
       accessibilityLabel={`${accessibilityLabel} count adjuster control`}
     >
       <StepBtn
+        showRemove={shouldRemove}
         borderSide="Right"
         iconName="subtract"
-        accessibilityLabel={`adjust count down by ${step}`}
-        disabled={disabled || minusDiabled}
+        accessibilityLabel={
+          shouldRemove ? "remove item" : `adjust count down by ${step}`
+        }
+        disabled={disabled || minusDisabled}
         onPress={() => {
           if (enableHaptics) {
             ReactNativeHapticFeedback.trigger("selection", {});
+          }
+
+          if (shouldRemove) {
+            onRemove && onRemove();
+            return;
           }
 
           setTmpVal(val => {
@@ -177,11 +195,11 @@ export default function Stepper(props: IStepperInputProps) {
         disabled={disabled || plusDisabled}
         accessibilityLabel={`adjust count up by ${step}`}
         onPress={() => {
-          setTmpVal(val => {
-            if (enableHaptics) {
-              ReactNativeHapticFeedback.trigger("selection", {});
-            }
+          if (enableHaptics) {
+            ReactNativeHapticFeedback.trigger("selection", {});
+          }
 
+          setTmpVal(val => {
             let nextDecrement = val + step;
 
             if (upperLimit && nextDecrement >= upperLimit) {

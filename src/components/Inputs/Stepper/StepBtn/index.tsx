@@ -12,10 +12,10 @@ interface IStepBtnProps {
   disabled?: boolean;
   onPress: () => void;
   accessibilityLabel: string;
+  showRemove?: boolean;
 }
 const StepBtnContainer = styled.View`
   flex: 1;
-  border-color: ${Color.lightGrey};
   margin: 5px 0;
 `;
 const Btn = styled.TouchableOpacity`
@@ -24,7 +24,14 @@ const Btn = styled.TouchableOpacity`
   align-items: center;
 `;
 export default function StepBtn(props: IStepBtnProps) {
-  const { onPress, iconName, borderSide, disabled, accessibilityLabel } = props;
+  const {
+    onPress,
+    iconName,
+    borderSide,
+    disabled,
+    accessibilityLabel,
+    showRemove
+  } = props;
 
   const [pressing, setPressing] = useState(false);
   useEffect(() => {
@@ -37,7 +44,10 @@ export default function StepBtn(props: IStepBtnProps) {
     };
   }, [pressing]);
 
-  const borderStyle = { [`border${borderSide}Width`]: 1 };
+  const borderStyle = {
+    [`border${borderSide}Width`]: 1,
+    borderColor: showRemove ? Color.red500 : Color.lightGrey
+  };
 
   return (
     <StepBtnContainer style={borderStyle}>
@@ -46,7 +56,11 @@ export default function StepBtn(props: IStepBtnProps) {
         onLongPress={() => setPressing(true)}
         onPressOut={() => setPressing(false)}
       >
-        <Icon name={iconName} color={Color.black} disabled={disabled} />
+        <Icon
+          name={showRemove ? "close" : iconName}
+          color={showRemove ? Color.red500 : Color.black}
+          disabled={disabled}
+        />
       </Btn>
     </StepBtnContainer>
   );
