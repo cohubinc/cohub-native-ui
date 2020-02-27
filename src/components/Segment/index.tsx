@@ -3,31 +3,27 @@ import { ViewStyle, StyleProp } from "react-native";
 import styled from "styled-components/native";
 import { Color } from "@cohubinc/cohub-utils";
 
-import BoxShadow, { ElevationLevel } from "src/definitions/enums/BoxShadow";
+import { ElevationLevel } from "src/definitions/enums/BoxShadow";
+import getBoxShadow from "src/helpers/getBoxShadow";
 
 export interface ISegmentProps {
   style?: StyleProp<ViewStyle>;
   /**
    * If true, the Segment will get 1rem of padding on all sides
+   * @default true
    */
   padded?: boolean;
   /**
    * The level of drop shadow that shows beneath the segment
    */
   elevation?: ElevationLevel;
-  /**
-   * If true, the Segment will use the contrast background and have no elevation
-   */
   children: ReactNode;
 }
 
 export default function Segment(props: ISegmentProps) {
   const { elevation = 1, padded = true, style, children, ...rest } = props;
 
-  const dpLevel = `dp${elevation}`;
-
   const StyledSegment = styled.View`
-    box-shadow: ${(BoxShadow as any)[dpLevel]};
     background-color: ${Color.trueWhite};
     padding: ${padded ? "16px" : 0};
     border-radius: 4;
@@ -36,7 +32,7 @@ export default function Segment(props: ISegmentProps) {
   `;
 
   return (
-    <StyledSegment style={style} {...rest}>
+    <StyledSegment style={[style, getBoxShadow(elevation)]} {...rest}>
       {children}
     </StyledSegment>
   );
