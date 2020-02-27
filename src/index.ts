@@ -36,6 +36,7 @@ export {
   default as FormatWeight,
   IFormatWeightProps
 } from "src/components/FormatWeight";
+export { default as getBoxShadow } from "src/helpers/getBoxShadow";
 export { default as Icon, IIconProps, iconNames } from "src/components/Icon";
 export { default as Inputs } from "src/components/Inputs";
 export { default as Link } from "src/components/Link";

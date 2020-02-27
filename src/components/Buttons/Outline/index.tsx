@@ -7,14 +7,11 @@ import BaseButton from "../Base";
 export interface IOutlineButtonProps extends TButtonProps {
   bordered?: boolean;
   dark?: boolean;
-  textColor?: IColor;
-  outlineColor?: IColor;
 }
 
 const defaultProps: Partial<IOutlineButtonProps> = {
   bordered: true,
   dark: false,
-  backgroundColor: Color.trueWhite,
   color: Color.iconGrey,
   enableHaptics: false
 };
@@ -22,17 +19,9 @@ const defaultProps: Partial<IOutlineButtonProps> = {
 export default function Outline(props: IOutlineButtonProps) {
   const mergedProps = { ...defaultProps, ...props };
 
-  const {
-    style,
-    bordered,
-    dark,
-    outlineColor,
-    color,
-    textColor,
-    ...rest
-  } = mergedProps;
+  const { style, bordered, dark, color, ...rest } = mergedProps;
 
-  const backgroundColor = dark ? Color.black : mergedProps.backgroundColor;
+  const backgroundColor = dark ? Color.black : Color.trueWhite;
 
   return (
     <BaseButton
@@ -41,10 +30,10 @@ export default function Outline(props: IOutlineButtonProps) {
       labelStyle={{
         fontSize: 12,
         lineHeight: 14,
-        color: (textColor || color) as any
+        color: color
       }}
       loaderColor={color}
-      borderColor={(outlineColor || color) as any}
+      borderColor={color}
     />
   );
 }
