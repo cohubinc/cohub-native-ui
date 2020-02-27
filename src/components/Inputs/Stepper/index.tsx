@@ -67,7 +67,7 @@ export default function Stepper(props: IStepperInputProps) {
 
   const shouldRemove =
     !!onRemove &&
-    (lowerLimit ? value <= lowerLimit : value === 0 && !allowNegative);
+    (lowerLimit ? value <= lowerLimit : value <= 0 && !allowNegative);
 
   // We are debouncing this function so this input can update a value thats stored in redux without performance issues.
   // The way this is written the FIRST input.onChange function passed in through the props is the only one that ever gets used.

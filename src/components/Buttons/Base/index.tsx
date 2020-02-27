@@ -7,6 +7,7 @@ import { Color, ContrastColor, IColor } from "@cohubinc/cohub-utils";
 import IButtonProps from "src/definitions/interfaces/IButtonProps";
 import Typography from "src/components/Typography";
 import Loader from "src/components/Loader";
+import getBoxShadow from "src/helpers/getBoxShadow";
 
 export type IBaseButtonProps = IButtonProps;
 
@@ -17,6 +18,7 @@ export default function Base(props: IButtonProps) {
     label,
     loading,
     elevationLevel = 0,
+    elevated,
     color = Color.grey400,
     absolutePosition,
     loaderColor = ContrastColor[color],
@@ -32,7 +34,7 @@ export default function Base(props: IButtonProps) {
     ...rest
   } = props;
 
-  const [elementwidth, setElementwidth] = useState(0);
+  const [elementWidth, setElementWidth] = useState(0);
 
   let accessibilityLabelDefault: IBaseButtonProps["accessibilityLabel"] =
     "button";
@@ -58,14 +60,14 @@ export default function Base(props: IButtonProps) {
       style={[
         positionStyles,
         { backgroundColor: Color.trueWhite, borderRadius },
-        boxShadowsMap[elevationLevel],
+        getBoxShadow(elevated ? 3 : elevationLevel),
         incomingStyleProp,
         { width, height }
       ]}
       onLayout={event => {
-        const demensions = event.nativeEvent.layout;
+        const dimensions = event.nativeEvent.layout;
 
-        setElementwidth(demensions.width);
+        setElementWidth(dimensions.width);
       }}
     >
       <Touchable
@@ -105,7 +107,7 @@ export default function Base(props: IButtonProps) {
         <Loader.Line
           style={[
             {
-              width: elementwidth,
+              width: elementWidth,
               position: "absolute",
               bottom: 0
             }
@@ -117,15 +119,6 @@ export default function Base(props: IButtonProps) {
     </View>
   );
 }
-
-const boxShadowThree = {
-  shadowColor: "rgba(0, 0, 0, 0.12)",
-  shadowOffset: { height: 1, width: 0 },
-  shadowOpacity: 1,
-  shadowRadius: 8
-};
-
-const boxShadowsMap = { 0: null, 3: boxShadowThree };
 
 const Touchable = styled.TouchableOpacity`
   padding: 0px 15px;

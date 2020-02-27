@@ -8,6 +8,7 @@ import {
 import { IColor } from "@cohubinc/cohub-utils";
 import { ReactNode } from "react";
 import { ITypographyProps } from "src/components/Typography";
+import { ElevationLevel } from "src/definitions/enums/BoxShadow";
 
 interface INativeStyleProp
   extends Omit<TouchableHighlightProps, "style" | "children"> {
@@ -21,11 +22,11 @@ interface ILableStyle extends Omit<TextStyle, "fontFamily"> {
 }
 
 interface IButtonProps extends INativeStyleProp {
-  elevationLevel?: 0 | 3;
+  elevationLevel?: ElevationLevel;
+  elevated?: boolean;
   label: ReactNode;
   labelStyle?: ILableStyle;
   color?: IColor;
-  backgroundColor?: IColor;
   disabled?: boolean;
   onPress: (event?: GestureResponderEvent) => void;
   mono?: boolean;
