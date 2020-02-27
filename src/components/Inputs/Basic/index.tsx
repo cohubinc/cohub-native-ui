@@ -27,7 +27,7 @@ export interface IBasicInputProps extends INativeProps {
   label?: string;
   input?: IInput;
   meta?: Partial<IFieldProps["meta"]>;
-  style?: StyleProp<ViewStyle>;
+  style?: StyleProp<Omit<ViewStyle, "height">>;
   accessibilityLabel?: string;
   icon?: IIcon;
   loading?: boolean;
@@ -46,11 +46,12 @@ export interface IBasicInputProps extends INativeProps {
    */
   inverted?: boolean;
   fontFamily?: ITypographyProps["fontFamily"];
-  inputStyle?: StyleProp<TextStyle>;
+  inputStyle?: StyleProp<Omit<TextStyle, "height">>;
   /**
    * @default "left"
    */
   textAlign?: "center" | "left" | "right";
+  height?: ViewStyle["height"];
 }
 
 export default function Basic(props: IBasicInputProps) {
@@ -71,6 +72,7 @@ export default function Basic(props: IBasicInputProps) {
     textAlign = "left",
     showBottomBorder = true,
     inputRef,
+    height = 40,
     ...nativeProps
   } = props;
 
@@ -108,7 +110,7 @@ export default function Basic(props: IBasicInputProps) {
   ];
 
   return (
-    <View style={style}>
+    <View style={[style, { height }]}>
       <View
         style={{
           alignItems: textAlign === "right" ? "flex-end" : "flex-start"
@@ -127,8 +129,8 @@ export default function Basic(props: IBasicInputProps) {
       <View
         style={{
           width: "100%",
-          paddingVertical: 6,
-          flexDirection: iconRight ? "row-reverse" : "row"
+          flexDirection: iconRight ? "row-reverse" : "row",
+          alignItems: "center"
         }}
       >
         {loading && (
@@ -161,7 +163,8 @@ export default function Basic(props: IBasicInputProps) {
               textAlign,
               fontFamily,
               color: inverted ? Color.trueWhite : Color.black,
-              opacity: inverted ? 0.8 : 1
+              opacity: inverted ? 0.8 : 1,
+              height
             },
             inputStyle
           ]}

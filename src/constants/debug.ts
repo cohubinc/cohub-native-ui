@@ -1,1 +1,4 @@
-export const debug = { borderWidth: 1, borderColor: "#7CFC00" };
+export const debug = (borderColor = "#7CFC00") => ({
+  borderWidth: 1,
+  borderColor
+});
