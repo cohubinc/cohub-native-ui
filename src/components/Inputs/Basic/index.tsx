@@ -51,6 +51,9 @@ export interface IBasicInputProps extends INativeProps {
    * @default "left"
    */
   textAlign?: "center" | "left" | "right";
+  /**
+   * @default 40
+   */
   height?: ViewStyle["height"];
 }
 
