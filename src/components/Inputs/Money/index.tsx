@@ -1,28 +1,18 @@
 import { Decimal } from "decimal.js-light";
 import numeral from "numeral";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   NativeSyntheticEvent,
   TextInput,
-  TextInputProps,
   TextInputSubmitEditingEventData
 } from "react-native";
 
-import Basic from "../Basic";
-import { FieldRenderProps } from "react-final-form";
+import Basic, { IBasicInputProps } from "../Basic";
 import { IColor } from "@cohubinc/cohub-utils";
 
 const FORMAT = "$ 0,0.00[000]";
 
-type IFieldProps = FieldRenderProps<string, any>;
-
-export interface IProps {
-  placeholder?: string;
-  label?: string;
-  input?: Partial<IFieldProps["input"]>;
-  meta?: Partial<IFieldProps["meta"]>;
-  style?: any;
-  textProps?: TextInputProps;
+export interface IProps extends IBasicInputProps {
   inputRef?: React.RefObject<TextInput>;
   onSubmitEditing?: () => void;
   tintColor?: IColor;
@@ -31,11 +21,11 @@ export interface IProps {
 export default function Money({
   input,
   style,
-  textProps,
   label,
   inputRef,
   tintColor,
-  onSubmitEditing: passedOnSubmitEditing
+  onSubmitEditing: passedOnSubmitEditing,
+  ...rest
 }: IProps) {
   const value = (input?.value || "0").toString();
   const { onChange, onBlur, onFocus } = input || {};
@@ -120,7 +110,7 @@ export default function Money({
       selectTextOnFocus
       inputRef={inputRef}
       inputStyle={[style]}
-      {...textProps}
+      {...rest}
     />
   );
 }
