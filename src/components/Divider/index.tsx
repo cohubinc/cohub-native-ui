@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleProp, ViewStyle } from "react-native";
 import { IColor, Color } from "@cohubinc/cohub-utils";
 
-export type TMargin = 0.5 | 1 | 1.5 | 2 | 3 | 4 | 5 | 6;
+export type TMargin = 0 | 0.5 | 1 | 1.5 | 2 | 3 | 4 | 5 | 6;
 
 interface IProps {
   color?: IColor;
