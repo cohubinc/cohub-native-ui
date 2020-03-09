@@ -72,30 +72,31 @@ export default function Stepper(props: IStepperInputProps) {
   // We are debouncing this function so this input can update a value thats stored in redux without performance issues.
   // The way this is written the FIRST input.onChange function passed in through the props is the only one that ever gets used.
   const memoizedOnChange = useCallback(
-    debounceOnChange
-      ? debounce(
-          (val: number) => {
-            input.onChange && input.onChange(val);
-          },
-          150,
-          {
-            trailing: true,
-            leading: false
-          }
-        )
-      : (val: number) => {
-          return input.onChange && input.onChange(val);
-        },
+    debounce(
+      (val: number) => {
+        input.onChange && input.onChange(val);
+      },
+      150,
+      {
+        trailing: true,
+        leading: false
+      }
+    ),
     [input.onChange, accessibilityLabel]
   );
+
+  const onChange = debounceOnChange
+    ? memoizedOnChange
+    : (val: number) => input.onChange && input.onChange(val);
+
   useEffect(() => {
-    memoizedOnChange(tmpVal);
+    onChange(tmpVal);
   }, [tmpVal]);
 
   // Track incoming value prop and keep the
   // tmpVal state in sync with any changes
   useEffect(() => {
-    setTmpVal(value);
+    value !== tmpVal && setTmpVal(value);
   }, [value]);
 
   function handleChange(val: string) {
@@ -133,6 +134,7 @@ export default function Stepper(props: IStepperInputProps) {
   minusDisabled = minusDisabled && !onRemove;
   const plusDisabled = upperLimit ? value >= upperLimit : false;
 
+  console.log("1000.toLocalString()", (1000).toLocaleString());
   return (
     <Container
       style={style}
@@ -173,6 +175,7 @@ export default function Stepper(props: IStepperInputProps) {
       />
 
       <Input
+        allowFontScaling
         accessibilityLabel={`${accessibilityLabel} count`}
         keyboardType="decimal-pad"
         returnKeyType="done"
@@ -181,7 +184,7 @@ export default function Stepper(props: IStepperInputProps) {
         onChangeText={handleChange}
         style={disabled ? { color: Color.black, opacity: 0.8 } : {}}
         editable={!disabled}
-        value={tmpVal ? tmpVal.toString() : "0"}
+        value={tmpVal ? tmpVal.toLocaleString() : "0"}
         selectTextOnFocus={true}
         onFocus={e => {
           onFocus && onFocus(e as IFixMe);
