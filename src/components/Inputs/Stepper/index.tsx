@@ -134,7 +134,6 @@ export default function Stepper(props: IStepperInputProps) {
   minusDisabled = minusDisabled && !onRemove;
   const plusDisabled = upperLimit ? value >= upperLimit : false;
 
-  console.log("1000.toLocalString()", (1000).toLocaleString());
   return (
     <Container
       style={style}
