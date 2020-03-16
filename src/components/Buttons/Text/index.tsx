@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef, Ref } from "react";
 import { TouchableOpacityProps, TouchableOpacity } from "react-native";
 import { ReactNode } from "react";
 
@@ -26,49 +26,53 @@ export interface ITextButtonProps
   hitSlop?: number | TouchableOpacityProps["hitSlop"];
 }
 
-export default function Text(props: ITextButtonProps) {
-  const {
-    label,
-    color = Color.iconGrey,
-    textProps,
-    loading,
-    style,
-    disabled,
-    fontSize = 12,
-    hitSlop,
-    mono,
-    bold,
-    uppercase,
-    ...restProps
-  } = props;
+const Text = forwardRef(
+  (props: ITextButtonProps, ref: Ref<TouchableOpacity>) => {
+    const {
+      label,
+      color = Color.iconGrey,
+      textProps,
+      loading,
+      style,
+      disabled,
+      fontSize = 12,
+      hitSlop,
+      mono,
+      bold,
+      uppercase,
+      ...restProps
+    } = props;
 
-  let slop = props.hitSlop || 5;
-  if (typeof slop === "number") {
-    slop = { top: slop, left: slop, bottom: slop, right: slop };
-  }
+    let slop = props.hitSlop || 5;
+    if (typeof slop === "number") {
+      slop = { top: slop, left: slop, bottom: slop, right: slop };
+    }
 
-  return (
-    <TouchableOpacity
-      {...restProps}
-      style={[{ minHeight: 24, justifyContent: "center" }, style]}
-      disabled={disabled}
-      hitSlop={slop}
-    >
-      <Typography
-        {...textProps}
-        uppercase={uppercase}
-        bold={bold}
-        weight="500"
-        style={[{ fontSize: fontSize }, textProps?.style]}
-        color={disabled ? Color.grey600 : color}
+    return (
+      <TouchableOpacity
+        {...restProps}
+        style={[{ minHeight: 24, justifyContent: "center" }, style]}
+        disabled={disabled}
+        hitSlop={slop}
       >
-        {label}
-      </Typography>
-      <Loader.Line
-        show={!!loading}
-        color={color}
-        style={{ position: "absolute", bottom: 0 }}
-      />
-    </TouchableOpacity>
-  );
-}
+        <Typography
+          {...textProps}
+          uppercase={uppercase}
+          bold={bold}
+          weight="500"
+          style={[{ fontSize: fontSize }, textProps?.style]}
+          color={disabled ? Color.grey600 : color}
+        >
+          {label}
+        </Typography>
+        <Loader.Line
+          show={!!loading}
+          color={color}
+          style={{ position: "absolute", bottom: 0 }}
+        />
+      </TouchableOpacity>
+    );
+  }
+);
+
+export default Text;

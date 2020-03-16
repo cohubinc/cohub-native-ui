@@ -6,7 +6,7 @@ import {
   ViewStyle
 } from "react-native";
 import { IColor } from "@cohubinc/cohub-utils";
-import { ReactNode } from "react";
+import { ReactNode, Ref } from "react";
 import { ITypographyProps } from "src/components/Typography";
 import { ElevationLevel } from "src/definitions/enums/BoxShadow";
 
@@ -21,7 +21,7 @@ interface ILableStyle extends Omit<TextStyle, "fontFamily"> {
   fontFamily?: ITypographyProps["fontFamily"];
 }
 
-interface IButtonProps extends INativeStyleProp {
+export interface IButtonProps extends INativeStyleProp {
   elevationLevel?: ElevationLevel;
   elevated?: boolean;
   label: ReactNode;

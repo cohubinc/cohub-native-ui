@@ -1,11 +1,16 @@
-import React from "react";
+import React, { forwardRef, Ref } from "react";
 import { Color } from "@cohubinc/cohub-utils";
 
 import IButtonProps from "src/definitions/interfaces/IButtonProps";
 import BasicButton from "../Base";
+import { TouchableOpacity } from "react-native";
 
 export type IPrimaryButtonProps = Omit<IButtonProps, "color">;
 
-export default function Primary(props: IPrimaryButtonProps) {
-  return <BasicButton color={Color.primary} {...props} />;
-}
+const Primary = forwardRef(
+  (props: IPrimaryButtonProps, ref: Ref<TouchableOpacity>) => {
+    return <BasicButton ref={ref} color={Color.primary} {...props} />;
+  }
+);
+
+export default Primary;

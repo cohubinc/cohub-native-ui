@@ -1,8 +1,9 @@
-import React from "react";
-import { Color, IColor } from "@cohubinc/cohub-utils";
+import React, { forwardRef, Ref } from "react";
+import { Color } from "@cohubinc/cohub-utils";
 
 import TButtonProps from "src/definitions/interfaces/IButtonProps";
 import BaseButton from "../Base";
+import { TouchableOpacity } from "react-native";
 
 export interface IOutlineButtonProps extends TButtonProps {
   bordered?: boolean;
@@ -16,24 +17,29 @@ const defaultProps: Partial<IOutlineButtonProps> = {
   enableHaptics: false
 };
 
-export default function Outline(props: IOutlineButtonProps) {
-  const mergedProps = { ...defaultProps, ...props };
+const Outline = forwardRef(
+  (props: IOutlineButtonProps, ref: Ref<TouchableOpacity>) => {
+    const mergedProps = { ...defaultProps, ...props };
 
-  const { style, bordered, dark, color, ...rest } = mergedProps;
+    const { style, bordered, dark, color, ...rest } = mergedProps;
 
-  const backgroundColor = dark ? Color.black : Color.trueWhite;
+    const backgroundColor = dark ? Color.black : Color.trueWhite;
 
-  return (
-    <BaseButton
-      {...rest}
-      style={[{ backgroundColor }, style]}
-      labelStyle={{
-        fontSize: 12,
-        lineHeight: 14,
-        color: color
-      }}
-      loaderColor={color}
-      borderColor={color}
-    />
-  );
-}
+    return (
+      <BaseButton
+        ref={ref}
+        {...rest}
+        style={[{ backgroundColor }, style]}
+        labelStyle={{
+          fontSize: 12,
+          lineHeight: 14,
+          color
+        }}
+        loaderColor={color}
+        borderColor={color}
+      />
+    );
+  }
+);
+
+export default Outline;

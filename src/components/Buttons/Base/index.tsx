@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import styled from "styled-components/native";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
@@ -11,7 +11,7 @@ import getBoxShadow from "src/helpers/getBoxShadow";
 
 export type IBaseButtonProps = IButtonProps;
 
-export default function Base(props: IButtonProps) {
+const Base = forwardRef((props: IButtonProps, ref: any) => {
   const {
     style: incomingStyleProp,
     labelStyle,
@@ -71,6 +71,7 @@ export default function Base(props: IButtonProps) {
       }}
     >
       <Touchable
+        ref={ref}
         style={[
           {
             borderColor,
@@ -118,7 +119,9 @@ export default function Base(props: IButtonProps) {
       </Touchable>
     </View>
   );
-}
+});
+
+export default Base;
 
 const Touchable = styled.TouchableOpacity`
   padding: 0px 15px;

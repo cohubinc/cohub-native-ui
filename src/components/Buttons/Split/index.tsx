@@ -1,5 +1,5 @@
-import React from "react";
-import { ViewStyle, StyleProp, TextStyle } from "react-native";
+import React, { forwardRef, Ref } from "react";
+import { ViewStyle, StyleProp, TextStyle, View } from "react-native";
 import styled from "styled-components/native";
 import { IColor, ContrastColor } from "@cohubinc/cohub-utils";
 import { Color } from "@cohubinc/cohub-utils";
@@ -23,7 +23,7 @@ export interface ISplitButtonProps {
   bold?: boolean;
 }
 
-export default function SplitButton(props: ISplitButtonProps) {
+const SplitButton = forwardRef((props: ISplitButtonProps, ref: Ref<View>) => {
   const {
     onChange,
     values,
@@ -39,7 +39,7 @@ export default function SplitButton(props: ISplitButtonProps) {
   } = props;
 
   return (
-    <Container {...{ backgroundColor, style }}>
+    <Container ref={ref} {...{ backgroundColor, style }}>
       {values.map((val, i) => (
         <Tab
           label={val}
@@ -59,7 +59,9 @@ export default function SplitButton(props: ISplitButtonProps) {
       ))}
     </Container>
   );
-}
+});
+
+export default SplitButton;
 
 const Container = styled.View<{ backgroundColor: IColor }>`
   background-color: ${props => props.backgroundColor};
