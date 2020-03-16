@@ -5,7 +5,7 @@ import IButtonProps from "src/definitions/interfaces/IButtonProps";
 import BasicButton from "../Base";
 import { TouchableOpacity } from "react-native";
 
-export type IPrimaryButtonProps = Omit<IButtonProps, "color">;
+export interface IPrimaryButtonProps extends Omit<IButtonProps, "color"> {}
 
 const Primary = forwardRef(
   (props: IPrimaryButtonProps, ref: Ref<TouchableOpacity>) => {
