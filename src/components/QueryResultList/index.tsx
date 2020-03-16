@@ -4,7 +4,7 @@ import { useOnEndReached, IColor, Color } from "@cohubinc/cohub-utils";
 
 import BasicList, { IBasicListProps } from "src/components/BasicList";
 
-type IListProps<IItem> = Omit<IBasicListProps<IItem>, "loading" | "onRefresh">;
+type IListProps<IItem> = IBasicListProps<IItem>;
 
 interface IQueryResultList<IItem> extends IListProps<IItem> {
   queryResult: QueryResult<any, any>;
@@ -14,9 +14,11 @@ interface IQueryResultList<IItem> extends IListProps<IItem> {
 }
 export default function QueryResultList<IItem>(props: IQueryResultList<IItem>) {
   const {
-    queryResult: { fetchMore, variables, data, refetch },
+    queryResult: { fetchMore, variables, data, refetch, loading },
     tintColor = Color.green300,
     dataAccessorKey,
+    onRefresh,
+    loading: customLoading,
     ...rest
   } = props;
 
@@ -38,8 +40,9 @@ export default function QueryResultList<IItem>(props: IQueryResultList<IItem>) {
       {...rest}
       data={nodes as IItem[]}
       tintColor={tintColor}
-      onRefresh={refetch}
+      onRefresh={!!onRefresh ? onRefresh : refetch}
       onEndReached={onEndReached}
+      {...(!!customLoading ? { loading: customLoading } : {})}
     />
   );
 }
