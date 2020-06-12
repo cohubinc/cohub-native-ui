@@ -58,7 +58,7 @@ const AnimateHeight: SFC<IAnimateHeightProps> = props => {
   }
 
   return (
-    <View style={style}>
+    <View style={expanded ? style : null}>
       <Animated.View style={[derivedStyle]} onLayout={getElHeightOnLayout}>
         {children}
       </Animated.View>
