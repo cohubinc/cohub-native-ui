@@ -34,6 +34,7 @@ import edit from "./Edit";
 import ellipsis from "./Ellipsis";
 import error from "./Error";
 import errorOutline from "./ErrorOutline";
+import exclamationTriangle from "./ExclamationTriangle";
 import eye from "./Eye";
 import filter from "./Filter";
 import flashlight from "./Flashlight";
@@ -107,6 +108,7 @@ export type TIconName =
   | "ellipsis"
   | "error"
   | "errorOutline"
+  | "exclamationTriangle"
   | "eye"
   | "filter"
   | "flashlight"
@@ -180,6 +182,7 @@ const icons: TIconMap = {
   ellipsis,
   error,
   errorOutline,
+  exclamationTriangle,
   eye,
   filter,
   flashlight,
@@ -211,7 +214,7 @@ const icons: TIconMap = {
   triangleDown,
   tripleDotsVertical,
   userGroup,
-  user
+  user,
 };
 export default icons;
 // For generating tests

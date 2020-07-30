@@ -5,7 +5,7 @@ import {
   GestureResponderEvent,
   TransformsStyle,
   TouchableWithoutFeedbackProps,
-  Insets
+  Insets,
 } from "react-native";
 import { IColor } from "@cohubinc/cohub-utils";
 
@@ -16,7 +16,7 @@ export { iconNames } from "./Icons";
 
 type ITouchableProps = Pick<
   TouchableWithoutFeedbackProps,
-  "onPress" | "onLongPress" | "onPressOut"
+  "onPress" | "onLongPress" | "onPressOut" | "onPressIn"
 >;
 export interface IIconProps extends ITouchableProps {
   name: TIconName;
@@ -92,6 +92,7 @@ Icon.Edit = buildIcon("edit");
 Icon.Ellipsis = buildIcon("ellipsis");
 Icon.Error = buildIcon("error");
 Icon.ErrorOutline = buildIcon("errorOutline");
+Icon.ExclamationTriangle = buildIcon("exclamationTriangle");
 Icon.Eye = buildIcon("eye");
 Icon.Filter = buildIcon("filter");
 Icon.Flashlight = buildIcon("flashlight");

@@ -1,9 +1,9 @@
 import React from "react";
+import Svg, { Path } from "react-native-svg";
+import { Color } from "@cohubinc/cohub-utils";
 
 import IconWrapper from "../../IconWrapper/index";
 import { IIconProps as IProps } from "../../index";
-import { Color } from "@cohubinc/cohub-utils";
-import Svg, { Path } from "react-native-svg";
 
 const Triangle = (props: IProps) => (
   <IconWrapper {...props} color={Color.black}>

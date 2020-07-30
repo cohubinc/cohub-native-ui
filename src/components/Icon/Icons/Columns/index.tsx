@@ -12,7 +12,7 @@ const Columns = (props: IProps) => (
           d="M10,18h5v-13h-5v13Zm-6,0h5v-13h-5v13Zm12,-13v13h5v-13h-5Z"
           fill={color as any}
         />
-        <path fill="none" d="M0,0h24v24h-24Z" />
+        <Path fill="none" d="M0,0h24v24h-24Z" />
       </Svg>
     )}
   </IconWrapper>
