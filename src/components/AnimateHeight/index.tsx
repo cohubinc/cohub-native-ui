@@ -4,15 +4,16 @@ import {
   StyleProp,
   Animated,
   LayoutChangeEvent,
-  View
+  View,
 } from "react-native";
 
 interface IAnimateHeightProps {
   expanded: boolean;
   style?: StyleProp<ViewStyle>;
+  duration?: number;
 }
-const AnimateHeight: SFC<IAnimateHeightProps> = props => {
-  const { children, expanded, style } = props;
+const AnimateHeight: SFC<IAnimateHeightProps> = (props) => {
+  const { children, expanded, style, duration } = props;
 
   const [elHeight, setElHeight] = useState<number | undefined>(undefined);
 
@@ -22,7 +23,8 @@ const AnimateHeight: SFC<IAnimateHeightProps> = props => {
     if (elHeight === undefined) return;
 
     Animated.timing(expandAnimation, {
-      toValue: expanded ? elHeight : 0
+      toValue: expanded ? elHeight : 0,
+      duration: duration,
     }).start();
   }, [expanded]);
 
