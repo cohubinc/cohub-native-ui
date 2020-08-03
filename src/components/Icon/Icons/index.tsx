@@ -40,6 +40,7 @@ import filter from "./Filter";
 import flashlight from "./Flashlight";
 import forward from "./Forward";
 import help from "./Help";
+import history from "./History";
 import importExport from "./ImportExport";
 import laptop from "./Laptop";
 import list from "./List";
@@ -114,6 +115,7 @@ export type TIconName =
   | "flashlight"
   | "forward"
   | "help"
+  | "history"
   | "importExport"
   | "laptop"
   | "list"
@@ -188,6 +190,7 @@ const icons: TIconMap = {
   flashlight,
   forward,
   help,
+  history,
   importExport,
   laptop,
   list,

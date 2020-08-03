@@ -98,6 +98,7 @@ Icon.Filter = buildIcon("filter");
 Icon.Flashlight = buildIcon("flashlight");
 Icon.Forward = buildIcon("forward");
 Icon.Help = buildIcon("help");
+Icon.History = buildIcon("history");
 Icon.ImportExport = buildIcon("importExport");
 Icon.Laptop = buildIcon("laptop");
 Icon.List = buildIcon("list");
