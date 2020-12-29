@@ -1,21 +1,23 @@
 import React from "react";
 import { Linking, TouchableOpacity, TouchableOpacityProps } from "react-native";
-import { Color } from "@cohubinc/cohub-utils";
+import { Color, IColor } from "@cohubinc/cohub-utils";
 
 import Typography, { ITypographyProps } from "src/components/Typography";
 
-interface IProps extends Omit<TouchableOpacityProps, "hitSlop"> {
-  children: React.ReactNode;
-  muted?: boolean;
+interface IProps extends ITypographyProps {
   href?: string;
   /** @default true */
   underlined?: boolean;
-  hitSlop?: number | TouchableOpacityProps["hitSlop"];
-  textStyle?: ITypographyProps["style"];
-  /**
-   * @default "Roboto Mono"
-   */
-  fontFamily?: ITypographyProps["fontFamily"];
+  typeFace?:
+    | "SuperTitle"
+    | "Title"
+    | "Subtitle"
+    | "HeadingLarge"
+    | "HeadingSmall"
+    | "HeadingTiny"
+    | "Large"
+    | "Small"
+    | "Tiny";
 }
 
 export default function Link(props: IProps) {
@@ -26,47 +28,38 @@ export default function Link(props: IProps) {
     href,
     onPress,
     underlined = true,
-    textStyle,
-    fontFamily = "Roboto Mono",
+    fontFamily,
+    typeFace,
     ...restOfProps
   } = props;
 
-  const color = (muted ? Color.darkGrey : Color.primaryGreen) as any;
+  const color: IColor = muted ? Color.darkGrey : Color.primaryGreen;
 
-  let hitSlop = props.hitSlop || 5;
-  if (typeof hitSlop === "number") {
-    hitSlop = { top: hitSlop, left: hitSlop, bottom: hitSlop, right: hitSlop };
-  }
+  const TypeFace = typeFace ? Typography[typeFace] : Typography;
 
   return (
-    <TouchableOpacity
+    <TypeFace
       {...restOfProps}
-      hitSlop={hitSlop}
-      onPress={e => {
+      onPress={(e) => {
         onPress && onPress(e);
 
         if (href) {
-          Linking.openURL(href).catch(err =>
+          Linking.openURL(href).catch((err) =>
             console.log("An error occurred in Link", href, err)
           );
         }
       }}
+      color={color}
       style={[
         underlined && {
           borderBottomWidth: 1,
-          borderColor: color
+          borderColor: color,
         },
         { alignSelf: "flex-start" },
-        style
+        style,
       ]}
     >
-      <Typography
-        color={color}
-        style={[{ fontSize: 12 }, textStyle]}
-        fontFamily={fontFamily}
-      >
-        {children}
-      </Typography>
-    </TouchableOpacity>
+      {children}
+    </TypeFace>
   );
 }

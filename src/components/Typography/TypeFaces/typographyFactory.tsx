@@ -49,7 +49,7 @@ export function typographyFactory(defaultProps: TFactoryArgs) {
       factoryStyle,
       style,
       { fontWeight },
-      { color }
+      { color },
     ];
 
     styleProp.push({ fontFamily: fontFamily || "Inter" });
