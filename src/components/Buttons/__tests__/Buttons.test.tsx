@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleProp, ViewStyle } from "react-native";
+import { Text } from "react-native";
 import { render, fireEvent } from "@testing-library/react-native";
 
 import Button from "../";
