@@ -1,11 +1,11 @@
-import { StyleProp, ViewStyle } from "react-native";
+import { ViewStyle, RegisteredStyle } from "react-native";
 
 export function isLineLoaderVisible(loader: any) {
   return !(loader?.props?.style?.pop().opacity === 0);
 }
 
 export function findActiveStyle(
-  style: StyleProp<ViewStyle>,
+  style: RegisteredStyle<ViewStyle>,
   property: string
 ): string | undefined {
   if (!style) {

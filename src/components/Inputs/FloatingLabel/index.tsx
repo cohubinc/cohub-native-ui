@@ -1,7 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, StyleProp, StyleSheet, TextInputProps, TextStyle, View } from 'react-native';
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Animated,
+  StyleProp,
+  StyleSheet,
+  TextInputProps,
+  TextStyle,
+  View,
+} from "react-native";
 
-import { Color } from '@cohubinc/cohub-utils';
+import { Color } from "@cohubinc/cohub-utils";
 
 interface IProps {
   value?: string;
@@ -28,7 +35,7 @@ export default function FloatingLabel({
   style,
   labelStyle,
   inputStyle,
-  render
+  render,
 }: IProps) {
   const animatedIsFocused = useRef(
     new Animated.Value(value?.length || 0 > 0 ? 1 : 0)
@@ -40,27 +47,28 @@ export default function FloatingLabel({
   useEffect(() => {
     Animated.timing(animatedIsFocused, {
       toValue: isFocused || (value?.length || 0 > 0) ? 1 : 0,
-      duration: 200
+      duration: 200,
+      useNativeDriver: false,
     }).start();
   }, [internalValue]);
 
-  const getLabelStyle = () => {
-    const sharedStyles = {
+  const getLabelStyle = (): Animated.WithAnimatedObject<TextStyle> => {
+    const sharedStyles: Animated.WithAnimatedObject<TextStyle> = {
       position: "absolute",
-      backgroundColor,
+      backgroundColor: backgroundColor as string,
       paddingHorizontal: 5,
       top: animatedIsFocused.interpolate({
         inputRange: [0, 1],
-        outputRange: ["30%", "-20%"]
+        outputRange: ["30%", "-20%"],
       }),
       fontSize: animatedIsFocused.interpolate({
         inputRange: [0, 1],
-        outputRange: [12, 10]
+        outputRange: [12, 10],
       }),
       color: animatedIsFocused.interpolate({
         inputRange: [0, 1],
-        outputRange: [color!, color!]
-      })
+        outputRange: [color!, color!],
+      }),
     };
 
     switch (textAlign) {
@@ -84,7 +92,7 @@ export default function FloatingLabel({
               styles.container,
               style,
               isFocused ? styles.active : {},
-              error && styles.error
+              error && styles.error,
             ]
           : undefined
       }
@@ -95,7 +103,7 @@ export default function FloatingLabel({
             getLabelStyle(),
             { justifyContent: "center" },
             labelStyle,
-            error && { color: Color.primaryRed }
+            error && { color: Color.primaryRed },
           ]}
         >
           {label}
@@ -105,8 +113,8 @@ export default function FloatingLabel({
         style: basic ? undefined : [styles.input, { textAlign }, inputStyle],
         onFocus: () => setIsFocused(true),
         onBlur: () => setIsFocused(false),
-        onChangeText: val => setInternalValue(val),
-        value
+        onChangeText: (val) => setInternalValue(val),
+        value,
       })}
     </View>
   );
@@ -118,20 +126,20 @@ const styles = StyleSheet.create({
     borderColor: Color.outlineGrey,
     borderRadius: 4,
     alignContent: "center",
-    height: 40
+    height: 40,
   },
   input: {
     height: "100%",
     color: Color.outlineGrey,
     justifyContent: "center",
-    paddingVertical: 2
+    paddingVertical: 2,
   },
   active: {
     borderBottomColor: Color.primaryGreen,
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   error: {
     borderBottomColor: Color.primaryRed,
-    borderBottomWidth: 1
-  }
+    borderBottomWidth: 1,
+  },
 });
