@@ -1,5 +1,5 @@
 {
-  "preset": "@testing-library/react-native",
+  "preset": "react-native",
   "modulePathIgnorePatterns": ["<rootDir>/CohubUIPlayground/node_modules"],
   "unmockedModulePathPatterns": ["react", "react-native"],
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
@@ -11,7 +11,7 @@
   "testPathIgnorePatterns": ["\\.snap$", "<rootDir>/node_modules/"],
   "cacheDirectory": ".jest/cache",
   "setupFilesAfterEnv": [
-    "<rootDir>/node_modules/@testing-library/react-native/cleanup-after-each",
+    "@testing-library/jest-native/extend-expect",
     "<rootDir>/testSetup.js"
   ]
 }
