@@ -3,8 +3,8 @@
     "baseUrl": "./",
     "target": "es5",
     "module": "es6",
-    "declarationDir": "./dist",
-    "outDir": "./dist",
+    "declarationDir": "dist/src",
+    "outDir": "dist/src",
     "sourceMap": true,
     "declarationMap": true,
     "declaration": true,
@@ -20,9 +20,7 @@
     "paths": {
       "src/*": ["src/*"]
     },
-    "plugins": [
-      { "transform": "typescript-transform-paths", "afterDeclarations": true }
-    ]
+    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }]
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]

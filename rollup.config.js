@@ -1,10 +1,9 @@
-import typescriptPlugin from "rollup-plugin-typescript2";
+import typescript from "rollup-plugin-typescript2";
 import { DEFAULT_EXTENSIONS } from "@babel/core";
 import babel from "rollup-plugin-babel";
 import replace from "rollup-plugin-replace";
 import commonjs from "rollup-plugin-commonjs";
 // import docGenPlugin from "babel-plugin-react-docgen-typescript";
-import ttypescript from "ttypescript";
 import execute from "rollup-plugin-execute";
 
 import pkg from "./package.json";
@@ -17,7 +16,7 @@ const dependencies = Object.keys(
 const isStoryBuild = NODE_ENV === "storybook";
 
 const pathsToCopyBuildToo = ["./CohubUIPlayground"].map(
-  app => `${app}/node_modules/@cohubinc/cohub-native-ui/`
+  (app) => `${app}/node_modules/@cohubinc/cohub-native-ui/`
 );
 
 export default {
@@ -26,29 +25,45 @@ export default {
     {
       file: pkg.main,
       format: "esm",
-      sourcemap: true
-    }
+      sourcemap: true,
+    },
   ],
   external: dependencies,
   plugins: [
     replace({
       __DEV__,
-      exclude: "node_modules/**"
+      exclude: "node_modules/**",
     }),
-    typescriptPlugin({
-      typescript: ttypescript,
-      tsconfig: "./tsconfig.build.json"
+    typescript({
+      tsconfig: "./tsconfig.build.json",
+      typescript: require("ttypescript"),
+      tsconfigOverride: {
+        exclude: ["**/*.stories.*"],
+      },
     }),
     babel({
       babelrc: false,
       extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
       exclude: "node_modules/**",
-      presets: ["@babel/preset-react"]
+      presets: ["@babel/preset-react", "@babel/preset-typescript"],
+      plugins: [
+        [
+          "module-resolver",
+          {
+            root: ["./src/", "./dist/"],
+            extensions: [".ts", ".tsx"],
+            alias: {
+              src: "./src",
+              dist: "./dist",
+            },
+          },
+        ],
+      ],
     }),
     commonjs(),
     execute("cp ./dist/index.d.ts ./dist/index.esm.d.ts"),
-    ...pathsToCopyBuildToo.map(path =>
+    ...pathsToCopyBuildToo.map((path) =>
       execute(`sleep 2 && cp -R ./dist ${path} && cp -R ./package.json ${path}`)
-    )
-  ]
+    ),
+  ],
 };

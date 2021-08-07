@@ -22,7 +22,7 @@ describe("Input.Stepper", () => {
       />
     );
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual("4");
   });
@@ -41,7 +41,7 @@ describe("Input.Stepper", () => {
       fireEvent.press(getByLabelText(getStepForwardLabel()))
     );
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual((numPresses + startVal).toString());
   });
@@ -60,7 +60,7 @@ describe("Input.Stepper", () => {
       fireEvent.press(getByLabelText(getStepBackLabel()))
     );
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual((startVal - numPresses).toString());
   });
@@ -75,7 +75,7 @@ describe("Input.Stepper", () => {
 
     fireEvent.changeText(getByLabelText(txtInputLabel), "33");
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual("33");
   });
@@ -90,7 +90,7 @@ describe("Input.Stepper", () => {
 
     fireEvent.changeText(getByLabelText(txtInputLabel), "not gonna fly! $%*&");
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual("0");
   });
@@ -107,7 +107,7 @@ describe("Input.Stepper", () => {
 
     times(5, () => fireEvent.press(getByLabelText(getStepForwardLabel(step))));
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual("25");
   });
@@ -124,7 +124,7 @@ describe("Input.Stepper", () => {
 
     times(12, () => fireEvent.press(getByLabelText(getStepBackLabel(step))));
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual("76");
   });
@@ -140,7 +140,7 @@ describe("Input.Stepper", () => {
 
     times(12, () => fireEvent.press(getByLabelText(getStepBackLabel())));
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual("-12");
   });
@@ -155,7 +155,7 @@ describe("Input.Stepper", () => {
 
     times(46, () => fireEvent.press(getByLabelText(getStepBackLabel())));
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual("0");
   });
@@ -233,7 +233,7 @@ describe("Input.Stepper", () => {
 
     times(5, () => fireEvent.press(getByText("increase value")));
 
-    const val = getByLabelText(txtInputLabel).getProp("value");
+    const val = getByLabelText(txtInputLabel).props.value;
 
     expect(val).toEqual("5");
   });
@@ -255,7 +255,7 @@ describe("Input.Stepper", () => {
 
     // Give it time for the state to update
     setTimeout(() => {
-      const val = getByLabelText(txtInputLabel).getProp("value");
+      const val = getByLabelText(txtInputLabel).props.value;
 
       expect(val).toEqual("10");
     }, 250);
@@ -273,11 +273,11 @@ function StepperTestDemo() {
       />
 
       <Buttons
-        onPress={() => setValue(val => val + 1)}
+        onPress={() => setValue((val) => val + 1)}
         label="increase value"
       />
     </View>
   );
 }
 
-const sleep = async (ms = 500) => new Promise(r => setTimeout(r, ms));
+const sleep = async (ms = 500) => new Promise((r) => setTimeout(r, ms));

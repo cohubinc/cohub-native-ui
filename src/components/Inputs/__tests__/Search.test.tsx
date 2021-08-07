@@ -28,7 +28,7 @@ describe("Inputs.Search component", () => {
       />
     );
 
-    const val = getByLabelText(accessibilityLabel).getProp("value");
+    const val = getByLabelText(accessibilityLabel).props.value;
 
     expect(val).toEqual("pants");
   });
@@ -44,7 +44,7 @@ describe("Inputs.Search component", () => {
 
     fireEvent.changeText(getByLabelText(accessibilityLabel), "Skinny jeans");
 
-    const val = getByLabelText(accessibilityLabel).getProp("value");
+    const val = getByLabelText(accessibilityLabel).props.value;
 
     expect(val).toEqual("Skinny jeans");
   });
@@ -53,7 +53,7 @@ describe("Inputs.Search component", () => {
     const { getByLabelText, getByText } = render(
       <SearchTestDemo initialValue="Apple Bottom Jeans" />
     );
-    const getVal = () => getByLabelText(accessibilityLabel).getProp("value");
+    const getVal = () => getByLabelText(accessibilityLabel).props.value;
 
     expect(getVal()).toEqual("Apple Bottom Jeans");
 
@@ -74,7 +74,7 @@ describe("Inputs.Search component", () => {
 
     fireEvent.changeText(getByLabelText(accessibilityLabel), "Boots");
 
-    const val = getByLabelText(accessibilityLabel).getProp("value");
+    const val = getByLabelText(accessibilityLabel).props.value;
 
     expect(val).toEqual("Boots");
   });

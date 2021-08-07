@@ -3,12 +3,13 @@
   "modulePathIgnorePatterns": ["<rootDir>/CohubUIPlayground/node_modules"],
   "unmockedModulePathPatterns": ["react", "react-native"],
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
-  "transform": {
-    "^.+\\.[t|j]sx?$": "<rootDir>/testTransform.js"
-  },
-  "transformIgnorePatterns": ["node_modules/(?!(jest-)?react-native)"],
-  "testMatch": ["<rootDir>/**/__tests__/?(*.)(spec|test).(j|t)s?(x)"],
-  "testPathIgnorePatterns": ["\\.snap$", "<rootDir>/node_modules/"],
+  "transformIgnorePatterns": ["node_modules/(?!@react-native|react-native)"],
+  "testMatch": ["<rootDir>/src/**/__tests__/?(*.)(spec|test).(j|t)s?(x)"],
+  "testPathIgnorePatterns": [
+    "\\.snap$",
+    "<rootDir>/node_modules/",
+    "<rootDir>/dir/"
+  ],
   "cacheDirectory": ".jest/cache",
   "setupFilesAfterEnv": [
     "@testing-library/jest-native/extend-expect",

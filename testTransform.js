@@ -9,7 +9,8 @@ const babelJest = require("babel-jest");
 const babelOptions = {
   presets: [
     "module:metro-react-native-babel-preset",
-    "@babel/preset-typescript"
+    "@babel/preset-react",
+    "@babel/preset-typescript",
   ],
   plugins: [
     [
@@ -17,12 +18,12 @@ const babelOptions = {
       {
         root: ["./src/", "./dist/"],
         alias: {
-          src: "./src"
-        }
-      }
+          src: "./src",
+        },
+      },
     ],
-    "@babel/plugin-proposal-class-properties"
-  ]
+    "@babel/plugin-proposal-class-properties",
+  ],
 };
 
 module.exports = babelJest.createTransformer(babelOptions);

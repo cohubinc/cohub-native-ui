@@ -2,50 +2,24 @@ import React from "react";
 import Message from "./Message";
 import useNotifications from "./useNotifications";
 import emitter from "src/helpers/eventEmitter";
+import { INotification, INotificationType } from "./types";
+
+export * from "./types";
 
 export function Notifications() {
   const { state } = useNotifications();
 
   return (
     <React.Fragment>
-      {state.map(n => (
+      {state.map((n) => (
         <Message
           key={n.id}
           notification={n}
-          dismiss={notification_id => removeNotification(notification_id)}
+          dismiss={(notification_id) => removeNotification(notification_id)}
         />
       ))}
     </React.Fragment>
   );
-}
-
-export interface INotification {
-  id?: string;
-  title?: string;
-  type?: INotificationType;
-  message: React.ReactNode | string[];
-  position?: "top" | "bottom";
-  duration?: number;
-  isActionRequired?: boolean;
-  render?: (
-    notification: INotification,
-    onDismiss: () => void
-  ) => React.ReactElement | null;
-}
-
-export interface IAddNotificationPayload {
-  notification: INotification;
-}
-
-export interface IRemoveNotificationPayload {
-  notification_id: INotification["id"];
-}
-
-export enum INotificationType {
-  success = "success",
-  error = "error",
-  custom = "custom",
-  info = "info"
 }
 
 export function showNotification(notification: INotification) {
@@ -63,7 +37,7 @@ export function showSuccessNotification(
 ) {
   emitter.emit("showNotification", {
     ...notification,
-    type: INotificationType.success
+    type: INotificationType.success,
   });
 }
 
@@ -72,7 +46,7 @@ export function showErrorNotification(
 ) {
   emitter.emit("showNotification", {
     ...notification,
-    type: INotificationType.error
+    type: INotificationType.error,
   });
 }
 
@@ -81,7 +55,7 @@ export function showInfoNotification(
 ) {
   emitter.emit("showNotification", {
     ...notification,
-    type: INotificationType.info
+    type: INotificationType.info,
   });
 }
 
@@ -92,6 +66,6 @@ export function showCustomNotification(
   emitter.emit("showNotification", {
     ...notification,
     type: INotificationType.custom,
-    render
+    render,
   });
 }
