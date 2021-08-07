@@ -1,11 +1,17 @@
 {
-  "presets": ["@babel/preset-react", "@babel/preset-typescript"],
+  "presets": [
+    "module:metro-react-native-babel-preset",
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
   "plugins": [
     [
       "babel-plugin-module-resolver",
       {
         "root": ["./src/", "./dist/"],
+        "extensions": [".ts", ".tsx"],
         "alias": {
+          "src": "./src",
           "dist": "./dist"
         }
       }

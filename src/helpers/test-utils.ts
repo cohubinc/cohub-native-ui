@@ -1,12 +1,11 @@
-import { StyleProp, ViewStyle } from "react-native";
-import { NativeTestInstance } from "@testing-library/react-native";
+import { ViewStyle, RegisteredStyle } from "react-native";
 
-export function isLineLoaderVisible(loader: NativeTestInstance) {
+export function isLineLoaderVisible(loader: any) {
   return !(loader?.props?.style?.pop().opacity === 0);
 }
 
 export function findActiveStyle(
-  style: StyleProp<ViewStyle>,
+  style: RegisteredStyle<ViewStyle>,
   property: string
 ): string | undefined {
   if (!style) {
@@ -15,7 +14,7 @@ export function findActiveStyle(
 
   if (Array.isArray(style)) {
     return findActiveStyle(
-      style.reverse().find(s => !!findActiveStyle(s, property)),
+      style.reverse().find((s) => !!findActiveStyle(s, property)),
       property
     );
   }

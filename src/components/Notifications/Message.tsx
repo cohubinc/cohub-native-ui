@@ -1,15 +1,15 @@
-import React, { useRef, useEffect, useState, ReactNode } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   Animated,
   StyleSheet,
   TouchableOpacity,
   Easing,
-  View
+  View,
 } from "react-native";
 import { Color, ContrastColor } from "@cohubinc/cohub-utils";
 
 import gs from "src/definitions/constants/GlobalStyles";
-import { INotification, INotificationType } from ".";
+import { INotification, INotificationType } from "./types";
 import Typography from "src/components/Typography";
 
 interface IProps {
@@ -29,7 +29,7 @@ export default function Message({ notification, dismiss }: IProps) {
     id,
     title,
     message,
-    duration = defaultDuration
+    duration = defaultDuration,
   } = notification;
 
   const [notificationHeight, setNotificationHeight] = useState(0);
@@ -40,7 +40,7 @@ export default function Message({ notification, dismiss }: IProps) {
       toValue: 1,
       duration: 500,
       easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start(() => {
       if (!isActionRequired) {
         setTimeout(onDismiss, duration);
@@ -53,7 +53,7 @@ export default function Message({ notification, dismiss }: IProps) {
       toValue: 0,
       duration: 500,
       easing: Easing.bezier(0.4, 0.0, 0.2, 1),
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start(() => {
       dismiss(id);
     });
@@ -76,10 +76,10 @@ export default function Message({ notification, dismiss }: IProps) {
       {
         translateY: transition.current.interpolate({
           inputRange: [0, 1],
-          outputRange: getOutputRange()
-        })
-      }
-    ]
+          outputRange: getOutputRange(),
+        }),
+      },
+    ],
   };
 
   if (type === INotificationType.custom && render) {
@@ -90,7 +90,7 @@ export default function Message({ notification, dismiss }: IProps) {
           { shadowOpacity: 0.9 },
           styles.customContainer,
           position === "top" ? styles.top : styles.bottom,
-          animated
+          animated,
         ]}
       >
         <View
@@ -119,9 +119,9 @@ export default function Message({ notification, dismiss }: IProps) {
 
     if (
       Array.isArray(message) &&
-      message.every(msg => typeof msg === "string")
+      message.every((msg) => typeof msg === "string")
     ) {
-      return (message as string[]).map(text => {
+      return (message as string[]).map((text) => {
         return <MsgText key={text}>{text}</MsgText>;
       });
     }
@@ -136,7 +136,7 @@ export default function Message({ notification, dismiss }: IProps) {
         { shadowOpacity: 0.9 },
         styles.container,
         position === "top" ? styles.top : styles.bottom,
-        animated
+        animated,
       ]}
     >
       <View
@@ -170,29 +170,29 @@ const makeStyles = (type: INotificationType) =>
       maxWidth: 600,
       zIndex: 999,
       borderRadius: 4,
-      backgroundColor: getBackgroundColor(type)
+      backgroundColor: getBackgroundColor(type),
     },
     customContainer: {
       position: "absolute",
       zIndex: 999,
-      alignSelf: "center"
+      alignSelf: "center",
     },
     top: {
-      top: 56
+      top: 56,
     },
     bottom: {
-      bottom: 0
+      bottom: 0,
     },
     button: {
       justifyContent: "center",
       alignItems: "center",
       flex: 1,
       paddingHorizontal: 18,
-      paddingVertical: 10
+      paddingVertical: 10,
     },
     actionLabel: {
-      paddingHorizontal: 10
-    }
+      paddingHorizontal: 10,
+    },
   });
 
 const getBackgroundColor = (type: INotificationType) => {

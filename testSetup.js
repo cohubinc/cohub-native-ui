@@ -9,15 +9,9 @@ jest.mock("react-native-socket-mobile", () => ({
   updateStatusFromDevices: jest.fn(),
   start: jest.fn(),
   stop: jest.fn(),
-  clearAllListeners: jest.fn()
+  clearAllListeners: jest.fn(),
 }));
 
 jest.mock("react-native-sound-player", () => jest.fn());
 
 jest.mock("react-native-permissions", () => jest.fn());
-
-jest.mock("react-dom", () => ({
-  findDOMNode: () => ({
-    getContext: jest.fn()
-  })
-}));

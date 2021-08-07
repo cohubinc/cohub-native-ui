@@ -25,6 +25,7 @@ const AnimateHeight: SFC<IAnimateHeightProps> = (props) => {
     Animated.timing(expandAnimation, {
       toValue: expanded ? elHeight : 0,
       duration: duration,
+      useNativeDriver: false,
     }).start();
   }, [expanded]);
 
@@ -46,11 +47,9 @@ const AnimateHeight: SFC<IAnimateHeightProps> = (props) => {
     return null;
   }
 
-  interface IStyle {
-    opacity?: number;
+  type IStyle = {
     height?: number | Animated.Value;
-    overflow: string;
-  }
+  } & Pick<ViewStyle, "overflow" | "opacity">;
   let derivedStyle: IStyle = { height: expandAnimation, overflow: "hidden" };
   if (elHeight === undefined) {
     // If element height isn't calculated yet set opacity to 0 so we can get a measurement but without actually revealing the element
@@ -60,8 +59,8 @@ const AnimateHeight: SFC<IAnimateHeightProps> = (props) => {
   }
 
   return (
-    <View style={expanded ? style : null}>
-      <Animated.View style={[derivedStyle]} onLayout={getElHeightOnLayout}>
+    <View style={expanded ? style : undefined}>
+      <Animated.View style={derivedStyle} onLayout={getElHeightOnLayout}>
         {children}
       </Animated.View>
     </View>

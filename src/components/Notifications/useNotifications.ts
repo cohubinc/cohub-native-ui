@@ -2,8 +2,8 @@ import { useReducer, useEffect } from "react";
 import {
   INotification,
   IAddNotificationPayload,
-  IRemoveNotificationPayload
-} from ".";
+  IRemoveNotificationPayload,
+} from "./types";
 import emitter from "src/helpers/eventEmitter";
 import IAction from "src/definitions/interfaces/IAction";
 import { TimeElapsedTracker, guid } from "@cohubinc/cohub-utils";
@@ -48,7 +48,7 @@ function reducer(state: INotification[], action: IAction) {
     case "REMOVE": {
       const payload: IRemoveNotificationPayload = action.payload;
 
-      return state.filter(n => n.id !== payload.notification_id);
+      return state.filter((n) => n.id !== payload.notification_id);
     }
     default:
       return state;

@@ -28,7 +28,7 @@ describe("Inputs.Basic component", () => {
       />
     );
 
-    const val = getByLabelText(accessibilityLabel).getProp("value");
+    const val = getByLabelText(accessibilityLabel).props.value;
 
     expect(val).toEqual("pants");
   });
@@ -49,7 +49,7 @@ describe("Inputs.Basic component", () => {
 
   it("warns you if you don't pass in label or placeholder or accessibilityLabel", () => {
     const consoleWarn = console.warn;
-    const warnMock = jest.fn(msg => msg);
+    const warnMock = jest.fn((msg) => msg);
     console.warn = warnMock;
 
     render(<Inputs.Basic />);
@@ -66,7 +66,7 @@ describe("Inputs.Basic component", () => {
 
     fireEvent.changeText(getByLabelText(accessibilityLabel), "Skinny jeans");
 
-    const val = getByLabelText(accessibilityLabel).getProp("value");
+    const val = getByLabelText(accessibilityLabel).props.value;
 
     expect(val).toEqual("Skinny jeans");
   });
@@ -75,7 +75,7 @@ describe("Inputs.Basic component", () => {
     const { getByLabelText, getByText } = render(
       <BasicTestDemo initialValue="Apple Bottom Jeans" />
     );
-    const getVal = () => getByLabelText(accessibilityLabel).getProp("value");
+    const getVal = () => getByLabelText(accessibilityLabel).props.value;
 
     expect(getVal()).toEqual("Apple Bottom Jeans");
 
@@ -96,7 +96,7 @@ describe("Inputs.Basic component", () => {
 
     fireEvent.changeText(getByLabelText(accessibilityLabel), "Boots");
 
-    const val = getByLabelText(accessibilityLabel).getProp("value");
+    const val = getByLabelText(accessibilityLabel).props.value;
 
     expect(val).toEqual("Boots");
   });
