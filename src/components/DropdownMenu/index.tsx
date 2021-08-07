@@ -1,10 +1,9 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import {
-  View,
   StyleProp,
   ViewStyle,
   Animated,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from "react-native";
 import styled from "styled-components/native";
 import { IColor } from "@cohubinc/cohub-utils";
@@ -56,19 +55,19 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
     color = Color.trueWhite,
     backgroundColor = Color.primary,
     shrink = false,
-    bold
+    bold,
   } = props;
 
   const [expanded, setExpanded] = useState(false);
 
   const [rotateAnimation, setRotateAnimation] = useTwoStepAnimation({
     positionOne: "-90deg",
-    positionTwo: "0deg"
+    positionTwo: "0deg",
   });
 
   const [shrinkAnimation, setShrinkAnimation] = useTwoStepAnimation({
     positionOne: 1,
-    positionTwo: 0.9
+    positionTwo: 0.9,
   });
 
   useEffect(() => {
@@ -79,18 +78,17 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
     setRotateAnimation(expanded ? 2 : 1);
   }, [expanded]);
 
-  const selected = options.find(opt => opt.value === value);
+  const selected = options.find((opt) => opt.value === value);
 
   const label = selected ? selected.label || selected.value : placeHolderLabel;
 
   // Remove selected item
-  const filteredOpts = options.filter(opt => opt.value !== value);
+  const filteredOpts = options.filter((opt) => opt.value !== value);
 
   return (
     <Wrapper style={[style]}>
       <Animated.View
-        backgroundColor={backgroundColor}
-        style={{ transform: [{ scale: shrinkAnimation }] }}
+        style={{ transform: [{ scale: shrinkAnimation }], backgroundColor }}
       >
         <TouchableWithoutFeedback
           onPress={() => {
@@ -115,7 +113,7 @@ export default function DropdownMenu<Val>(props: IProps<Val>) {
       </Animated.View>
 
       <List expanded={expanded} style={[{ backgroundColor }, getBoxShadow(3)]}>
-        {filteredOpts.map(opt => (
+        {filteredOpts.map((opt) => (
           <ListItem key={opt.value as any} onPress={() => onSelect(opt.value)}>
             <Typography.Large color={color}>
               {opt.label || opt.value}
@@ -140,7 +138,7 @@ const LabelRow = styled.View<{ backgroundColor: IColor }>`
   align-items: center;
   justify-content: space-between;
   padding: 0 2px;
-  background-color: ${p => p.backgroundColor};
+  background-color: ${(p) => p.backgroundColor};
 `;
 const ListItem = styled.TouchableOpacity`
   padding: 5px 2px;
