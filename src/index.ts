@@ -60,9 +60,5 @@ export {
   default as Typography,
   ITypographyProps
 } from "src/components/Typography";
-export {
-  useBarcodeScanner,
-  useSocketMobileConfig
-} from "src/hooks/useBarcodeScanner";
 export { useSoundPlayer } from "src/hooks/useSoundPlayer";
 export { useTwoStepAnimation } from "src/hooks/useTwoStepAnimation";

@@ -12745,11 +12745,6 @@ react-native-permissions@^2.0.8:
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-2.0.8.tgz#e6d20a7b6e3df5333a3d80cc83024686fa2f49e3"
   integrity sha512-qK8Thp+9PTl/YjhKkRr8LPHfX5Evv5Zj/3CmAiqE45qCTB5UbWTKBWUfg3iqfMrjv9nE2rcS1PrIjZCDh6s/gQ==
 
-react-native-socket-mobile@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-socket-mobile/-/react-native-socket-mobile-0.1.1.tgz#5dfbc27406351db693c887fc102ca119fc2a554f"
-  integrity sha512-wDez46KyIPb2DZhReaQBnEl0Bw0S7Cv+J5v2HSyImb5CXH+q8hsdRPzwTMmxUoPVXg0loXNRdjU3LWCtJo3FPw==
-
 react-native-sound-player@^0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/react-native-sound-player/-/react-native-sound-player-0.10.1.tgz#7dc170732b7c85c982d099db69b3d5c83f36a2b7"

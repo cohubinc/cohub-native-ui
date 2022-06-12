@@ -1,6 +1,6 @@
 {
   "name": "@cohubinc/cohub-native-ui",
-  "version": "1.14.0",
+  "version": "1.15.0",
   "description": "Sharable native UI components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -46,7 +46,6 @@
     "react-native-haptic-feedback": "^1.8.2",
     "react-native-permissions": "^2.0.8",
     "react-native-socket-mobile": "^0.1.x",
-    "react-native-sound-player": "^0.10.x",
     "react-native-svg": "^12.1.x"
   },
   "dependencies": {
@@ -118,7 +117,6 @@
     "react-native": "^0.64.2",
     "react-native-haptic-feedback": "^1.8.2",
     "react-native-permissions": "^2.0.8",
-    "react-native-socket-mobile": "^0.1.1",
     "react-native-sound-player": "^0.10.1",
     "react-native-svg": "^9.13.3",
     "regenerator-runtime": "^0.13.3",
